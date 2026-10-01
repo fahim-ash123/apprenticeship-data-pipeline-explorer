@@ -1,0 +1,61 @@
+name: Bug
+description: Report something that isn't working as intended, with enough detail to reproduce it.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What went wrong, in one or two sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The exact steps or command that produce the problem.
+      value: |
+        1. 
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Error output, a failing test, or a link to the failing CI run.
+      render: text
+    validations:
+      required: false
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Where it happened, for example CI or the codespace, and the Python version.
+    validations:
+      required: true
+  - type: textarea
+    id: root-cause
+    attributes:
+      label: Root cause
+      description: Fill in once diagnosed.
+    validations:
+      required: false
+  - type: textarea
+    id: fix
+    attributes:
+      label: Fix and regression test
+      description: How it was fixed, and the test that now prevents it recurring.
+    validations:
+      required: false
