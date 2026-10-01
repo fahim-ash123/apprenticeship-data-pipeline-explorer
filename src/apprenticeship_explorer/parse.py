@@ -100,5 +100,12 @@ def parse_indicator_columns(
         UnrecognisedValueError: If an indicator column holds a value that is
             neither a finite number nor a known marker.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    wanted = set(indicator_columns)
+    absent = sorted(wanted - row.keys())
+    if absent:
+        raise KeyError(f"Indicator columns not found in row: {', '.join(absent)}")
+
+    return {
+        column: parse_indicator_value(value) if column in wanted else value
+        for column, value in row.items()
+    }
