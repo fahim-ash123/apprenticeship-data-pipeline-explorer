@@ -4,9 +4,21 @@ The published CSV mixes numbers with symbols that explain why a value is
 missing. If those symbols were treated as zero, or simply dropped, the meaning
 of the data would change without any warning. Each symbol is therefore kept as
 a typed missing value that records why it was withheld.
+
+Footnote 8 of the data set defines ``low`` only for percentages, but it also
+appears in the count columns, so its reason is worded to cover both.
 """
 
+import math
 from dataclasses import dataclass
+
+# Each published marker and the reason it stands for.
+MARKER_REASONS = {
+    "c": "suppressed to protect confidentiality",
+    "x": "not available",
+    "z": "not applicable",
+    "low": "below the publication threshold",
+}
 
 
 @dataclass(frozen=True)
@@ -29,6 +41,10 @@ class UnrecognisedValueError(ValueError):
 def parse_indicator_value(raw: str) -> int | float | Missing:
     """Convert one raw indicator value into a number or a Missing marker.
 
+    Markers are matched exactly, so ``C`` is rejected. The published symbols
+    are all lower case, and accepting variants could hide a problem in the
+    source data.
+
     Args:
         raw: The value exactly as read from the CSV.
 
@@ -40,5 +56,22 @@ def parse_indicator_value(raw: str) -> int | float | Missing:
         UnrecognisedValueError: If the value is empty, not a number, not finite,
             or not one of the known markers.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    value = raw.strip()
+    if value in MARKER_REASONS:
+        return Missing(marker=value, reason=MARKER_REASONS[value])
+
+    # Try a whole number first so that counts stay as integers.
+    try:
+        return int(value)
+    except ValueError:
+        pass
+
+    try:
+        number = float(value)
+    except ValueError:
+        raise UnrecognisedValueError(f"Unrecognised indicator value: {raw!r}") from None
+
+    # float() accepts 'nan' and 'inf', which are never real published figures.
+    if not math.isfinite(number):
+        raise UnrecognisedValueError(f"Unrecognised indicator value: {raw!r}")
+    return number
