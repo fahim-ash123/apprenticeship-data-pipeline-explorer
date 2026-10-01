@@ -10,6 +10,7 @@ appears in the count columns, so its reason is worded to cover both.
 """
 
 import math
+from collections.abc import Collection, Mapping
 from dataclasses import dataclass
 
 # Each published marker and the reason it stands for.
@@ -75,3 +76,29 @@ def parse_indicator_value(raw: str) -> int | float | Missing:
     if not math.isfinite(number):
         raise UnrecognisedValueError(f"Unrecognised indicator value: {raw!r}")
     return number
+
+def parse_indicator_columns(
+    row: Mapping[str, str], indicator_columns: Collection[str]
+) -> dict[str, str | int | float | Missing]:
+    """Return a copy of a CSV row with only its indicator columns parsed.
+
+    The same symbols can be legitimate values outside the indicator columns.
+    ``z`` is also the region code for "Outside of England and unknown", so
+    converting every column would destroy a real location code. Every other
+    column is therefore returned exactly as it was read.
+
+    Args:
+        row: One row of the CSV, mapping column names to raw values.
+        indicator_columns: The names of the columns that hold indicator values.
+
+    Returns:
+        A new dictionary with the same columns, where indicator values are
+        parsed and every other value is unchanged.
+
+    Raises:
+        KeyError: If any of the indicator columns is not present in the row.
+        UnrecognisedValueError: If an indicator column holds a value that is
+            neither a finite number nor a known marker.
+    """
+    # Deliberately not implemented yet. The tests are written first.
+    raise NotImplementedError
