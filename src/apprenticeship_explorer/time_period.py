@@ -15,9 +15,12 @@ PERIOD_FORM = re.compile(r"([0-9]{4})/([0-9]{4})")
 LABEL_FORM = re.compile(r"([0-9]{4})/([0-9]{2})")
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, order=True)
 class AcademicYear:
     """An academic year, identified by the calendar year it starts in.
+
+    Years compare and sort by their start year, so normalised periods are in
+    chronological order whichever form they came from.
 
     Attributes:
         start_year: The calendar year the academic year starts in, for example
