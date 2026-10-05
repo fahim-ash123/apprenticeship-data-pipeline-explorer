@@ -6,7 +6,13 @@ to, are real values from version 2.0.2 of the data set. The other identifiers,
 labels and codes are invented to keep the sample small.
 """
 
-from apprenticeship_explorer.metadata import DataSetMetadata
+import pytest
+
+from apprenticeship_explorer.metadata import (
+    DataSetMetadata,
+    MetadataError,
+    UnknownIdentifierError,
+    )
 from apprenticeship_explorer.time_period import AcademicYear
 
 PROVIDER_TYPE = "Pv7tY"
@@ -133,3 +139,76 @@ def test_time_periods_are_normalised_and_in_chronological_order():
     """Time periods become academic years, sorted whatever order the API used."""
     meta = DataSetMetadata.from_api(sample_meta())
     assert meta.time_periods == (AcademicYear(2017), AcademicYear(2024))
+
+def test_indicator_identifier_is_not_found_among_filters():
+    """An identifier that exists only as an indicator is not a filter."""
+    meta = DataSetMetadata.from_api(sample_meta())
+    with pytest.raises(UnknownIdentifierError, match="filter.*Qr5sT"):
+        meta.filter("Qr5sT")
+
+
+def test_filter_identifier_is_not_found_among_indicators():
+    """``jI4AM`` is a filter and an option, but never an indicator."""
+    meta = DataSetMetadata.from_api(sample_meta())
+    with pytest.raises(UnknownIdentifierError, match="indicator.*jI4AM"):
+        meta.indicator("jI4AM")
+
+
+def test_option_is_found_only_within_its_own_filter():
+    """The "Schools" option belongs to provider type, so ``age_group`` lacks it."""
+    meta = DataSetMetadata.from_api(sample_meta())
+    with pytest.raises(UnknownIdentifierError, match="mU59K.*jI4AM"):
+        meta.filter_option("mU59K", "jI4AM")
+
+
+def test_option_lookup_in_an_unknown_filter_raises():
+    """Asking for an option of a filter that does not exist is an error."""
+    meta = DataSetMetadata.from_api(sample_meta())
+    with pytest.raises(UnknownIdentifierError, match="filter.*Zz9zZ"):
+        meta.filter_option("Zz9zZ", "jI4AM")
+
+
+def test_location_is_not_found_at_another_level():
+    """A regional location cannot be found by searching the national level."""
+    meta = DataSetMetadata.from_api(sample_meta())
+    with pytest.raises(UnknownIdentifierError, match="NAT.*Yz7aB"):
+        meta.location("NAT", "Yz7aB")
+
+
+def test_unknown_level_raises():
+    """A level the data set does not have is an error, not an empty result."""
+    meta = DataSetMetadata.from_api(sample_meta())
+    with pytest.raises(UnknownIdentifierError, match="LA"):
+        meta.location("LA", "Yz7aB")
+
+
+def test_repeated_filter_identifier_raises():
+    """A repeat within one namespace would hide a filter, so it is rejected."""
+    meta = sample_meta()
+    meta["filters"].append(dict(meta["filters"][0], column="age_group_copy"))
+    with pytest.raises(MetadataError, match="mU59K"):
+        DataSetMetadata.from_api(meta)
+
+
+def test_repeated_option_identifier_within_a_filter_raises():
+    """Two options of one filter cannot share an identifier."""
+    meta = sample_meta()
+    meta["filters"][2]["options"].append({"id": "jI4AM", "label": "Schools again"})
+    with pytest.raises(MetadataError, match="jI4AM"):
+        DataSetMetadata.from_api(meta)
+
+
+def test_time_period_whose_period_and_label_disagree_raises():
+    """The ``period`` and ``label`` fields must describe the same academic year."""
+    meta = sample_meta()
+    meta["timePeriods"][0]["label"] = "2023/24"
+    with pytest.raises(MetadataError, match="2024/2025"):
+        DataSetMetadata.from_api(meta)
+
+
+def test_time_period_that_is_not_an_academic_year_raises():
+    """Only academic years, code ``AY``, are supported by this data set."""
+    meta = sample_meta()
+    meta["timePeriods"][0]["code"] = "CY"
+    with pytest.raises(MetadataError, match="CY"):
+        DataSetMetadata.from_api(meta)
