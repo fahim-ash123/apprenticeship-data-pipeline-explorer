@@ -8,7 +8,7 @@ lookup table keyed by identifier would return the wrong thing, so each type is
 held in its own namespace and every lookup names the namespace it searches.
 """
 
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from typing import Any
 
@@ -21,6 +21,71 @@ class MetadataError(ValueError):
 
 class UnknownIdentifierError(LookupError):
     """Raised when an identifier does not exist in the namespace searched."""
+
+
+def _index(items: Iterable[Any], namespace: str) -> dict[str, Any]:
+    """Key items by identifier, refusing a repeat within the namespace.
+
+    Args:
+        items: Objects with an ``id`` attribute.
+        namespace: What the items are, used in the error message.
+
+    Returns:
+        A dictionary of the items keyed by identifier.
+
+    Raises:
+        MetadataError: If two items share an identifier.
+    """
+    indexed = {}
+    for item in items:
+        if item.id in indexed:
+            raise MetadataError(f"Repeated {namespace} ID: {item.id!r}")
+        indexed[item.id] = item
+    return indexed
+
+
+def _get(mapping: Mapping[str, Any], namespace: str, identifier: str) -> Any:
+    """Return one entry of a namespace, or say which namespace lacked it.
+
+    Args:
+        mapping: The namespace to search.
+        namespace: What the namespace holds, used in the error message.
+        identifier: The identifier to look up.
+
+    Returns:
+        The entry with that identifier.
+
+    Raises:
+        UnknownIdentifierError: If the namespace has no such identifier.
+    """
+    try:
+        return mapping[identifier]
+    except KeyError:
+        raise UnknownIdentifierError(f"No {namespace} with ID {identifier!r}") from None
+
+
+def _academic_year(entry: Mapping[str, str]) -> AcademicYear:
+    """Normalise one time period entry, checking its fields agree.
+
+    Args:
+        entry: One item of ``timePeriods``, with ``code``, ``period`` and
+            ``label``.
+
+    Returns:
+        The academic year it describes.
+
+    Raises:
+        MetadataError: If it is not an academic year, or its ``period`` and
+            ``label`` describe different years.
+    """
+    if entry["code"] != "AY":
+        raise MetadataError(f"Unsupported time period code: {entry['code']!r}")
+    year = normalise_time_period(entry["period"])
+    if normalise_time_period(entry["label"]) != year:
+        raise MetadataError(
+            f"Time period {entry['period']!r} has a different label: {entry['label']!r}"
+        )
+    return year
 
 
 @dataclass(frozen=True)
@@ -118,35 +183,42 @@ class DataSetMetadata:
             MetadataError: If an identifier repeats within one namespace, or a
                 time period is not a consistent academic year.
         """
-        filters = {
-            f["id"]: Filter(
-                id=f["id"],
-                column=f["column"],
-                label=f["label"],
-                options={o["id"]: FilterOption(o["id"], o["label"]) for o in f["options"]},
-            )
-            for f in meta["filters"]
-        }
-        indicators = {
-            i["id"]: Indicator(
-                id=i["id"],
-                column=i["column"],
-                label=i["label"],
-                unit=i.get("unit", ""),
-                decimal_places=i.get("decimalPlaces"),
-            )
-            for i in meta["indicators"]
-        }
+        filters = _index(
+            (
+                Filter(
+                    id=f["id"],
+                    column=f["column"],
+                    label=f["label"],
+                    options=_index(
+                        (FilterOption(o["id"], o["label"]) for o in f["options"]),
+                        f"option of filter {f['id']!r}",
+                    ),
+                )
+                for f in meta["filters"]
+            ),
+            "filter",
+        )
+        indicators = _index(
+            (
+                Indicator(
+                    id=i["id"],
+                    column=i["column"],
+                    label=i["label"],
+                    unit=i.get("unit", ""),
+                    decimal_places=i.get("decimalPlaces"),
+                )
+                for i in meta["indicators"]
+            ),
+            "indicator",
+        )
         locations = {
-            group["level"]["code"]: {
-                o["id"]: Location(o["id"], o["label"], o.get("code"))
-                for o in group["options"]
-            }
+            group["level"]["code"]: _index(
+                (Location(o["id"], o["label"], o.get("code")) for o in group["options"]),
+                f"location at level {group['level']['code']!r}",
+            )
             for group in meta["locations"]
         }
-        time_periods = tuple(
-            sorted(normalise_time_period(t["period"]) for t in meta["timePeriods"])
-        )
+        time_periods = tuple(sorted(_academic_year(t) for t in meta["timePeriods"]))
         return cls(filters, indicators, locations, time_periods)
 
     def filter(self, filter_id: str) -> Filter:
@@ -161,7 +233,7 @@ class DataSetMetadata:
         Raises:
             UnknownIdentifierError: If no filter has that identifier.
         """
-        return self.filters[filter_id]
+        return _get(self.filters, "filter", filter_id)
 
     def indicator(self, indicator_id: str) -> Indicator:
         """Look up an indicator by its identifier.
@@ -175,7 +247,7 @@ class DataSetMetadata:
         Raises:
             UnknownIdentifierError: If no indicator has that identifier.
         """
-        return self.indicators[indicator_id]
+        return _get(self.indicators, "indicator", indicator_id)
 
     def filter_option(self, filter_id: str, option_id: str) -> FilterOption:
         """Look up an option within the filter it belongs to.
@@ -191,7 +263,8 @@ class DataSetMetadata:
             UnknownIdentifierError: If the filter does not exist, or has no
                 option with that identifier.
         """
-        return self.filters[filter_id].options[option_id]
+        options = self.filter(filter_id).options
+        return _get(options, f"option of filter {filter_id!r}", option_id)
 
     def location(self, level: str, location_id: str) -> Location:
         """Look up a location within its geographic level, such as ``REG``.
@@ -207,4 +280,5 @@ class DataSetMetadata:
             UnknownIdentifierError: If the level does not exist, or has no
                 location with that identifier.
         """
-        return self.locations[level][location_id]
+        locations = _get(self.locations, "geographic level", level)
+        return _get(locations, f"location at level {level!r}", location_id)
