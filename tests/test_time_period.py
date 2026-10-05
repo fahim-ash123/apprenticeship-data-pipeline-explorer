@@ -76,3 +76,20 @@ def test_error_message_includes_the_raw_value():
     """The error names the bad value, so it can be traced back to the source."""
     with pytest.raises(InvalidTimePeriodError, match="202123"):
         normalise_time_period("202123")
+
+def test_normalised_years_sort_chronologically():
+    """Years from different forms sort into date order once normalised."""
+    raw_values = ["2024/25", "201718", "2019/2020", "199900", "2000/01"]
+    labels = [str(year) for year in sorted(map(normalise_time_period, raw_values))]
+    assert labels == ["1999/00", "2000/01", "2017/18", "2019/20", "2024/25"]
+
+
+def test_earlier_year_compares_as_less_than_a_later_year():
+    """Comparison follows the start year, so 2019/20 comes before 2020/21."""
+    assert normalise_time_period("2019/20") < normalise_time_period("202021")
+
+
+def test_latest_year_is_found_with_max():
+    """The latest period can be found directly, which the analysis window relies on."""
+    raw_values = ["202425", "2025/26", "2017/2018"]
+    assert max(map(normalise_time_period, raw_values)) == AcademicYear(start_year=2025)
