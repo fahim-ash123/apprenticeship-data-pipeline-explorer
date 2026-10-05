@@ -12,7 +12,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import Any
 
-from apprenticeship_explorer.time_period import AcademicYear
+from apprenticeship_explorer.time_period import AcademicYear, normalise_time_period
 
 
 class MetadataError(ValueError):
@@ -118,8 +118,36 @@ class DataSetMetadata:
             MetadataError: If an identifier repeats within one namespace, or a
                 time period is not a consistent academic year.
         """
-        # Deliberately not implemented yet. The tests are written first.
-        raise NotImplementedError
+        filters = {
+            f["id"]: Filter(
+                id=f["id"],
+                column=f["column"],
+                label=f["label"],
+                options={o["id"]: FilterOption(o["id"], o["label"]) for o in f["options"]},
+            )
+            for f in meta["filters"]
+        }
+        indicators = {
+            i["id"]: Indicator(
+                id=i["id"],
+                column=i["column"],
+                label=i["label"],
+                unit=i.get("unit", ""),
+                decimal_places=i.get("decimalPlaces"),
+            )
+            for i in meta["indicators"]
+        }
+        locations = {
+            group["level"]["code"]: {
+                o["id"]: Location(o["id"], o["label"], o.get("code"))
+                for o in group["options"]
+            }
+            for group in meta["locations"]
+        }
+        time_periods = tuple(
+            sorted(normalise_time_period(t["period"]) for t in meta["timePeriods"])
+        )
+        return cls(filters, indicators, locations, time_periods)
 
     def filter(self, filter_id: str) -> Filter:
         """Look up a filter by its identifier.
@@ -133,7 +161,7 @@ class DataSetMetadata:
         Raises:
             UnknownIdentifierError: If no filter has that identifier.
         """
-        raise NotImplementedError
+        return self.filters[filter_id]
 
     def indicator(self, indicator_id: str) -> Indicator:
         """Look up an indicator by its identifier.
@@ -147,7 +175,7 @@ class DataSetMetadata:
         Raises:
             UnknownIdentifierError: If no indicator has that identifier.
         """
-        raise NotImplementedError
+        return self.indicators[indicator_id]
 
     def filter_option(self, filter_id: str, option_id: str) -> FilterOption:
         """Look up an option within the filter it belongs to.
@@ -163,7 +191,7 @@ class DataSetMetadata:
             UnknownIdentifierError: If the filter does not exist, or has no
                 option with that identifier.
         """
-        raise NotImplementedError
+        return self.filters[filter_id].options[option_id]
 
     def location(self, level: str, location_id: str) -> Location:
         """Look up a location within its geographic level, such as ``REG``.
@@ -179,4 +207,4 @@ class DataSetMetadata:
             UnknownIdentifierError: If the level does not exist, or has no
                 location with that identifier.
         """
-        raise NotImplementedError
+        return self.locations[level][location_id]
