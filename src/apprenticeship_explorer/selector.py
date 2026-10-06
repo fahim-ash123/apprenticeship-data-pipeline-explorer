@@ -49,5 +49,11 @@ def select_cell(
         NoMatchingRowError: If no row matches.
         AmbiguousSelectionError: If more than one row matches.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    matches = [
+        row for row in rows if all(row[column] == value for column, value in selection.items())
+    ]
+    if not matches:
+        raise NoMatchingRowError(f"No row matches {dict(selection)!r}")
+    if len(matches) > 1:
+        raise AmbiguousSelectionError(f"{len(matches)} rows match {dict(selection)!r}")
+    return matches[0]
