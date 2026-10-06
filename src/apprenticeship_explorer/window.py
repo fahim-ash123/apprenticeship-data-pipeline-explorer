@@ -29,5 +29,6 @@ def complete_periods(
         Each year from ``start`` up to, but not including, the latest year,
         in chronological order.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    distinct = set(periods)
+    latest = max(distinct)
+    return tuple(sorted(year for year in distinct if start <= year < latest))
