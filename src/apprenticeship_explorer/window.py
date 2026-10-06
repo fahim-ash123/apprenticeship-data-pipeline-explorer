@@ -10,7 +10,7 @@ adds a new year.
 
 from collections.abc import Iterable, Mapping
 
-from apprenticeship_explorer.time_period import AcademicYear
+from apprenticeship_explorer.time_period import AcademicYear, normalise_time_period
 
 DEFAULT_START = AcademicYear(2017)
 
@@ -38,8 +38,13 @@ def complete_periods(
             or after ``start``.
     """
     distinct = set(periods)
+    if not distinct:
+        raise EmptyWindowError("No time periods were given")
     latest = max(distinct)
-    return tuple(sorted(year for year in distinct if start <= year < latest))
+    window = tuple(sorted(year for year in distinct if start <= year < latest))
+    if not window:
+        raise EmptyWindowError(f"No complete year from {start} before the latest, {latest}")
+    return window
 
 
 def filter_to_window(
@@ -61,5 +66,6 @@ def filter_to_window(
     Raises:
         EmptyWindowError: If no complete year is on or after ``start``.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    rows = list(rows)
+    window = set(complete_periods((normalise_time_period(r["time_period"]) for r in rows), start))
+    return [row for row in rows if normalise_time_period(row["time_period"]) in window]
