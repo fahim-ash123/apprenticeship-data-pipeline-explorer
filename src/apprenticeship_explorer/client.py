@@ -6,6 +6,9 @@ when asked. The network call sits behind a transport function, so tests can
 supply recorded responses and never reach the live API.
 """
 
+import json
+import urllib.parse
+import urllib.request
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
@@ -49,8 +52,8 @@ def urllib_transport(url: str, timeout: float) -> Response:
     Returns:
         The status and body of the response.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    with urllib.request.urlopen(url, timeout=timeout) as reply:
+        return Response(reply.status, reply.read())
 
 
 class ApiClient:
@@ -82,7 +85,7 @@ class ApiClient:
         Returns:
             The decoded summary.
         """
-        raise NotImplementedError
+        return self._get_json(f"/data-sets/{data_set_id}")
 
     def metadata(self, data_set_id: str, version: str | None = None) -> dict[str, Any]:
         """Return a data set's metadata, for the latest or a pinned version.
@@ -94,7 +97,7 @@ class ApiClient:
         Returns:
             The decoded metadata.
         """
-        raise NotImplementedError
+        return self._get_json(f"/data-sets/{data_set_id}/meta", _version_param(version))
 
     def versions(self, data_set_id: str) -> list[dict[str, Any]]:
         """Return every version of a data set, collected across all pages.
@@ -105,7 +108,16 @@ class ApiClient:
         Returns:
             The versions, in the order the API returned them.
         """
-        raise NotImplementedError
+        results, page, total_pages = [], 1, 1
+        while page <= total_pages:
+            reply = self._get_json(
+                f"/data-sets/{data_set_id}/versions",
+                {"page": page, "pageSize": VERSIONS_PAGE_SIZE},
+            )
+            results.extend(reply["results"])
+            total_pages = reply["paging"]["totalPages"]
+            page += 1
+        return results
 
     def csv(self, data_set_id: str, version: str | None = None) -> str:
         """Return a data set as CSV text, for the latest or a pinned version.
@@ -117,4 +129,44 @@ class ApiClient:
         Returns:
             The CSV text, without any byte order mark.
         """
-        raise NotImplementedError
+        body = self._get(f"/data-sets/{data_set_id}/csv", _version_param(version))
+        return body.decode("utf-8-sig")
+
+    def _get(self, path: str, params: dict[str, Any] | None = None) -> bytes:
+        """Send one request and return the response body.
+
+        Args:
+            path: The endpoint path after the base URL.
+            params: Query parameters to add, if any.
+
+        Returns:
+            The raw response body.
+        """
+        url = self._base_url + path
+        if params:
+            url += "?" + urllib.parse.urlencode(params)
+        return self._transport(url, self._timeout).body
+
+    def _get_json(self, path: str, params: dict[str, Any] | None = None) -> Any:
+        """Send one request and decode the JSON response.
+
+        Args:
+            path: The endpoint path after the base URL.
+            params: Query parameters to add, if any.
+
+        Returns:
+            The decoded JSON.
+        """
+        return json.loads(self._get(path, params))
+
+
+def _version_param(version: str | None) -> dict[str, str]:
+    """Return the query parameter that pins a version.
+
+    Args:
+        version: The version to pin, or ``None`` for the latest.
+
+    Returns:
+        ``dataSetVersion`` set to the version, or no parameters for the latest.
+    """
+    return {"dataSetVersion": version} if version else {}
