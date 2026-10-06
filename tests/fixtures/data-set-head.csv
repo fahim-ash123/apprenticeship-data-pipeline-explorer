@@ -1,0 +1,6 @@
+time_period,time_identifier,geographic_level,country_code,country_name,region_code,region_name,apprenticeship_level,age_youth_adult,age_group,funding_type,provider_type,start_count,achievement_count,participation_count,starts_percent,achievements_percent
+202122,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Under 19,Total,Other,Other,40,low,z,c,low
+202122,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Under 19,Total,Other,Private Sector Public Funded,50,10,z,c,c
+202122,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Under 19,Total,Other,Special College,low,low,z,low,low
+202122,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Under 19,Under 19,Total,Total,7850,3360,12710,24.9,26.8
+202122,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Under 19,Under 19,Total,General FE College incl Tertiary,3240,1440,5320,10.3,11.4
