@@ -49,9 +49,14 @@ def select_cell(
         NoMatchingRowError: If no row matches.
         AmbiguousSelectionError: If more than one row matches.
     """
-    matches = [
-        row for row in rows if all(row[column] == value for column, value in selection.items())
-    ]
+    missing = [column for column in dimensions if column not in selection]
+    if missing:
+        raise IncompleteSelectionError(f"No value given for dimensions: {', '.join(missing)}")
+    unknown = [column for column in selection if column not in dimensions]
+    if unknown:
+        raise IncompleteSelectionError(f"Not dimensions: {', '.join(unknown)}")
+
+    matches = [row for row in rows if all(row[d] == selection[d] for d in dimensions)]
     if not matches:
         raise NoMatchingRowError(f"No row matches {dict(selection)!r}")
     if len(matches) > 1:
