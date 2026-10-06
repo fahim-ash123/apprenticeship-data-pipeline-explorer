@@ -6,14 +6,19 @@ in the test, and records the requests the client makes.
 """
 
 import json
+import urllib.error
 from pathlib import Path
 from unittest import mock
+
+import pytest
 
 from apprenticeship_explorer.client import (
     BASE_URL,
     DEFAULT_TIMEOUT,
     ApiClient,
+    ApiError,
     Response,
+    TransportError,
     urllib_transport,
 )
 
@@ -151,3 +156,102 @@ def test_urllib_transport_passes_the_timeout_and_returns_the_body():
         response = urllib_transport("https://example.test/x", 7.0)
     urlopen.assert_called_once_with("https://example.test/x", timeout=7.0)
     assert response == Response(200, b"{}")
+
+
+class Waits:
+    """Record each wait the client asks for, without actually waiting."""
+
+    def __init__(self):
+        """Start with no waits recorded."""
+        self.seconds = []
+
+    def __call__(self, seconds):
+        """Record one wait."""
+        self.seconds.append(seconds)
+
+
+def client_with(transport, waits=None):
+    """Return a client that tries three times and never really sleeps."""
+    return ApiClient(transport, attempts=3, backoff=0.5, sleep=waits or Waits())
+
+
+def test_server_error_is_retried_and_then_succeeds():
+    """A 503 followed by a 200 returns the data after one retry."""
+    transport = FakeTransport(Response(503, b"busy"), ok('{"id": "abc"}'))
+    assert client_with(transport).summary("abc") == {"id": "abc"}
+    assert len(transport.calls) == 2
+
+
+def test_server_errors_are_retried_a_limited_number_of_times():
+    """After three 500s the client stops and raises, rather than trying forever."""
+    transport = FakeTransport(*[Response(500, b"")] * 4)
+    with pytest.raises(ApiError) as caught:
+        client_with(transport).summary("abc")
+    assert len(transport.calls) == 3
+    assert (caught.value.status, caught.value.attempts) == (500, 3)
+
+
+def test_waits_between_retries_double_each_time():
+    """The client waits 0.5 then 1 second, giving the server time to recover."""
+    waits = Waits()
+    transport = FakeTransport(*[Response(502, b"")] * 3)
+    with pytest.raises(ApiError):
+        client_with(transport, waits).summary("abc")
+    assert waits.seconds == [0.5, 1.0]
+
+
+def test_client_error_is_not_retried():
+    """A 404 means the request is wrong, so it is reported after one attempt."""
+    waits = Waits()
+    transport = FakeTransport(Response(404, b""), ok("{}"))
+    with pytest.raises(ApiError) as caught:
+        client_with(transport, waits).summary("abc")
+    assert len(transport.calls) == 1
+    assert waits.seconds == []
+    assert caught.value.status == 404
+
+
+def test_error_message_describes_the_failure():
+    """The message gives the status, the server's explanation and the URL."""
+    transport = FakeTransport(Response(404, b'{"title": "Not Found"}'))
+    with pytest.raises(ApiError, match="HTTP 404.*Not Found.*data-sets/abc"):
+        client_with(transport).summary("abc")
+
+
+def test_lost_connection_is_retried_and_then_raises():
+    """When no response arrives at all, the request is retried like a server error."""
+    transport = FakeTransport(*[TransportError("timed out")] * 3)
+    with pytest.raises(ApiError, match="No response: timed out") as caught:
+        client_with(transport).summary("abc")
+    assert len(transport.calls) == 3
+    assert caught.value.status is None
+
+
+def test_invalid_json_raises_an_api_error():
+    """A 200 whose body is not JSON is reported clearly, not as a decoding crash."""
+    with pytest.raises(ApiError, match="not valid JSON"):
+        client_with(FakeTransport(ok("<html>"))).summary("abc")
+
+
+def test_at_least_one_attempt_is_required():
+    """A client allowed no attempts could never send a request, so it is refused."""
+    with pytest.raises(ValueError, match="attempts"):
+        ApiClient(FakeTransport(), attempts=0)
+
+
+def test_urllib_transport_returns_error_statuses_as_responses():
+    """``urlopen`` raises for error statuses, so the transport turns them back into responses."""
+    error = urllib.error.HTTPError("https://example.test/x", 503, "Unavailable", {}, None)
+    error.read = lambda: b"down"
+    with mock.patch("urllib.request.urlopen", side_effect=error):
+        assert urllib_transport("https://example.test/x", 7.0) == Response(503, b"down")
+
+
+@pytest.mark.parametrize(
+    "failure", [urllib.error.URLError("refused"), TimeoutError("timed out")]
+)
+def test_urllib_transport_reports_a_lost_connection(failure):
+    """A refused connection or a timeout becomes a ``TransportError`` the client can retry."""
+    with mock.patch("urllib.request.urlopen", side_effect=failure):
+        with pytest.raises(TransportError):
+            urllib_transport("https://example.test/x", 7.0)

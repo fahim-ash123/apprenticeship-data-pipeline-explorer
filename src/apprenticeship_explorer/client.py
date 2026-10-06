@@ -7,6 +7,7 @@ supply recorded responses and never reach the live API.
 """
 
 import json
+import time
 import urllib.parse
 import urllib.request
 from collections.abc import Callable
@@ -15,6 +16,8 @@ from typing import Any
 
 BASE_URL = "https://api.education.gov.uk/statistics/v1"
 DEFAULT_TIMEOUT = 30.0
+DEFAULT_ATTEMPTS = 3
+DEFAULT_BACKOFF = 0.5
 VERSIONS_PAGE_SIZE = 20  # The largest page the versions endpoint allows.
 
 
@@ -59,9 +62,16 @@ def urllib_transport(url: str, timeout: float) -> Response:
 class ApiClient:
     """A client for one Explore Education Statistics API.
 
+    Server errors and lost connections are usually temporary, so those requests
+    are sent again, waiting longer each time. Client errors mean the request
+    itself is wrong, so they are reported at once.
+
     Args:
         transport: The function that sends each request. Tests pass a fake.
         timeout: Seconds every request may take before it is abandoned.
+        attempts: The most times one request is sent, including the first.
+        backoff: Seconds to wait before the first retry, doubling each time.
+        sleep: The function used to wait. Tests pass one that does not.
         base_url: The API's base URL, without a trailing slash.
     """
 
@@ -69,11 +79,17 @@ class ApiClient:
         self,
         transport: Transport = urllib_transport,
         timeout: float = DEFAULT_TIMEOUT,
+        attempts: int = DEFAULT_ATTEMPTS,
+        backoff: float = DEFAULT_BACKOFF,
+        sleep: Callable[[float], None] = time.sleep,
         base_url: str = BASE_URL,
     ) -> None:
         """Store the settings used for every request."""
         self._transport = transport
         self._timeout = timeout
+        self._attempts = attempts
+        self._backoff = backoff
+        self._sleep = sleep
         self._base_url = base_url
 
     def summary(self, data_set_id: str) -> dict[str, Any]:
