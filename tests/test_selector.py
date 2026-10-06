@@ -10,6 +10,7 @@ import pytest
 from apprenticeship_explorer.parse import parse_indicator_value
 from apprenticeship_explorer.selector import (
     AmbiguousSelectionError,
+    IncompleteSelectionError,
     NoMatchingRowError,
     select_cell,
 )
@@ -101,3 +102,37 @@ def test_summing_rows_naively_inflates_the_total():
     correct = parse_indicator_value(grand_total["start_count"])
     assert naive != correct
     assert naive == 4 * correct
+
+
+@pytest.mark.parametrize("left_out", DIMENSIONS)
+def test_leaving_out_any_dimension_raises(left_out):
+    """Every dimension needs a value, even when only one row would match without it.
+
+    A missing filter is never taken to mean ``Total``. Saying so explicitly
+    keeps the choice visible wherever a figure is selected.
+    """
+    incomplete = selection("Advanced", "19-24")
+    del incomplete[left_out]
+    with pytest.raises(IncompleteSelectionError, match=left_out):
+        select_cell(sample_rows(), DIMENSIONS, incomplete)
+
+
+def test_error_names_every_missing_dimension():
+    """All the missing dimensions are reported together, not one at a time."""
+    incomplete = selection()
+    del incomplete["apprenticeship_level"], incomplete["age_group"]
+    with pytest.raises(IncompleteSelectionError, match="apprenticeship_level.*age_group"):
+        select_cell(sample_rows(), DIMENSIONS, incomplete)
+
+
+def test_selecting_by_an_unknown_column_raises():
+    """A column that is not a dimension, such as a misspelt one, is rejected."""
+    with pytest.raises(IncompleteSelectionError, match="region_name"):
+        select_cell(sample_rows(), DIMENSIONS, {**selection(), "region_name": "London"})
+
+
+def test_selecting_by_an_indicator_value_raises():
+    """Rows are chosen by their dimensions, never by the figure they hold."""
+    by_value = {**selection("Advanced", "19-24"), "start_count": "50"}
+    with pytest.raises(IncompleteSelectionError, match="start_count"):
+        select_cell(sample_rows(), DIMENSIONS, by_value)
