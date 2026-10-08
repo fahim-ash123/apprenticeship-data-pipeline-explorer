@@ -1,6 +1,6 @@
 # Sprint 1 review and retrospective
 
-Sprint 1 ran from 28 September to 11 October 2026. Its goal was to build the data layer that the Sprint 2 report depends on: retrieving the data, parsing it safely and protecting every figure from the traps found in the real API responses. All nine issues were done by 6 October, five days before the sprint was due to end.
+Sprint 1 was planned to run from 28 September to 11 October 2026. Its goal was to build the data layer that the Sprint 2 report depends on: retrieving the data, parsing it safely and protecting every figure from the traps found in the real API responses. All nine issues were done by 6 October, five days before the sprint was due to end, so I closed the sprint that day and started Sprint 2 on 7 October.
 
 ## Sprint review
 
