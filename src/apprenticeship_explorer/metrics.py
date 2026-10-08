@@ -10,6 +10,7 @@ from collections import defaultdict
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 
+from apprenticeship_explorer.parse import parse_indicator_value
 from apprenticeship_explorer.selector import select_cell
 from apprenticeship_explorer.time_period import AcademicYear, normalise_time_period
 from apprenticeship_explorer.window import filter_to_window
@@ -31,7 +32,8 @@ class YearFigures:
     Attributes:
         year: The academic year.
         values: Each measure's value, keyed by its indicator column, such as
-            ``start_count``.
+            ``start_count``. A suppressed or unavailable value is a ``Missing``
+            that keeps its reason, never a zero.
     """
 
     year: AcademicYear
@@ -53,5 +55,6 @@ def national_trend(rows: Iterable[Mapping[str, str]]) -> list[YearFigures]:
     trend = []
     for year in sorted(by_year):
         row = select_cell(by_year[year], DIMENSIONS, NATIONAL_TOTAL)
-        trend.append(YearFigures(year, {column: int(row[column]) for column in MEASURES}))
+        values = {column: parse_indicator_value(row[column]) for column in MEASURES}
+        trend.append(YearFigures(year, values))
     return trend
