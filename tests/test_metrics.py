@@ -11,6 +11,7 @@ from pathlib import Path
 import pytest
 
 from apprenticeship_explorer.metrics import MEASURES, national_trend
+from apprenticeship_explorer.parse import Missing, parse_indicator_value
 from apprenticeship_explorer.time_period import AcademicYear
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -75,3 +76,22 @@ def test_measures_are_named_by_what_they_count():
     """Starts and achievements count events, so no measure is labelled as learners."""
     assert list(MEASURES.values()) == ["Starts", "Achievements", "Participation"]
     assert not any("learner" in label.lower() for label in MEASURES.values())
+
+
+@pytest.mark.parametrize("marker", ["c", "x", "z", "low"])
+def test_suppressed_value_is_carried_through_with_its_reason(marker):
+    """A marker becomes a missing value that keeps its reason, never a zero."""
+    rows = national_rows()
+    row_for(rows, "202021")["participation_count"] = marker
+    figures = {f.year: f.values for f in national_trend(rows)}
+    value = figures[AcademicYear(2020)]["participation_count"]
+    assert isinstance(value, Missing)
+    assert value == parse_indicator_value(marker)
+
+
+def test_one_missing_value_leaves_the_other_measures_intact():
+    """Losing participation for a year does not lose its starts or achievements."""
+    rows = national_rows()
+    row_for(rows, "202021")["participation_count"] = "x"
+    values = {f.year: f.values for f in national_trend(rows)}[AcademicYear(2020)]
+    assert (values["start_count"], values["achievement_count"]) == (321440, 156530)
