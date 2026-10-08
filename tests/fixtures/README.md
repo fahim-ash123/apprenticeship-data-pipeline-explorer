@@ -6,3 +6,4 @@ These files were recorded from the live Explore Education Statistics API on 6 Oc
 - `versions.json` is the first page of `/v1/data-sets/{id}/versions`, with `pageSize=20`
 - `data-set-head.csv` is the header and first five rows of `/v1/data-sets/{id}/csv` for version 2.0.2
 - `meta-1.0.json`, `meta-1.0.1.json` and `meta-2.0.2.json` are the filters and indicators from `/v1/data-sets/{id}/meta` for those versions, recorded on 8 October 2026, with locations and time periods removed to keep them small
+- `national-totals.csv` is the national grand total row for each year, every filter set to `Total`, taken from the version 2.0.2 CSV on 8 October 2026, in the order the API returned them
