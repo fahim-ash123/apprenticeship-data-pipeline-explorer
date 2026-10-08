@@ -127,5 +127,24 @@ def compare_schemas(older: Mapping[str, Any], newer: Mapping[str, Any]) -> Schem
     Returns:
         The differences, compared by column name.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    old_filters, new_filters = _columns(older, "filters"), _columns(newer, "filters")
+    old_indicators, new_indicators = _columns(older, "indicators"), _columns(newer, "indicators")
+    return SchemaChanges(
+        added_filters=new_filters - old_filters,
+        removed_filters=old_filters - new_filters,
+        added_indicators=new_indicators - old_indicators,
+        removed_indicators=old_indicators - new_indicators,
+    )
+
+
+def _columns(meta: Mapping[str, Any], kind: str) -> frozenset[str]:
+    """Return the column names of a version's filters or indicators.
+
+    Args:
+        meta: A ``/meta`` response.
+        kind: Either ``filters`` or ``indicators``.
+
+    Returns:
+        The column names.
+    """
+    return frozenset(entry["column"] for entry in meta[kind])
