@@ -1,8 +1,10 @@
-"""Tests for parsing and ordering data set versions.
+"""Tests for parsing, ordering and comparing data set versions.
 
 The recorded version list in ``tests/fixtures/versions.json`` is the real
 response from the API. It returns the versions as 2.0.2, 2.0.1, 2.0, 1.0,
-1.0.1 and 1.0.2, which is neither newest first nor oldest first.
+1.0.1 and 1.0.2, which is neither newest first nor oldest first. The
+``meta-*.json`` files are the real filters and indicators of versions 1.0,
+1.0.1 and 2.0.2, trimmed from the ``/meta`` responses.
 """
 
 import json
@@ -13,6 +15,7 @@ import pytest
 from apprenticeship_explorer.versions import (
     InvalidVersionError,
     Version,
+    compare_schemas,
     latest_version,
     parse_version,
     sort_versions,
@@ -85,3 +88,42 @@ def test_latest_version_is_found_from_the_recorded_list():
 def test_latest_version_does_not_depend_on_response_order():
     """Reversing the response does not change which version is latest."""
     assert latest_version(reversed(recorded_versions())) == Version(2, 0, 2)
+
+
+def recorded_meta(version):
+    """Return the recorded filters and indicators for one version."""
+    return json.loads((FIXTURES / f"meta-{version}.json").read_text())
+
+
+def test_patch_1_0_1_added_the_age_youth_adult_filter():
+    """The patch release added a filter, which a version number alone would not suggest."""
+    changes = compare_schemas(recorded_meta("1.0"), recorded_meta("1.0.1"))
+    assert changes.added_filters == {"age_youth_adult"}
+    assert changes.removed_filters == set()
+
+
+def test_patch_1_0_1_left_the_indicators_unchanged():
+    """Only the filters changed in 1.0.1."""
+    changes = compare_schemas(recorded_meta("1.0"), recorded_meta("1.0.1"))
+    assert changes.added_indicators == changes.removed_indicators == set()
+
+
+def test_no_filters_or_indicators_changed_from_1_0_1_to_2_0_2():
+    """The current version has the same filters and indicators as 1.0.1."""
+    assert not compare_schemas(recorded_meta("1.0.1"), recorded_meta("2.0.2")).has_changes
+
+
+def test_comparing_in_reverse_reports_a_removal():
+    """Going from 1.0.1 back to 1.0, the same filter shows as removed."""
+    changes = compare_schemas(recorded_meta("1.0.1"), recorded_meta("1.0"))
+    assert changes.removed_filters == {"age_youth_adult"}
+    assert changes.has_changes
+
+
+def test_removed_and_added_indicators_are_reported():
+    """An indicator dropped and another added are both reported, by column name."""
+    older = {"filters": [], "indicators": [{"column": "start_count"}]}
+    newer = {"filters": [], "indicators": [{"column": "start_total"}]}
+    changes = compare_schemas(older, newer)
+    assert changes.removed_indicators == {"start_count"}
+    assert changes.added_indicators == {"start_total"}
