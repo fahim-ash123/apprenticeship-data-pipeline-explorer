@@ -18,6 +18,7 @@ from apprenticeship_explorer.window import DEFAULT_START, filter_to_window
 FILTERS = ("apprenticeship_level", "age_group", "age_youth_adult", "funding_type", "provider_type")
 DIMENSIONS = ("geographic_level", *FILTERS)
 NATIONAL_TOTAL = {"geographic_level": "National", **{f: "Total" for f in FILTERS}}
+FUNDING_START = AcademicYear(2020)
 MEASURES = {
     "start_count": "Starts",
     "achievement_count": "Achievements",
@@ -195,3 +196,20 @@ def _share(count, total):
     if isinstance(total, Missing):
         return total
     return 100 * count / total
+
+
+def funding_mix(rows: Iterable[Mapping[str, str]]) -> list[YearShares]:
+    """Return levy-funded and other starts as shares of national starts, by year.
+
+    The mix starts in 2020/21. A minor amendment to how starts supported by
+    levy funds are counted was applied for 2019/20, and a further one from
+    2020/21, so 2020/21 is the first year counted on the current basis.
+
+    Args:
+        rows: Data rows as read from the CSV, with every value as text.
+
+    Returns:
+        One entry per year from 2020/21 to the last complete year.
+    """
+    # Deliberately not implemented yet. The tests are written first.
+    raise NotImplementedError

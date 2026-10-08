@@ -1,4 +1,4 @@
-"""Tests for the level and age mix of starts.
+"""Tests for the level, age and funding mix of starts.
 
 ``tests/fixtures/national-breakdowns.csv`` holds the real national rows of
 version 2.0.2 that break starts down by one filter at a time, with every
@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pytest
 
-from apprenticeship_explorer.metrics import FILTERS, age_mix, level_mix
+from apprenticeship_explorer.metrics import FILTERS, age_mix, funding_mix, level_mix
 from apprenticeship_explorer.parse import Missing, parse_indicator_value
 from apprenticeship_explorer.time_period import AcademicYear
 
@@ -116,3 +116,20 @@ def test_suppressed_total_makes_every_share_missing():
     row_for(rows, "202425")["start_count"] = "c"
     shares = {m.year: m.shares for m in level_mix(rows)}[AcademicYear(2024)]
     assert all(share == parse_indicator_value("c") for share in shares.values())
+
+
+def test_funding_mix_starts_in_2020_21():
+    """Earlier years were counted before the 2020/21 amendment, so they are left out."""
+    years = [m.year for m in funding_mix(breakdown_rows())]
+    assert years == [AcademicYear(y) for y in range(2020, 2025)]
+
+
+@pytest.mark.parametrize(
+    ("start_year", "levy", "other"),
+    [(2020, 63.9, 36.1), (2024, 68.8, 31.2)],
+)
+def test_funding_shares_round_to_the_published_percentages(start_year, levy, other):
+    """205,330 of 321,440 starts in 2020/21 and 243,340 of 353,500 in 2024/25 were levy funded."""
+    shares = {m.year: m.shares for m in funding_mix(breakdown_rows())}[AcademicYear(start_year)]
+    assert round(shares["Supported by ASA levy funds"], 1) == levy
+    assert round(shares["Other"], 1) == other
