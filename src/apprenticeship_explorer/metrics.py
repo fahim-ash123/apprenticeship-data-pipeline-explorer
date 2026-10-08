@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from apprenticeship_explorer.parse import parse_indicator_value
 from apprenticeship_explorer.selector import select_cell
 from apprenticeship_explorer.time_period import AcademicYear, normalise_time_period
-from apprenticeship_explorer.window import filter_to_window
+from apprenticeship_explorer.window import DEFAULT_START, filter_to_window
 
 FILTERS = ("apprenticeship_level", "age_group", "age_youth_adult", "funding_type", "provider_type")
 DIMENSIONS = ("geographic_level", *FILTERS)
@@ -58,3 +58,72 @@ def national_trend(rows: Iterable[Mapping[str, str]]) -> list[YearFigures]:
         values = {column: parse_indicator_value(row[column]) for column in MEASURES}
         trend.append(YearFigures(year, values))
     return trend
+
+@dataclass(frozen=True)
+class YearShares:
+    """Each option's share of all starts in one academic year.
+
+    Attributes:
+        year: The academic year.
+        shares: Each option's percentage of the year's total starts, keyed by
+            the option's label, such as ``Higher Apprenticeship``. A share
+            whose count or total is suppressed is a ``Missing`` with its
+            reason.
+    """
+
+    year: AcademicYear
+    shares: Mapping[str, object]
+
+
+def share_mix(
+    rows: Iterable[Mapping[str, str]],
+    column: str,
+    start: AcademicYear = DEFAULT_START,
+    nested_in: str | None = None,
+) -> list[YearShares]:
+    """Return each option of one filter as a percentage of national starts, by year.
+
+    The denominator is the published national total, not the sum of the
+    options, because the published counts are rounded to the nearest 10.
+
+    Args:
+        rows: Data rows as read from the CSV, with every value as text.
+        column: The filter to break starts down by, such as ``age_group``.
+        start: The first academic year of the window.
+        nested_in: A filter whose value is fixed by ``column`` instead of being
+            ``Total``. Each age group row carries its matching under 19 or
+            19 plus value in ``age_youth_adult``.
+
+    Returns:
+        One entry per year in the window, oldest first.
+    """
+    # Deliberately not implemented yet. The tests are written first.
+    raise NotImplementedError
+
+
+def level_mix(rows: Iterable[Mapping[str, str]]) -> list[YearShares]:
+    """Return each apprenticeship level's share of national starts, by year.
+
+    Args:
+        rows: Data rows as read from the CSV, with every value as text.
+
+    Returns:
+        One entry per year in the analysis window, oldest first.
+    """
+    raise NotImplementedError
+
+
+def age_mix(rows: Iterable[Mapping[str, str]]) -> list[YearShares]:
+    """Return each age group's share of national starts, by year.
+
+    Age is age at the start of the apprenticeship. The age group rows sit
+    under the youth or adult split, so ``19 to 24`` has ``age_youth_adult`` set
+    to ``19 plus``, not ``Total``.
+
+    Args:
+        rows: Data rows as read from the CSV, with every value as text.
+
+    Returns:
+        One entry per year in the analysis window, oldest first.
+    """
+    raise NotImplementedError
