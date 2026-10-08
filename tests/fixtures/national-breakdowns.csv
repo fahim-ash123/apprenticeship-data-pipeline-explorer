@@ -1,0 +1,164 @@
+time_period,time_identifier,geographic_level,country_code,country_name,region_code,region_name,apprenticeship_level,age_youth_adult,age_group,funding_type,provider_type,start_count,achievement_count,participation_count,starts_percent,achievements_percent
+202021,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Total,321440,156530,712990,100.0,100.0
+202021,Academic year,National,E92000001,England,,,Total,Total,Total,Total,General FE College incl Tertiary,59500,40250,159390,18.5,25.7
+202021,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Local Authority,3570,2640,8260,1.1,1.7
+202021,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Other,48860,17250,109990,15.2,11.0
+202021,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Private Sector Public Funded,206860,94570,427930,64.4,60.4
+202021,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Schools,30,60,280,c,c
+202021,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Sixth Form College,630,310,1270,c,c
+202021,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Special College,2000,1450,5880,0.6,0.9
+202021,Academic year,National,E92000001,England,,,Total,Total,Total,Supported by ASA levy funds,Total,205330,101850,z,63.9,65.1
+202021,Academic year,National,E92000001,England,,,Total,Total,Total,Other,Total,116110,54670,z,36.1,34.9
+202021,Academic year,National,E92000001,England,,,Intermediate Apprenticeship,Total,Total,Total,Total,84150,53380,185420,26.2,34.1
+202021,Academic year,National,E92000001,England,,,Advanced Apprenticeship,Total,Total,Total,Total,138490,72610,326380,43.1,46.4
+202021,Academic year,National,E92000001,England,,,Higher Apprenticeship,Total,Total,Total,Total,98810,30540,207860,30.7,19.5
+202021,Academic year,National,E92000001,England,,,Total,Under 19,Total,Total,Total,65150,38260,118590,20.3,24.4
+202021,Academic year,National,E92000001,England,,,Total,Under 19,Under 19,Total,Total,65150,38260,118590,20.3,24.4
+202021,Academic year,National,E92000001,England,,,Total,19 plus,Total,Total,Total,256300,118270,594400,79.7,75.6
+202021,Academic year,National,E92000001,England,,,Total,19 plus,19 to 24,Total,Total,94610,51200,248870,29.4,32.7
+202021,Academic year,National,E92000001,England,,,Total,19 plus,25 plus,Total,Total,161690,67070,345540,50.3,42.9
+201920,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Total,322530,146900,718950,100.0,100.0
+201920,Academic year,National,E92000001,England,,,Total,Total,Total,Total,General FE College incl Tertiary,73560,41000,180250,22.8,27.9
+201920,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Local Authority,3840,2770,9560,1.2,1.9
+201920,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Other,45990,15390,92020,14.3,10.5
+201920,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Private Sector Public Funded,195560,86170,429190,60.6,58.7
+201920,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Schools,110,60,330,c,c
+201920,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Sixth Form College,520,380,1440,c,c
+201920,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Special College,2960,1140,6160,0.9,0.8
+201920,Academic year,National,E92000001,England,,,Total,Total,Total,Supported by ASA levy funds,Total,209280,80770,z,64.9,55.0
+201920,Academic year,National,E92000001,England,,,Total,Total,Total,Other,Total,113250,66130,z,35.1,45.0
+201920,Academic year,National,E92000001,England,,,Intermediate Apprenticeship,Total,Total,Total,Total,99220,61630,225320,30.8,42.0
+201920,Academic year,National,E92000001,England,,,Advanced Apprenticeship,Total,Total,Total,Total,140840,67460,338680,43.7,45.9
+201920,Academic year,National,E92000001,England,,,Higher Apprenticeship,Total,Total,Total,Total,82460,17810,165510,25.6,12.1
+201920,Academic year,National,E92000001,England,,,Total,Under 19,Total,Total,Total,76270,43420,135570,23.6,29.6
+201920,Academic year,National,E92000001,England,,,Total,Under 19,Under 19,Total,Total,76270,43420,135570,23.6,29.6
+201920,Academic year,National,E92000001,England,,,Total,19 plus,Total,Total,Total,246260,103480,583380,76.4,70.4
+201920,Academic year,National,E92000001,England,,,Total,19 plus,19 to 24,Total,Total,95290,47820,250870,29.5,32.6
+201920,Academic year,National,E92000001,England,,,Total,19 plus,25 plus,Total,Total,150960,55660,332510,46.8,37.9
+201819,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Total,393380,185150,742390,100.0,100.0
+201819,Academic year,National,E92000001,England,,,Total,Total,Total,Total,General FE College incl Tertiary,93200,61520,206750,23.7,33.2
+201819,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Local Authority,5600,3680,11350,1.4,2.0
+201819,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Other,42000,14780,74680,10.7,8.0
+201819,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Private Sector Public Funded,249060,102290,440820,63.3,55.2
+201819,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Schools,200,120,370,c,c
+201819,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Sixth Form College,890,810,2280,c,c
+201819,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Special College,2420,1950,6140,0.6,1.1
+201819,Academic year,National,E92000001,England,,,Total,Total,Total,Supported by ASA levy funds,Total,223910,59250,z,56.9,32.0
+201819,Academic year,National,E92000001,England,,,Total,Total,Total,Other,Total,169460,125900,z,43.1,68.0
+201819,Academic year,National,E92000001,England,,,Intermediate Apprenticeship,Total,Total,Total,Total,143590,86150,275810,36.5,46.5
+201819,Academic year,National,E92000001,England,,,Advanced Apprenticeship,Total,Total,Total,Total,174730,85100,356150,44.4,46.0
+201819,Academic year,National,E92000001,England,,,Higher Apprenticeship,Total,Total,Total,Total,75060,13900,123950,19.1,7.5
+201819,Academic year,National,E92000001,England,,,Total,Under 19,Total,Total,Total,97700,57730,160960,24.8,31.2
+201819,Academic year,National,E92000001,England,,,Total,Under 19,Under 19,Total,Total,97700,57730,160960,24.8,31.2
+201819,Academic year,National,E92000001,England,,,Total,19 plus,Total,Total,Total,295680,127420,581430,75.2,68.8
+201819,Academic year,National,E92000001,England,,,Total,19 plus,19 to 24,Total,Total,116000,58550,256310,29.5,31.6
+201819,Academic year,National,E92000001,England,,,Total,19 plus,25 plus,Total,Total,179670,68860,325120,45.7,37.2
+201718,Academic year,National,E92000001,England,,,Unknown,Total,Total,Total,Total,low,low,low,low,low
+201718,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Total,375760,276160,814790,100.0,100.0
+201718,Academic year,National,E92000001,England,,,Total,Total,Total,Total,General FE College incl Tertiary,99220,91090,251620,26.4,33.0
+201718,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Local Authority,6110,4500,13010,1.6,1.6
+201718,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Other,37830,15690,60790,10.1,5.7
+201718,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Private Sector Public Funded,228090,160890,477700,60.7,58.3
+201718,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Schools,150,90,290,c,c
+201718,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Sixth Form College,1360,1380,3850,c,0.5
+201718,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Special College,3000,2510,7530,0.8,0.9
+201718,Academic year,National,E92000001,England,,,Total,Total,Total,Supported by ASA levy funds,Total,186040,4030,z,49.5,1.5
+201718,Academic year,National,E92000001,England,,,Total,Total,Total,Other,Total,189720,272130,z,50.5,98.5
+201718,Academic year,National,E92000001,England,,,Intermediate Apprenticeship,Total,Total,Total,Total,161390,149030,374350,43.0,54.0
+201718,Academic year,National,E92000001,England,,,Advanced Apprenticeship,Total,Total,Total,Total,166220,111360,372430,44.2,40.3
+201718,Academic year,National,E92000001,England,,,Higher Apprenticeship,Total,Total,Total,Total,48150,15770,84240,12.8,5.7
+201718,Academic year,National,E92000001,England,,,Total,Under 19,Total,Total,Total,106570,72300,176550,28.4,26.2
+201718,Academic year,National,E92000001,England,,,Total,Under 19,Under 19,Total,Total,106570,72300,176550,28.4,26.2
+201718,Academic year,National,E92000001,England,,,Total,19 plus,Total,Total,Total,269190,203860,638250,71.6,73.8
+201718,Academic year,National,E92000001,England,,,Total,19 plus,19 to 24,Total,Total,113710,82330,273600,30.3,29.8
+201718,Academic year,National,E92000001,England,,,Total,19 plus,25 plus,Total,Total,155480,121540,364650,41.4,44.0
+202526,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Total,308770,146210,735500,100.0,100.0
+202526,Academic year,National,E92000001,England,,,Total,Total,Total,Total,General FE College incl Tertiary,51740,25040,132370,16.8,17.1
+202526,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Local Authority,2100,1140,4960,0.7,0.8
+202526,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Other,41250,24650,124910,13.4,16.9
+202526,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Private Sector Public Funded,211340,94100,467550,68.4,64.4
+202526,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Schools,230,140,490,c,c
+202526,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Sixth Form College,330,180,910,c,c
+202526,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Special College,1800,960,4310,0.6,0.7
+202526,Academic year,National,E92000001,England,,,Total,Total,Total,Supported by ASA levy funds,Total,207900,105390,z,67.3,72.1
+202526,Academic year,National,E92000001,England,,,Total,Total,Total,Other,Total,100880,40820,z,32.7,27.9
+202526,Academic year,National,E92000001,England,,,Intermediate Apprenticeship,Total,Total,Total,Total,53350,28690,116550,17.3,19.6
+202526,Academic year,National,E92000001,England,,,Advanced Apprenticeship,Total,Total,Total,Total,128760,64700,314280,41.7,44.3
+202526,Academic year,National,E92000001,England,,,Higher Apprenticeship,Total,Total,Total,Total,126660,52810,308620,41.0,36.1
+202526,Academic year,National,E92000001,England,,,Total,Under 19,Total,Total,Total,63530,32140,116650,20.6,22.0
+202526,Academic year,National,E92000001,England,,,Total,Under 19,Under 19,Total,Total,63530,32140,116650,20.6,22.0
+202526,Academic year,National,E92000001,England,,,Total,19 plus,Total,Total,Total,245240,114060,618850,79.4,78.0
+202526,Academic year,National,E92000001,England,,,Total,19 plus,19 to 24,Total,Total,83570,43310,246000,27.1,29.6
+202526,Academic year,National,E92000001,England,,,Total,19 plus,25 plus,Total,Total,161670,70760,372850,52.4,48.4
+202425,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Total,353500,198330,761480,100.0,100.0
+202425,Academic year,National,E92000001,England,,,Total,Total,Total,Total,General FE College incl Tertiary,56260,36010,137750,15.9,18.2
+202425,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Local Authority,2280,1660,5260,0.6,0.8
+202425,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Other,50540,34100,131680,14.3,17.2
+202425,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Private Sector Public Funded,241530,124720,480080,68.3,62.9
+202425,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Schools,220,140,490,c,c
+202425,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Sixth Form College,340,160,890,c,c
+202425,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Special College,2320,1560,5330,0.7,0.8
+202425,Academic year,National,E92000001,England,,,Total,Total,Total,Supported by ASA levy funds,Total,243340,141470,z,68.8,71.3
+202425,Academic year,National,E92000001,England,,,Total,Total,Total,Other,Total,110160,56860,z,31.2,28.7
+202425,Academic year,National,E92000001,England,,,Intermediate Apprenticeship,Total,Total,Total,Total,65680,41600,132930,18.6,21.0
+202425,Academic year,National,E92000001,England,,,Advanced Apprenticeship,Total,Total,Total,Total,147090,88520,330150,41.6,44.6
+202425,Academic year,National,E92000001,England,,,Higher Apprenticeship,Total,Total,Total,Total,140730,68210,303710,39.8,34.4
+202425,Academic year,National,E92000001,England,,,Total,Under 19,Total,Total,Total,74990,43640,130840,21.2,22.0
+202425,Academic year,National,E92000001,England,,,Total,Under 19,Under 19,Total,Total,74990,43640,130840,21.2,22.0
+202425,Academic year,National,E92000001,England,,,Total,19 plus,Total,Total,Total,278510,154690,630640,78.8,78.0
+202425,Academic year,National,E92000001,England,,,Total,19 plus,19 to 24,Total,Total,97240,60120,252960,27.5,30.3
+202425,Academic year,National,E92000001,England,,,Total,19 plus,25 plus,Total,Total,181270,94570,377680,51.3,47.7
+202324,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Total,339580,178220,736530,100.0,100.0
+202324,Academic year,National,E92000001,England,,,Total,Total,Total,Total,General FE College incl Tertiary,58280,35670,139780,17.2,20.0
+202324,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Local Authority,2550,2000,5840,0.7,1.1
+202324,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Other,49410,30770,130450,14.5,17.3
+202324,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Private Sector Public Funded,226470,108030,453880,66.7,60.6
+202324,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Schools,210,100,460,c,c
+202324,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Sixth Form College,320,170,850,c,c
+202324,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Special College,2350,1490,5260,0.7,0.8
+202324,Academic year,National,E92000001,England,,,Total,Total,Total,Supported by ASA levy funds,Total,231010,124590,z,68.0,69.9
+202324,Academic year,National,E92000001,England,,,Total,Total,Total,Other,Total,108570,53630,z,32.0,30.1
+202324,Academic year,National,E92000001,England,,,Intermediate Apprenticeship,Total,Total,Total,Total,70840,44020,142650,20.9,24.7
+202324,Academic year,National,E92000001,England,,,Advanced Apprenticeship,Total,Total,Total,Total,146520,76990,324710,43.1,43.2
+202324,Academic year,National,E92000001,England,,,Higher Apprenticeship,Total,Total,Total,Total,122230,57220,273710,36.0,32.1
+202324,Academic year,National,E92000001,England,,,Total,Under 19,Total,Total,Total,78930,40450,132630,23.2,22.7
+202324,Academic year,National,E92000001,England,,,Total,Under 19,Under 19,Total,Total,78930,40450,132630,23.2,22.7
+202324,Academic year,National,E92000001,England,,,Total,19 plus,Total,Total,Total,260650,137780,603900,76.8,77.3
+202324,Academic year,National,E92000001,England,,,Total,19 plus,19 to 24,Total,Total,96130,56400,248390,28.3,31.6
+202324,Academic year,National,E92000001,England,,,Total,19 plus,25 plus,Total,Total,164520,81380,355520,48.4,45.7
+202223,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Total,337140,162320,752150,100.0,100.0
+202223,Academic year,National,E92000001,England,,,Total,Total,Total,Total,General FE College incl Tertiary,58700,33130,145600,17.4,20.4
+202223,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Local Authority,2580,1940,6450,0.8,1.2
+202223,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Other,52260,26070,132370,15.5,16.1
+202223,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Private Sector Public Funded,220820,99740,461140,65.5,61.4
+202223,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Schools,200,80,360,c,c
+202223,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Sixth Form College,340,170,860,c,c
+202223,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Special College,2250,1190,5380,0.7,0.7
+202223,Academic year,National,E92000001,England,,,Total,Total,Total,Supported by ASA levy funds,Total,229720,110980,z,68.1,68.4
+202223,Academic year,National,E92000001,England,,,Total,Total,Total,Other,Total,107410,51340,z,31.9,31.6
+202223,Academic year,National,E92000001,England,,,Intermediate Apprenticeship,Total,Total,Total,Total,76280,43270,161780,22.6,26.7
+202223,Academic year,National,E92000001,England,,,Advanced Apprenticeship,Total,Total,Total,Total,147930,72560,333390,43.9,44.7
+202223,Academic year,National,E92000001,England,,,Higher Apprenticeship,Total,Total,Total,Total,112930,46490,261310,33.5,28.6
+202223,Academic year,National,E92000001,England,,,Total,Under 19,Total,Total,Total,77720,36510,131120,23.1,22.5
+202223,Academic year,National,E92000001,England,,,Total,Under 19,Under 19,Total,Total,77720,36510,131120,23.1,22.5
+202223,Academic year,National,E92000001,England,,,Total,19 plus,Total,Total,Total,259410,125810,621030,76.9,77.5
+202223,Academic year,National,E92000001,England,,,Total,19 plus,19 to 24,Total,Total,98800,52170,255850,29.3,32.1
+202223,Academic year,National,E92000001,England,,,Total,19 plus,25 plus,Total,Total,160620,73630,365180,47.6,45.4
+202122,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Total,349190,137220,740350,100.0,100.0
+202122,Academic year,National,E92000001,England,,,Total,Total,Total,Total,General FE College incl Tertiary,65280,31880,153390,18.7,23.2
+202122,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Local Authority,3240,1820,7340,0.9,1.3
+202122,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Other,49720,18480,121470,14.2,13.5
+202122,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Private Sector Public Funded,227620,83660,451190,65.2,61.0
+202122,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Schools,140,100,270,c,c
+202122,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Sixth Form College,510,200,1010,c,c
+202122,Academic year,National,E92000001,England,,,Total,Total,Total,Total,Special College,2670,1090,5680,0.8,0.8
+202122,Academic year,National,E92000001,England,,,Total,Total,Total,Supported by ASA levy funds,Total,225590,92130,z,64.6,67.1
+202122,Academic year,National,E92000001,England,,,Total,Total,Total,Other,Total,123600,45090,z,35.4,32.9
+202122,Academic year,National,E92000001,England,,,Intermediate Apprenticeship,Total,Total,Total,Total,91520,37270,175420,26.2,27.2
+202122,Academic year,National,E92000001,England,,,Advanced Apprenticeship,Total,Total,Total,Total,151310,65290,330410,43.3,47.6
+202122,Academic year,National,E92000001,England,,,Higher Apprenticeship,Total,Total,Total,Total,106360,34660,238820,30.5,25.3
+202122,Academic year,National,E92000001,England,,,Total,Under 19,Total,Total,Total,77520,31410,126420,22.2,22.9
+202122,Academic year,National,E92000001,England,,,Total,Under 19,Under 19,Total,Total,77520,31410,126420,22.2,22.9
+202122,Academic year,National,E92000001,England,,,Total,19 plus,Total,Total,Total,271670,105810,613940,77.8,77.1
+202122,Academic year,National,E92000001,England,,,Total,19 plus,19 to 24,Total,Total,106330,44960,255260,30.5,32.8
+202122,Academic year,National,E92000001,England,,,Total,19 plus,25 plus,Total,Total,165340,60850,358680,47.4,44.3
