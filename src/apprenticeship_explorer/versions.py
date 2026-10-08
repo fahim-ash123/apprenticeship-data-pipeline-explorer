@@ -7,8 +7,11 @@ before ``1.9``. Each version is therefore parsed into numbers before it is
 compared, with a missing patch number counted as zero.
 """
 
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass
+
+VERSION_FORM = re.compile(r"([0-9]+)\.([0-9]+)(?:\.([0-9]+))?")
 
 
 class InvalidVersionError(ValueError):
@@ -49,8 +52,11 @@ def parse_version(raw: str) -> Version:
         InvalidVersionError: If the value is not two or three numbers
             separated by full stops.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    match = VERSION_FORM.fullmatch(raw.strip())
+    if not match:
+        raise InvalidVersionError(f"Unrecognised version: {raw!r}")
+    major, minor, patch = match.groups(default="0")
+    return Version(int(major), int(minor), int(patch))
 
 
 def sort_versions(raw_versions: Iterable[str]) -> list[Version]:
@@ -62,7 +68,7 @@ def sort_versions(raw_versions: Iterable[str]) -> list[Version]:
     Returns:
         The parsed versions, oldest first.
     """
-    raise NotImplementedError
+    return sorted(parse_version(raw) for raw in raw_versions)
 
 
 def latest_version(raw_versions: Iterable[str]) -> Version:
@@ -74,4 +80,4 @@ def latest_version(raw_versions: Iterable[str]) -> Version:
     Returns:
         The highest version by number, not the first one listed.
     """
-    raise NotImplementedError
+    return sort_versions(raw_versions)[-1]
