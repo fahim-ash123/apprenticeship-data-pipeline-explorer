@@ -10,7 +10,7 @@ from collections import defaultdict
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 
-from apprenticeship_explorer.parse import parse_indicator_value
+from apprenticeship_explorer.parse import Missing, parse_indicator_value
 from apprenticeship_explorer.selector import select_cell
 from apprenticeship_explorer.time_period import AcademicYear, normalise_time_period
 from apprenticeship_explorer.window import DEFAULT_START, filter_to_window
@@ -97,8 +97,17 @@ def share_mix(
     Returns:
         One entry per year in the window, oldest first.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    mix = []
+    for year, year_rows in _national_years(rows, start):
+        total_row = select_cell(year_rows, DIMENSIONS, NATIONAL_TOTAL)
+        total = parse_indicator_value(total_row["start_count"])
+        options = dict.fromkeys(r[column] for r in year_rows if r[column] != "Total")
+        shares = {}
+        for option in options:
+            cell = _option_cell(year_rows, column, option, nested_in)
+            shares[option] = _share(parse_indicator_value(cell["start_count"]), total)
+        mix.append(YearShares(year, shares))
+    return mix
 
 
 def level_mix(rows: Iterable[Mapping[str, str]]) -> list[YearShares]:
@@ -110,7 +119,7 @@ def level_mix(rows: Iterable[Mapping[str, str]]) -> list[YearShares]:
     Returns:
         One entry per year in the analysis window, oldest first.
     """
-    raise NotImplementedError
+    return share_mix(rows, "apprenticeship_level")
 
 
 def age_mix(rows: Iterable[Mapping[str, str]]) -> list[YearShares]:
@@ -126,4 +135,63 @@ def age_mix(rows: Iterable[Mapping[str, str]]) -> list[YearShares]:
     Returns:
         One entry per year in the analysis window, oldest first.
     """
-    raise NotImplementedError
+    return share_mix(rows, "age_group", nested_in="age_youth_adult")
+
+
+def _national_years(rows, start):
+    """Group the window's national rows by academic year, oldest first.
+
+    Args:
+        rows: Data rows as read from the CSV.
+        start: The first academic year of the window.
+
+    Returns:
+        Pairs of each academic year and its national rows.
+    """
+    by_year = defaultdict(list)
+    for row in filter_to_window(rows, start):
+        if row["geographic_level"] == "National":
+            by_year[normalise_time_period(row["time_period"])].append(row)
+    return sorted(by_year.items())
+
+
+def _option_cell(year_rows, column, option, nested_in):
+    """Select the one row for an option, with every other filter at ``Total``.
+
+    Args:
+        year_rows: One year's national rows.
+        column: The filter being broken down.
+        option: The option wanted, such as ``19 to 24``.
+        nested_in: A filter whose value goes with the option, if any.
+
+    Returns:
+        The single matching row.
+    """
+    selection = {**NATIONAL_TOTAL, column: option}
+    if nested_in:
+        others = [f for f in FILTERS if f not in (column, nested_in)]
+        parents = {
+            r[nested_in]
+            for r in year_rows
+            if r[column] == option and all(r[f] == "Total" for f in others)
+        }
+        if len(parents) == 1:
+            selection[nested_in] = parents.pop()
+    return select_cell(year_rows, DIMENSIONS, selection)
+
+
+def _share(count, total):
+    """Return a count as a percentage of a total, keeping a missing value missing.
+
+    Args:
+        count: The option's count, or a ``Missing``.
+        total: The year's total, or a ``Missing``.
+
+    Returns:
+        The percentage, or whichever value is missing, so its reason survives.
+    """
+    if isinstance(count, Missing):
+        return count
+    if isinstance(total, Missing):
+        return total
+    return 100 * count / total
