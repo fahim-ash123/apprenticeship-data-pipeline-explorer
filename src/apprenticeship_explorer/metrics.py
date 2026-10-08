@@ -211,5 +211,4 @@ def funding_mix(rows: Iterable[Mapping[str, str]]) -> list[YearShares]:
     Returns:
         One entry per year from 2020/21 to the last complete year.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    return share_mix(rows, "funding_type", start=FUNDING_START)
