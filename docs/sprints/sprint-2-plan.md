@@ -40,7 +40,7 @@ Each change from the review of prototype version 1 is delivered by a Sprint 2 is
 | R2 | Caveat line with source, version and rounding under every chart | Accessible charts |
 | R3 | Reason for leaving out 2025/26 stated under the trend chart | Analysis notebook |
 | R4 | Each level's share of all starts over time | Level and age mix metrics |
-| R5 | Axis titles and series named by the measure, never "learners" | National trend metrics, Accessible charts |
+| R5 | Axis titles and series named by the measure, with only participation described as learners, as corrected by the participation bug fix | National trend metrics, Accessible charts |
 | R6 | Regions compared by share, not raw counts | Regional comparison by within-region share |
 | R7 | Suppressed cells counted and shown in breakdowns | Regional comparison by within-region share |
 | R8 | Data quality profile | Data quality profile |
