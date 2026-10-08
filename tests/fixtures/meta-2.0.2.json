@@ -1,0 +1,170 @@
+{
+ "filters": [
+  {
+   "id": "mU59K",
+   "column": "age_group",
+   "label": "Age group",
+   "hint": "",
+   "options": [
+    {
+     "id": "HpozL",
+     "label": "19 to 24"
+    },
+    {
+     "id": "CYdId",
+     "label": "25 plus"
+    },
+    {
+     "id": "YnmHK",
+     "label": "Total"
+    },
+    {
+     "id": "qCpjG",
+     "label": "Under 19"
+    }
+   ]
+  },
+  {
+   "id": "jI4AM",
+   "column": "age_youth_adult",
+   "label": "Age youth / adult",
+   "hint": "",
+   "options": [
+    {
+     "id": "GeCgr",
+     "label": "19 plus"
+    },
+    {
+     "id": "3Cx8u",
+     "label": "Total"
+    },
+    {
+     "id": "S3TVx",
+     "label": "Under 19"
+    }
+   ]
+  },
+  {
+   "id": "0evT5",
+   "column": "apprenticeship_level",
+   "label": "Apprenticeship level",
+   "hint": "",
+   "options": [
+    {
+     "id": "a3wLP",
+     "label": "Advanced Apprenticeship"
+    },
+    {
+     "id": "Bzo7J",
+     "label": "Higher Apprenticeship"
+    },
+    {
+     "id": "zShFQ",
+     "label": "Intermediate Apprenticeship"
+    },
+    {
+     "id": "k2whs",
+     "label": "Total"
+    },
+    {
+     "id": "uRio4",
+     "label": "Unknown"
+    }
+   ]
+  },
+  {
+   "id": "WcR2b",
+   "column": "funding_type",
+   "label": "Funding type",
+   "hint": "",
+   "options": [
+    {
+     "id": "XJkfK",
+     "label": "Other"
+    },
+    {
+     "id": "T91PJ",
+     "label": "Supported by ASA levy funds"
+    },
+    {
+     "id": "cMB31",
+     "label": "Total"
+    }
+   ]
+  },
+  {
+   "id": "EADqF",
+   "column": "provider_type",
+   "label": "Provider type",
+   "hint": "",
+   "options": [
+    {
+     "id": "5uKdi",
+     "label": "General FE College incl Tertiary"
+    },
+    {
+     "id": "69Lrf",
+     "label": "Local Authority"
+    },
+    {
+     "id": "0AfT5",
+     "label": "Other"
+    },
+    {
+     "id": "fv2YF",
+     "label": "Private Sector Public Funded"
+    },
+    {
+     "id": "jI4AM",
+     "label": "Schools"
+    },
+    {
+     "id": "eUbuS",
+     "label": "Sixth Form College"
+    },
+    {
+     "id": "T9wPJ",
+     "label": "Special College"
+    },
+    {
+     "id": "hlByW",
+     "label": "Total"
+    }
+   ]
+  }
+ ],
+ "indicators": [
+  {
+   "id": "mU59K",
+   "column": "achievement_count",
+   "label": "Achievements",
+   "decimalPlaces": 0
+  },
+  {
+   "id": "0evT5",
+   "column": "achievements_percent",
+   "label": "Achievements percentage",
+   "unit": "%",
+   "decimalPlaces": 1
+  },
+  {
+   "id": "WcR2b",
+   "column": "participation_count",
+   "label": "Participation",
+   "decimalPlaces": 0
+  },
+  {
+   "id": "EADqF",
+   "column": "start_count",
+   "label": "Starts",
+   "decimalPlaces": 0
+  },
+  {
+   "id": "Qt6wb",
+   "column": "starts_percent",
+   "label": "Starts percentage",
+   "unit": "%",
+   "decimalPlaces": 1
+  }
+ ]
+}
