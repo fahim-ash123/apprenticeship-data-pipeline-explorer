@@ -6,10 +6,13 @@ it counts. A start or an achievement is an event, and one learner can start
 more than once, so no measure is ever described as a number of learners.
 """
 
+from collections import defaultdict
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 
-from apprenticeship_explorer.time_period import AcademicYear
+from apprenticeship_explorer.selector import select_cell
+from apprenticeship_explorer.time_period import AcademicYear, normalise_time_period
+from apprenticeship_explorer.window import filter_to_window
 
 FILTERS = ("apprenticeship_level", "age_group", "age_youth_adult", "funding_type", "provider_type")
 DIMENSIONS = ("geographic_level", *FILTERS)
@@ -44,5 +47,11 @@ def national_trend(rows: Iterable[Mapping[str, str]]) -> list[YearFigures]:
     Returns:
         One entry per year in the analysis window, oldest first.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    by_year = defaultdict(list)
+    for row in filter_to_window(rows):
+        by_year[normalise_time_period(row["time_period"])].append(row)
+    trend = []
+    for year in sorted(by_year):
+        row = select_cell(by_year[year], DIMENSIONS, NATIONAL_TOTAL)
+        trend.append(YearFigures(year, {column: int(row[column]) for column in MEASURES}))
+    return trend
