@@ -72,10 +72,14 @@ def test_regional_rows_are_ignored():
     assert figures[AcademicYear(2020)]["start_count"] == 321440
 
 
-def test_measures_are_named_by_what_they_count():
-    """Starts and achievements count events, so no measure is labelled as learners."""
-    assert list(MEASURES.values()) == ["Starts", "Achievements", "Participation"]
-    assert not any("learner" in label.lower() for label in MEASURES.values())
+def test_starts_and_achievements_are_not_labelled_as_learners():
+    """They count apprenticeships, and one learner can start or achieve more than one."""
+    assert (MEASURES["start_count"], MEASURES["achievement_count"]) == ("Starts", "Achievements")
+
+
+def test_participation_is_labelled_as_a_count_of_learners():
+    """Footnote 7 defines participation as the count of learners, each once in the total."""
+    assert MEASURES["participation_count"] == "Learners participating"
 
 
 @pytest.mark.parametrize("marker", ["c", "x", "z", "low"])

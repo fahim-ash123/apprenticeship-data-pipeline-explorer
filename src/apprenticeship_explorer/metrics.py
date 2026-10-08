@@ -2,8 +2,11 @@
 
 Every figure is read from a single row chosen with ``select_cell``, because
 the published file already contains subtotals. Each measure is named by what
-it counts. A start or an achievement is an event, and one learner can start
-more than once, so no measure is ever described as a number of learners.
+it counts. Starts and achievements count apprenticeships, so a learner who
+starts or achieves more than one is counted more than once (footnotes 10 and
+11). Participation counts learners, each appearing once in the grand total
+(footnote 7). At level breakdowns a learner can appear under more than one
+level, so participation by level does not add up to the total (footnote 6).
 """
 
 from collections import defaultdict
@@ -22,7 +25,7 @@ FUNDING_START = AcademicYear(2020)
 MEASURES = {
     "start_count": "Starts",
     "achievement_count": "Achievements",
-    "participation_count": "Participation",
+    "participation_count": "Learners participating",
 }
 
 
