@@ -9,12 +9,15 @@ The same letter is a suppression marker in value columns, which is why it is
 only ever read here as a code.
 """
 
+from collections import defaultdict
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 
 from apprenticeship_explorer.metrics import FILTERS
-from apprenticeship_explorer.time_period import AcademicYear
-from apprenticeship_explorer.window import DEFAULT_START
+from apprenticeship_explorer.parse import Missing, parse_indicator_value
+from apprenticeship_explorer.selector import select_cell
+from apprenticeship_explorer.time_period import AcademicYear, normalise_time_period
+from apprenticeship_explorer.window import DEFAULT_START, filter_to_window
 
 OUTSIDE_ENGLAND = "z"
 HIGHER = "Higher Apprenticeship"
@@ -71,5 +74,40 @@ def regional_comparison(
     Returns:
         One comparison per year in the window, oldest first.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    by_year = defaultdict(list)
+    for row in filter_to_window(rows, start):
+        if row["geographic_level"] == "Regional":
+            by_year[normalise_time_period(row["time_period"])].append(row)
+    comparisons = []
+    for year, year_rows in sorted(by_year.items()):
+        regions = dict.fromkeys((r["region_code"], r["region_name"]) for r in year_rows)
+        shares = [_region_share(year_rows, code, name, column, option) for code, name in regions]
+        inside = [s for s in shares if s.code != OUTSIDE_ENGLAND]
+        outside = next(s for s in shares if s.code == OUTSIDE_ENGLAND)
+        ranked = sorted(inside, key=lambda s: s.share, reverse=True)
+        comparisons.append(RegionalComparison(year, tuple(ranked), outside))
+    return comparisons
+
+
+def _region_share(year_rows, code, name, column, option):
+    """Return one region's share of its starts in an option.
+
+    Args:
+        year_rows: One year's regional rows.
+        code: The region's code.
+        name: The region's name.
+        column: The filter that defines the share.
+        option: The option whose share is wanted.
+
+    Returns:
+        The region's share, missing if the count or the total is suppressed.
+    """
+    base = {"geographic_level": "Regional", "region_code": code, **{f: "Total" for f in FILTERS}}
+    total = parse_indicator_value(select_cell(year_rows, REGION_DIMENSIONS, base)["start_count"])
+    cell = select_cell(year_rows, REGION_DIMENSIONS, {**base, column: option})
+    count = parse_indicator_value(cell["start_count"])
+    if isinstance(count, Missing):
+        return RegionShare(code, name, count)
+    if isinstance(total, Missing):
+        return RegionShare(code, name, total)
+    return RegionShare(code, name, 100 * count / total)
