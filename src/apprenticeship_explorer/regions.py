@@ -86,11 +86,15 @@ def regional_comparison(
     comparisons = []
     for year, year_rows in sorted(by_year.items()):
         regions = dict.fromkeys((r["region_code"], r["region_name"]) for r in year_rows)
-        shares = [_region_share(year_rows, code, name, column, option) for code, name in regions]
+        results = [_region_share(year_rows, code, name, column, option) for code, name in regions]
+        shares = [share for share, _ in results]
+        suppressed = sum(missing for _, missing in results)
         inside = [s for s in shares if s.code != OUTSIDE_ENGLAND]
         outside = next(s for s in shares if s.code == OUTSIDE_ENGLAND)
-        ranked = sorted(inside, key=lambda s: s.share, reverse=True)
-        comparisons.append(RegionalComparison(year, tuple(ranked), outside))
+        known = [s for s in inside if not isinstance(s.share, Missing)]
+        ranked = sorted(known, key=lambda s: s.share, reverse=True)
+        ranked += [s for s in inside if isinstance(s.share, Missing)]
+        comparisons.append(RegionalComparison(year, tuple(ranked), outside, suppressed))
     return comparisons
 
 
@@ -105,14 +109,16 @@ def _region_share(year_rows, code, name, column, option):
         option: The option whose share is wanted.
 
     Returns:
-        The region's share, missing if the count or the total is suppressed.
+        The region's share, missing if the count or the total is suppressed,
+        and how many of those two counts were missing.
     """
     base = {"geographic_level": "Regional", "region_code": code, **{f: "Total" for f in FILTERS}}
     total = parse_indicator_value(select_cell(year_rows, REGION_DIMENSIONS, base)["start_count"])
     cell = select_cell(year_rows, REGION_DIMENSIONS, {**base, column: option})
     count = parse_indicator_value(cell["start_count"])
+    missing = isinstance(count, Missing) + isinstance(total, Missing)
     if isinstance(count, Missing):
-        return RegionShare(code, name, count)
+        return RegionShare(code, name, count), missing
     if isinstance(total, Missing):
-        return RegionShare(code, name, total)
-    return RegionShare(code, name, 100 * count / total)
+        return RegionShare(code, name, total), missing
+    return RegionShare(code, name, 100 * count / total), missing
