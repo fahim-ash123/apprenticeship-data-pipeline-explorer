@@ -104,8 +104,12 @@ def suppression_by_granularity(rows: Iterable[Mapping[str, str]]) -> dict[int, f
         Each granularity mapped to the percentage of its indicator cells
         holding ``c``, in order of granularity.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    cells, suppressed = Counter(), Counter()
+    for row in rows:
+        level = 0 if breakdown(row) == "Total" else breakdown(row).count("+") + 1
+        cells[level] += len(INDICATORS)
+        suppressed[level] += sum(row[column].strip() == "c" for column in INDICATORS)
+    return {level: 100 * suppressed[level] / cells[level] for level in sorted(cells)}
 
 
 def participation_z_in_all_levy_rows(rows: Iterable[Mapping[str, str]]) -> bool:
@@ -120,4 +124,7 @@ def participation_z_in_all_levy_rows(rows: Iterable[Mapping[str, str]]) -> bool:
     Raises:
         ValueError: If there are no levy-funded rows to check.
     """
-    raise NotImplementedError
+    levy = [row["participation_count"].strip() for row in rows if row["funding_type"] == LEVY]
+    if not levy:
+        raise ValueError("No levy-funded rows to check")
+    return all(value == "z" for value in levy)
