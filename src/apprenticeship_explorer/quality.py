@@ -8,9 +8,11 @@ for percentages, so the profile also counts how often it appears in the count
 columns, where the footnote does not explain it.
 """
 
-from collections import Counter
+from collections import Counter, defaultdict
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
+
+from apprenticeship_explorer.metrics import FILTERS
 
 MARKERS = ("c", "low", "x", "z")
 COUNT_COLUMNS = ("start_count", "achievement_count", "participation_count")
@@ -57,8 +59,10 @@ def breakdown(row: Mapping[str, str]) -> str:
     Returns:
         The broken-down filters joined with ``+``, or ``Total`` if none are.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    filters = [f for f in FILTERS if row[f] != "Total"]
+    if "age_group" in filters and "age_youth_adult" in filters:
+        filters.remove("age_youth_adult")
+    return "+".join(filters) or "Total"
 
 
 def profile(rows: Iterable[Mapping[str, str]]) -> QualityProfile:
@@ -70,4 +74,16 @@ def profile(rows: Iterable[Mapping[str, str]]) -> QualityProfile:
     Returns:
         The profile of the rows.
     """
-    raise NotImplementedError
+    by_indicator = {column: Counter() for column in INDICATORS}
+    by_breakdown = defaultdict(Counter)
+    loaded = low_in_counts = subtotals = 0
+    for row in rows:
+        loaded += 1
+        subtotals += any(row[f] == "Total" for f in FILTERS)
+        for column in INDICATORS:
+            value = row[column].strip()
+            if value in MARKERS:
+                by_indicator[column][value] += 1
+                by_breakdown[breakdown(row)][value] += 1
+                low_in_counts += value == "low" and column in COUNT_COLUMNS
+    return QualityProfile(loaded, by_indicator, dict(by_breakdown), low_in_counts, subtotals)
