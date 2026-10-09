@@ -1,0 +1,362 @@
+time_period,time_identifier,geographic_level,country_code,country_name,region_code,region_name,apprenticeship_level,age_youth_adult,age_group,funding_type,provider_type,start_count,achievement_count,participation_count,starts_percent,achievements_percent
+202122,Academic year,Regional,E92000001,England,E12000005,West Midlands,Total,Total,Total,Total,Total,38860,15190,83340,100.0,100.0
+202122,Academic year,Regional,E92000001,England,E12000005,West Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,9960,3930,18220,25.6,25.9
+202122,Academic year,Regional,E92000001,England,E12000005,West Midlands,Advanced Apprenticeship,Total,Total,Total,Total,17440,7540,39110,44.9,49.6
+202122,Academic year,Regional,E92000001,England,E12000005,West Midlands,Higher Apprenticeship,Total,Total,Total,Total,11460,3720,26510,29.5,24.5
+202122,Academic year,Regional,E92000001,England,E12000006,East of England,Total,Total,Total,Total,Total,34860,13950,74390,100.0,100.0
+202122,Academic year,Regional,E92000001,England,E12000006,East of England,Intermediate Apprenticeship,Total,Total,Total,Total,7950,3520,15640,22.8,25.2
+202122,Academic year,Regional,E92000001,England,E12000006,East of England,Advanced Apprenticeship,Total,Total,Total,Total,14980,6390,32910,43.0,45.8
+202122,Academic year,Regional,E92000001,England,E12000006,East of England,Higher Apprenticeship,Total,Total,Total,Total,11930,4050,26180,34.2,29.0
+202122,Academic year,Regional,E92000001,England,E12000007,London,Total,Total,Total,Total,Total,37790,13590,80170,100.0,100.0
+202122,Academic year,Regional,E92000001,England,E12000007,London,Intermediate Apprenticeship,Total,Total,Total,Total,7030,2630,13600,18.6,19.3
+202122,Academic year,Regional,E92000001,England,E12000007,London,Advanced Apprenticeship,Total,Total,Total,Total,15490,6050,32760,41.0,44.5
+202122,Academic year,Regional,E92000001,England,E12000007,London,Higher Apprenticeship,Total,Total,Total,Total,15270,4920,34010,40.4,36.2
+202122,Academic year,Regional,E92000001,England,E12000008,South East,Total,Total,Total,Total,Total,53070,20290,114250,100.0,100.0
+202122,Academic year,Regional,E92000001,England,E12000008,South East,Intermediate Apprenticeship,Total,Total,Total,Total,12670,5310,25370,23.9,26.2
+202122,Academic year,Regional,E92000001,England,E12000008,South East,Advanced Apprenticeship,Total,Total,Total,Total,23660,9660,51950,44.6,47.6
+202122,Academic year,Regional,E92000001,England,E12000008,South East,Higher Apprenticeship,Total,Total,Total,Total,16740,5330,37540,31.5,26.2
+202122,Academic year,Regional,E92000001,England,E12000009,South West,Total,Total,Total,Total,Total,39900,16220,85830,100.0,100.0
+202122,Academic year,Regional,E92000001,England,E12000009,South West,Intermediate Apprenticeship,Total,Total,Total,Total,12370,5170,24170,31.0,31.9
+202122,Academic year,Regional,E92000001,England,E12000009,South West,Advanced Apprenticeship,Total,Total,Total,Total,16530,7810,38030,41.4,48.1
+202122,Academic year,Regional,E92000001,England,E12000009,South West,Higher Apprenticeship,Total,Total,Total,Total,11010,3240,24370,27.6,20.0
+202122,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Total,Total,Total,Total,Total,3450,1410,6470,100.0,100.0
+202122,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Intermediate Apprenticeship,Total,Total,Total,Total,750,240,1160,21.6,16.8
+202122,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Advanced Apprenticeship,Total,Total,Total,Total,1400,790,2870,40.5,55.8
+202122,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Higher Apprenticeship,Total,Total,Total,Total,1310,390,2460,37.8,27.4
+202021,Academic year,Regional,E92000001,England,E12000001,North East,Total,Total,Total,Total,Total,17310,9040,38340,100.0,100.0
+202021,Academic year,Regional,E92000001,England,E12000001,North East,Intermediate Apprenticeship,Total,Total,Total,Total,4770,3280,10060,27.6,36.3
+202021,Academic year,Regional,E92000001,England,E12000001,North East,Advanced Apprenticeship,Total,Total,Total,Total,8030,4340,18680,46.4,48.0
+202021,Academic year,Regional,E92000001,England,E12000001,North East,Higher Apprenticeship,Total,Total,Total,Total,4510,1410,10060,26.1,15.6
+202021,Academic year,Regional,E92000001,England,E12000002,North West,Total,Total,Total,Total,Total,45860,22710,103350,100.0,100.0
+202021,Academic year,Regional,E92000001,England,E12000002,North West,Intermediate Apprenticeship,Total,Total,Total,Total,11800,7440,26170,25.7,32.7
+202021,Academic year,Regional,E92000001,England,E12000002,North West,Advanced Apprenticeship,Total,Total,Total,Total,20370,10840,48400,44.4,47.7
+202021,Academic year,Regional,E92000001,England,E12000002,North West,Higher Apprenticeship,Total,Total,Total,Total,13690,4430,29900,29.8,19.5
+202021,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Total,Total,Total,Total,Total,36520,18870,81680,100.0,100.0
+202021,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Intermediate Apprenticeship,Total,Total,Total,Total,13250,7990,28490,36.3,42.3
+202021,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Advanced Apprenticeship,Total,Total,Total,Total,14140,7890,34150,38.7,41.8
+202021,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Higher Apprenticeship,Total,Total,Total,Total,9130,2990,19810,25.0,15.9
+202021,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Total,Total,Total,Total,28080,13970,62410,100.0,100.0
+202021,Academic year,Regional,E92000001,England,E12000004,East Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,7460,4880,16580,26.6,35.0
+202021,Academic year,Regional,E92000001,England,E12000004,East Midlands,Advanced Apprenticeship,Total,Total,Total,Total,12460,6590,29220,44.4,47.2
+202021,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Total,Total,Total,Total,8160,2500,17220,29.1,17.9
+202021,Academic year,Regional,E92000001,England,E12000005,West Midlands,Total,Total,Total,Total,Total,36130,17290,80790,100.0,100.0
+202021,Academic year,Regional,E92000001,England,E12000005,West Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,8990,5900,19450,24.9,34.1
+202021,Academic year,Regional,E92000001,England,E12000005,West Midlands,Advanced Apprenticeship,Total,Total,Total,Total,16320,8330,39110,45.2,48.2
+202021,Academic year,Regional,E92000001,England,E12000005,West Midlands,Higher Apprenticeship,Total,Total,Total,Total,10820,3060,23070,30.0,17.7
+202021,Academic year,Regional,E92000001,England,E12000006,East of England,Total,Total,Total,Total,Total,31800,15700,71900,100.0,100.0
+202021,Academic year,Regional,E92000001,England,E12000006,East of England,Intermediate Apprenticeship,Total,Total,Total,Total,7240,4860,17210,22.8,30.9
+202021,Academic year,Regional,E92000001,England,E12000006,East of England,Advanced Apprenticeship,Total,Total,Total,Total,13550,7020,32130,42.6,44.7
+202021,Academic year,Regional,E92000001,England,E12000006,East of England,Higher Apprenticeship,Total,Total,Total,Total,11010,3830,23140,34.6,24.4
+202021,Academic year,Regional,E92000001,England,E12000007,London,Total,Total,Total,Total,Total,36930,15290,77190,100.0,100.0
+202021,Academic year,Regional,E92000001,England,E12000007,London,Intermediate Apprenticeship,Total,Total,Total,Total,6910,4090,14960,18.7,26.8
+202021,Academic year,Regional,E92000001,England,E12000007,London,Advanced Apprenticeship,Total,Total,Total,Total,15000,7040,32970,40.6,46.0
+202021,Academic year,Regional,E92000001,England,E12000007,London,Higher Apprenticeship,Total,Total,Total,Total,15030,4160,29610,40.7,27.2
+202021,Academic year,Regional,E92000001,England,E12000008,South East,Total,Total,Total,Total,Total,49020,23380,108590,100.0,100.0
+202021,Academic year,Regional,E92000001,England,E12000008,South East,Intermediate Apprenticeship,Total,Total,Total,Total,11620,7590,26700,23.7,32.5
+202021,Academic year,Regional,E92000001,England,E12000008,South East,Advanced Apprenticeship,Total,Total,Total,Total,21990,10960,50420,44.8,46.9
+202021,Academic year,Regional,E92000001,England,E12000008,South East,Higher Apprenticeship,Total,Total,Total,Total,15410,4830,32290,31.4,20.7
+202021,Academic year,Regional,E92000001,England,E12000009,South West,Total,Total,Total,Total,Total,36430,19020,82340,100.0,100.0
+202021,Academic year,Regional,E92000001,England,E12000009,South West,Intermediate Apprenticeship,Total,Total,Total,Total,11450,7060,24620,31.4,37.1
+202021,Academic year,Regional,E92000001,England,E12000009,South West,Advanced Apprenticeship,Total,Total,Total,Total,15160,8950,38200,41.6,47.1
+202021,Academic year,Regional,E92000001,England,E12000009,South West,Higher Apprenticeship,Total,Total,Total,Total,9820,3010,20580,27.0,15.8
+202021,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Total,Total,Total,Total,Total,3370,1270,6410,100.0,100.0
+202021,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Intermediate Apprenticeship,Total,Total,Total,Total,670,290,1170,19.9,22.6
+202021,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Advanced Apprenticeship,Total,Total,Total,Total,1460,670,3100,43.4,52.5
+202021,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Higher Apprenticeship,Total,Total,Total,Total,1240,320,2190,36.7,24.9
+201920,Academic year,Regional,E92000001,England,E12000001,North East,Total,Total,Total,Total,Total,18010,9260,40810,100.0,100.0
+201920,Academic year,Regional,E92000001,England,E12000001,North East,Intermediate Apprenticeship,Total,Total,Total,Total,5570,4200,13560,30.9,45.4
+201920,Academic year,Regional,E92000001,England,E12000001,North East,Advanced Apprenticeship,Total,Total,Total,Total,8280,4030,19490,45.9,43.6
+201920,Academic year,Regional,E92000001,England,E12000001,North East,Higher Apprenticeship,Total,Total,Total,Total,4170,1020,8550,23.1,11.0
+201920,Academic year,Regional,E92000001,England,E12000002,North West,Total,Total,Total,Total,Total,46950,22220,106390,100.0,100.0
+201920,Academic year,Regional,E92000001,England,E12000002,North West,Intermediate Apprenticeship,Total,Total,Total,Total,14300,9060,32600,30.5,40.8
+201920,Academic year,Regional,E92000001,England,E12000002,North West,Advanced Apprenticeship,Total,Total,Total,Total,20860,10550,51050,44.4,47.5
+201920,Academic year,Regional,E92000001,England,E12000002,North West,Higher Apprenticeship,Total,Total,Total,Total,11780,2610,24480,25.1,11.8
+201920,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Total,Total,Total,Total,Total,37730,17650,83390,100.0,100.0
+201920,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Intermediate Apprenticeship,Total,Total,Total,Total,15650,8620,32410,41.5,48.9
+201920,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Advanced Apprenticeship,Total,Total,Total,Total,14520,7270,36190,38.5,41.2
+201920,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Higher Apprenticeship,Total,Total,Total,Total,7560,1760,16150,20.0,10.0
+201920,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Total,Total,Total,Total,28560,13700,64390,100.0,100.0
+201920,Academic year,Regional,E92000001,England,E12000004,East Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,8890,5930,20880,31.1,43.3
+201920,Academic year,Regional,E92000001,England,E12000004,East Midlands,Advanced Apprenticeship,Total,Total,Total,Total,12780,6260,30550,44.7,45.7
+201920,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Total,Total,Total,Total,6900,1510,14040,24.1,11.0
+201920,Academic year,Regional,E92000001,England,E12000005,West Midlands,Total,Total,Total,Total,Total,36920,17130,82360,100.0,100.0
+201920,Academic year,Regional,E92000001,England,E12000005,West Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,10720,7760,25450,29.0,45.3
+201920,Academic year,Regional,E92000001,England,E12000005,West Midlands,Advanced Apprenticeship,Total,Total,Total,Total,16860,7530,40140,45.7,43.9
+201920,Academic year,Regional,E92000001,England,E12000005,West Midlands,Higher Apprenticeship,Total,Total,Total,Total,9340,1850,18120,25.3,10.8
+201920,Academic year,Regional,E92000001,England,E12000006,East of England,Total,Total,Total,Total,Total,32330,14320,72540,100.0,100.0
+201920,Academic year,Regional,E92000001,England,E12000006,East of England,Intermediate Apprenticeship,Total,Total,Total,Total,9150,5430,21320,28.3,37.9
+201920,Academic year,Regional,E92000001,England,E12000006,East of England,Advanced Apprenticeship,Total,Total,Total,Total,14100,6610,33550,43.6,46.2
+201920,Academic year,Regional,E92000001,England,E12000006,East of England,Higher Apprenticeship,Total,Total,Total,Total,9080,2280,18590,28.1,15.9
+201920,Academic year,Regional,E92000001,England,E12000007,London,Total,Total,Total,Total,Total,33890,12860,74900,100.0,100.0
+201920,Academic year,Regional,E92000001,England,E12000007,London,Intermediate Apprenticeship,Total,Total,Total,Total,7450,4260,18190,22.0,33.1
+201920,Academic year,Regional,E92000001,England,E12000007,London,Advanced Apprenticeship,Total,Total,Total,Total,14970,6300,34620,44.2,49.0
+201920,Academic year,Regional,E92000001,England,E12000007,London,Higher Apprenticeship,Total,Total,Total,Total,11470,2300,22660,33.8,17.9
+201920,Academic year,Regional,E92000001,England,E12000008,South East,Total,Total,Total,Total,Total,47820,20890,105990,100.0,100.0
+201920,Academic year,Regional,E92000001,England,E12000008,South East,Intermediate Apprenticeship,Total,Total,Total,Total,14100,8300,31600,29.5,39.7
+201920,Academic year,Regional,E92000001,England,E12000008,South East,Advanced Apprenticeship,Total,Total,Total,Total,20910,9920,50320,43.7,47.5
+201920,Academic year,Regional,E92000001,England,E12000008,South East,Higher Apprenticeship,Total,Total,Total,Total,12810,2670,25240,26.8,12.8
+201920,Academic year,Regional,E92000001,England,E12000009,South West,Total,Total,Total,Total,Total,37090,17680,81670,100.0,100.0
+201920,Academic year,Regional,E92000001,England,E12000009,South West,Intermediate Apprenticeship,Total,Total,Total,Total,12710,7750,27900,34.3,43.8
+201920,Academic year,Regional,E92000001,England,E12000009,South West,Advanced Apprenticeship,Total,Total,Total,Total,16050,8320,39460,43.3,47.1
+201920,Academic year,Regional,E92000001,England,E12000009,South West,Higher Apprenticeship,Total,Total,Total,Total,8340,1600,15850,22.5,9.1
+201920,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Total,Total,Total,Total,Total,3230,1190,6520,100.0,100.0
+201920,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Intermediate Apprenticeship,Total,Total,Total,Total,690,310,1410,21.5,26.0
+201920,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Advanced Apprenticeship,Total,Total,Total,Total,1510,680,3320,46.8,57.1
+201920,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Higher Apprenticeship,Total,Total,Total,Total,1020,200,1830,31.7,16.9
+201819,Academic year,Regional,E92000001,England,E12000001,North East,Total,Total,Total,Total,Total,23260,12390,44200,100.0,100.0
+201819,Academic year,Regional,E92000001,England,E12000001,North East,Intermediate Apprenticeship,Total,Total,Total,Total,9100,5990,17830,39.1,48.4
+201819,Academic year,Regional,E92000001,England,E12000001,North East,Advanced Apprenticeship,Total,Total,Total,Total,10090,5470,20560,43.4,44.2
+201819,Academic year,Regional,E92000001,England,E12000001,North East,Higher Apprenticeship,Total,Total,Total,Total,4070,930,6740,17.5,7.5
+201819,Academic year,Regional,E92000001,England,E12000002,North West,Total,Total,Total,Total,Total,58280,29120,112970,100.0,100.0
+201819,Academic year,Regional,E92000001,England,E12000002,North West,Intermediate Apprenticeship,Total,Total,Total,Total,21130,13040,41090,36.2,44.8
+201819,Academic year,Regional,E92000001,England,E12000002,North West,Advanced Apprenticeship,Total,Total,Total,Total,26360,13690,55030,45.2,47.0
+201819,Academic year,Regional,E92000001,England,E12000002,North West,Higher Apprenticeship,Total,Total,Total,Total,10790,2400,19100,18.5,8.2
+201819,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Total,Total,Total,Total,Total,47260,22160,86620,100.0,100.0
+201819,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Intermediate Apprenticeship,Total,Total,Total,Total,20780,11350,37290,44.0,51.2
+201819,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Advanced Apprenticeship,Total,Total,Total,Total,18730,9430,38460,39.6,42.6
+201819,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Higher Apprenticeship,Total,Total,Total,Total,7750,1380,12540,16.4,6.2
+201819,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Total,Total,Total,Total,35910,17010,67680,100.0,100.0
+201819,Academic year,Regional,E92000001,England,E12000004,East Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,13440,8500,26440,37.4,50.0
+201819,Academic year,Regional,E92000001,England,E12000004,East Midlands,Advanced Apprenticeship,Total,Total,Total,Total,16000,7440,32060,44.5,43.8
+201819,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Total,Total,Total,Total,6470,1070,10500,18.0,6.3
+201819,Academic year,Regional,E92000001,England,E12000005,West Midlands,Total,Total,Total,Total,Total,45670,21800,85330,100.0,100.0
+201819,Academic year,Regional,E92000001,England,E12000005,West Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,16880,10140,31980,37.0,46.5
+201819,Academic year,Regional,E92000001,England,E12000005,West Midlands,Advanced Apprenticeship,Total,Total,Total,Total,20660,9940,41680,45.2,45.6
+201819,Academic year,Regional,E92000001,England,E12000005,West Midlands,Higher Apprenticeship,Total,Total,Total,Total,8130,1730,13460,17.8,7.9
+201819,Academic year,Regional,E92000001,England,E12000006,East of England,Total,Total,Total,Total,Total,38260,17380,73330,100.0,100.0
+201819,Academic year,Regional,E92000001,England,E12000006,East of England,Intermediate Apprenticeship,Total,Total,Total,Total,13030,7660,25550,34.1,44.1
+201819,Academic year,Regional,E92000001,England,E12000006,East of England,Advanced Apprenticeship,Total,Total,Total,Total,16950,8220,35060,44.3,47.3
+201819,Academic year,Regional,E92000001,England,E12000006,East of England,Higher Apprenticeship,Total,Total,Total,Total,8280,1500,13910,21.7,8.6
+201819,Academic year,Regional,E92000001,England,E12000007,London,Total,Total,Total,Total,Total,40750,15750,75230,100.0,100.0
+201819,Academic year,Regional,E92000001,England,E12000007,London,Intermediate Apprenticeship,Total,Total,Total,Total,11900,6170,22730,29.2,39.2
+201819,Academic year,Regional,E92000001,England,E12000007,London,Advanced Apprenticeship,Total,Total,Total,Total,18490,8140,36620,45.4,51.7
+201819,Academic year,Regional,E92000001,England,E12000007,London,Higher Apprenticeship,Total,Total,Total,Total,10370,1440,16630,25.4,9.1
+201819,Academic year,Regional,E92000001,England,E12000008,South East,Total,Total,Total,Total,Total,56320,25840,106640,100.0,100.0
+201819,Academic year,Regional,E92000001,England,E12000008,South East,Intermediate Apprenticeship,Total,Total,Total,Total,19150,11850,37830,34.0,45.9
+201819,Academic year,Regional,E92000001,England,E12000008,South East,Advanced Apprenticeship,Total,Total,Total,Total,25780,12020,52100,45.8,46.5
+201819,Academic year,Regional,E92000001,England,E12000008,South East,Higher Apprenticeship,Total,Total,Total,Total,11390,1970,18330,20.2,7.6
+201819,Academic year,Regional,E92000001,England,E12000009,South West,Total,Total,Total,Total,Total,43920,22090,83260,100.0,100.0
+201819,Academic year,Regional,E92000001,England,E12000009,South West,Intermediate Apprenticeship,Total,Total,Total,Total,17090,10750,32910,38.9,48.6
+201819,Academic year,Regional,E92000001,England,E12000009,South West,Advanced Apprenticeship,Total,Total,Total,Total,20020,9980,41070,45.6,45.2
+201819,Academic year,Regional,E92000001,England,E12000009,South West,Higher Apprenticeship,Total,Total,Total,Total,6820,1360,11230,15.5,6.2
+201819,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Total,Total,Total,Total,Total,3750,1610,7130,100.0,100.0
+201819,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Intermediate Apprenticeship,Total,Total,Total,Total,1110,710,2180,29.7,43.9
+201819,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Advanced Apprenticeship,Total,Total,Total,Total,1660,770,3520,44.2,48.2
+201819,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Higher Apprenticeship,Total,Total,Total,Total,980,130,1520,26.1,7.9
+201718,Academic year,Regional,E92000001,England,E12000001,North East,Total,Total,Total,Total,Total,22640,20000,52940,100.0,100.0
+201718,Academic year,Regional,E92000001,England,E12000001,North East,Intermediate Apprenticeship,Total,Total,Total,Total,10660,11220,26080,47.1,56.1
+201718,Academic year,Regional,E92000001,England,E12000001,North East,Advanced Apprenticeship,Total,Total,Total,Total,9220,7620,22710,40.7,38.1
+201718,Academic year,Regional,E92000001,England,E12000001,North East,Higher Apprenticeship,Total,Total,Total,Total,2750,1170,5250,12.2,5.8
+201718,Academic year,Regional,E92000001,England,E12000002,North West,Total,Total,Total,Total,Total,58120,44330,129540,100.0,100.0
+201718,Academic year,Regional,E92000001,England,E12000002,North West,Intermediate Apprenticeship,Total,Total,Total,Total,24230,23530,58300,41.7,53.1
+201718,Academic year,Regional,E92000001,England,E12000002,North West,Advanced Apprenticeship,Total,Total,Total,Total,25970,18160,59990,44.7,41.0
+201718,Academic year,Regional,E92000001,England,E12000002,North West,Higher Apprenticeship,Total,Total,Total,Total,7920,2640,13980,13.6,5.9
+201718,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Total,Total,Total,Total,Total,44580,33520,96960,100.0,100.0
+201718,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Intermediate Apprenticeship,Total,Total,Total,Total,22270,19320,49490,49.9,57.6
+201718,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Advanced Apprenticeship,Total,Total,Total,Total,17750,12770,41040,39.8,38.1
+201718,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Higher Apprenticeship,Total,Total,Total,Total,4570,1430,8330,10.2,4.3
+201718,Academic year,Regional,E92000001,England,E12000004,East Midlands,Unknown,Total,Total,Total,Total,low,low,low,low,low
+201718,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Total,Total,Total,Total,33690,25880,75140,100.0,100.0
+201718,Academic year,Regional,E92000001,England,E12000004,East Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,15010,14410,36190,44.6,55.7
+201718,Academic year,Regional,E92000001,England,E12000004,East Midlands,Advanced Apprenticeship,Total,Total,Total,Total,14600,10180,33480,43.3,39.3
+201718,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Total,Total,Total,Total,4080,1300,7010,12.1,5.0
+201718,Academic year,Regional,E92000001,England,E12000005,West Midlands,Total,Total,Total,Total,Total,42650,34190,94760,100.0,100.0
+201718,Academic year,Regional,E92000001,England,E12000005,West Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,18440,18520,44060,43.2,54.2
+201718,Academic year,Regional,E92000001,England,E12000005,West Midlands,Advanced Apprenticeship,Total,Total,Total,Total,19110,13340,43070,44.8,39.0
+201718,Academic year,Regional,E92000001,England,E12000005,West Midlands,Higher Apprenticeship,Total,Total,Total,Total,5090,2330,9730,11.9,6.8
+201718,Academic year,Regional,E92000001,England,E12000006,East of England,Total,Total,Total,Total,Total,36700,24070,77110,100.0,100.0
+201718,Academic year,Regional,E92000001,England,E12000006,East of England,Intermediate Apprenticeship,Total,Total,Total,Total,14620,12550,33490,39.8,52.1
+201718,Academic year,Regional,E92000001,England,E12000006,East of England,Advanced Apprenticeship,Total,Total,Total,Total,16610,9930,35800,45.3,41.2
+201718,Academic year,Regional,E92000001,England,E12000006,East of England,Higher Apprenticeship,Total,Total,Total,Total,5470,1590,9200,14.9,6.6
+201718,Academic year,Regional,E92000001,England,E12000007,London,Total,Total,Total,Total,Total,36830,23970,77800,100.0,100.0
+201718,Academic year,Regional,E92000001,England,E12000007,London,Intermediate Apprenticeship,Total,Total,Total,Total,13110,12080,31190,35.6,50.4
+201718,Academic year,Regional,E92000001,England,E12000007,London,Advanced Apprenticeship,Total,Total,Total,Total,17590,10250,37060,47.7,42.8
+201718,Academic year,Regional,E92000001,England,E12000007,London,Higher Apprenticeship,Total,Total,Total,Total,6140,1640,10520,16.7,6.9
+201718,Academic year,Regional,E92000001,England,E12000008,South East,Total,Total,Total,Total,Total,52550,36480,111370,100.0,100.0
+201718,Academic year,Regional,E92000001,England,E12000008,South East,Intermediate Apprenticeship,Total,Total,Total,Total,21820,19170,49240,41.5,52.6
+201718,Academic year,Regional,E92000001,England,E12000008,South East,Advanced Apprenticeship,Total,Total,Total,Total,23780,15330,52700,45.2,42.0
+201718,Academic year,Regional,E92000001,England,E12000008,South East,Higher Apprenticeship,Total,Total,Total,Total,6960,1980,11490,13.2,5.4
+201718,Academic year,Regional,E92000001,England,E12000009,South West,Total,Total,Total,Total,Total,43430,31270,90560,100.0,100.0
+201718,Academic year,Regional,E92000001,England,E12000009,South West,Intermediate Apprenticeship,Total,Total,Total,Total,19380,16990,42700,44.6,54.3
+201718,Academic year,Regional,E92000001,England,E12000009,South West,Advanced Apprenticeship,Total,Total,Total,Total,19680,12750,42680,45.3,40.8
+201718,Academic year,Regional,E92000001,England,E12000009,South West,Higher Apprenticeship,Total,Total,Total,Total,4370,1530,7560,10.1,4.9
+201718,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Total,Total,Total,Total,Total,4570,2460,8600,100.0,100.0
+201718,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Intermediate Apprenticeship,Total,Total,Total,Total,1850,1250,3610,40.4,50.9
+201718,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Advanced Apprenticeship,Total,Total,Total,Total,1910,1040,3890,41.8,42.4
+201718,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Higher Apprenticeship,Total,Total,Total,Total,810,160,1180,17.7,6.7
+202526,Academic year,Regional,E92000001,England,E12000001,North East,Total,Total,Total,Total,Total,16270,8130,39100,100.0,100.0
+202526,Academic year,Regional,E92000001,England,E12000001,North East,Intermediate Apprenticeship,Total,Total,Total,Total,3350,1680,7100,20.6,20.6
+202526,Academic year,Regional,E92000001,England,E12000001,North East,Advanced Apprenticeship,Total,Total,Total,Total,7230,4040,18090,44.4,49.7
+202526,Academic year,Regional,E92000001,England,E12000001,North East,Higher Apprenticeship,Total,Total,Total,Total,5690,2410,14150,35.0,29.7
+202526,Academic year,Regional,E92000001,England,E12000002,North West,Total,Total,Total,Total,Total,45400,20800,107440,100.0,100.0
+202526,Academic year,Regional,E92000001,England,E12000002,North West,Intermediate Apprenticeship,Total,Total,Total,Total,7920,4160,17260,17.5,20.0
+202526,Academic year,Regional,E92000001,England,E12000002,North West,Advanced Apprenticeship,Total,Total,Total,Total,18950,9420,46690,41.7,45.3
+202526,Academic year,Regional,E92000001,England,E12000002,North West,Higher Apprenticeship,Total,Total,Total,Total,18530,7230,44150,40.8,34.7
+202526,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Total,Total,Total,Total,Total,33620,15900,79540,100.0,100.0
+202526,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Intermediate Apprenticeship,Total,Total,Total,Total,7510,3950,16510,22.3,24.8
+202526,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Advanced Apprenticeship,Total,Total,Total,Total,14060,6930,34350,41.8,43.6
+202526,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Higher Apprenticeship,Total,Total,Total,Total,12060,5020,29150,35.9,31.6
+202526,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Total,Total,Total,Total,27010,12910,64060,100.0,100.0
+202526,Academic year,Regional,E92000001,England,E12000004,East Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,4610,2570,9890,17.1,19.9
+202526,Academic year,Regional,E92000001,England,E12000004,East Midlands,Advanced Apprenticeship,Total,Total,Total,Total,11810,5800,28250,43.7,44.9
+202526,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Total,Total,Total,Total,10580,4540,26280,39.2,35.2
+202526,Academic year,Regional,E92000001,England,E12000005,West Midlands,Total,Total,Total,Total,Total,33850,16300,80780,100.0,100.0
+202526,Academic year,Regional,E92000001,England,E12000005,West Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,5370,2970,11730,15.9,18.2
+202526,Academic year,Regional,E92000001,England,E12000005,West Midlands,Advanced Apprenticeship,Total,Total,Total,Total,14690,7630,35760,43.4,46.8
+202526,Academic year,Regional,E92000001,England,E12000005,West Midlands,Higher Apprenticeship,Total,Total,Total,Total,13800,5700,33780,40.8,35.0
+202526,Academic year,Regional,E92000001,England,E12000006,East of England,Total,Total,Total,Total,Total,32280,15560,77520,100.0,100.0
+202526,Academic year,Regional,E92000001,England,E12000006,East of England,Intermediate Apprenticeship,Total,Total,Total,Total,4910,2640,10540,15.2,17.0
+202526,Academic year,Regional,E92000001,England,E12000006,East of England,Advanced Apprenticeship,Total,Total,Total,Total,13290,6850,32370,41.2,44.0
+202526,Academic year,Regional,E92000001,England,E12000006,East of England,Higher Apprenticeship,Total,Total,Total,Total,14090,6070,35020,43.7,39.0
+202526,Academic year,Regional,E92000001,England,E12000007,London,Total,Total,Total,Total,Total,34810,15540,81280,100.0,100.0
+202526,Academic year,Regional,E92000001,England,E12000007,London,Intermediate Apprenticeship,Total,Total,Total,Total,3830,1960,8310,11.0,12.6
+202526,Academic year,Regional,E92000001,England,E12000007,London,Advanced Apprenticeship,Total,Total,Total,Total,12930,6320,29700,37.1,40.6
+202526,Academic year,Regional,E92000001,England,E12000007,London,Higher Apprenticeship,Total,Total,Total,Total,18060,7270,43510,51.9,46.8
+202526,Academic year,Regional,E92000001,England,E12000008,South East,Total,Total,Total,Total,Total,47780,23270,116500,100.0,100.0
+202526,Academic year,Regional,E92000001,England,E12000008,South East,Intermediate Apprenticeship,Total,Total,Total,Total,7820,4350,17720,16.4,18.7
+202526,Academic year,Regional,E92000001,England,E12000008,South East,Advanced Apprenticeship,Total,Total,Total,Total,20040,10300,50280,41.9,44.2
+202526,Academic year,Regional,E92000001,England,E12000008,South East,Higher Apprenticeship,Total,Total,Total,Total,19920,8630,49000,41.7,37.1
+202526,Academic year,Regional,E92000001,England,E12000009,South West,Total,Total,Total,Total,Total,34100,16340,83600,100.0,100.0
+202526,Academic year,Regional,E92000001,England,E12000009,South West,Intermediate Apprenticeship,Total,Total,Total,Total,7540,4210,16810,22.1,25.8
+202526,Academic year,Regional,E92000001,England,E12000009,South West,Advanced Apprenticeship,Total,Total,Total,Total,14410,6780,36620,42.2,41.5
+202526,Academic year,Regional,E92000001,England,E12000009,South West,Higher Apprenticeship,Total,Total,Total,Total,12150,5350,30750,35.6,32.7
+202526,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Total,Total,Total,Total,Total,3660,1460,5680,100.0,100.0
+202526,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Intermediate Apprenticeship,Total,Total,Total,Total,490,210,690,13.5,14.1
+202526,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Advanced Apprenticeship,Total,Total,Total,Total,1370,660,2190,37.5,45.2
+202526,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Higher Apprenticeship,Total,Total,Total,Total,1790,600,2840,49.0,40.7
+202425,Academic year,Regional,E92000001,England,E12000001,North East,Total,Total,Total,Total,Total,18580,11170,40880,100.0,100.0
+202425,Academic year,Regional,E92000001,England,E12000001,North East,Intermediate Apprenticeship,Total,Total,Total,Total,3840,2530,7840,20.7,22.7
+202425,Academic year,Regional,E92000001,England,E12000001,North East,Advanced Apprenticeship,Total,Total,Total,Total,8410,5320,19190,45.3,47.6
+202425,Academic year,Regional,E92000001,England,E12000001,North East,Higher Apprenticeship,Total,Total,Total,Total,6330,3320,14130,34.1,29.7
+202425,Academic year,Regional,E92000001,England,E12000002,North West,Total,Total,Total,Total,Total,50580,28480,110360,100.0,100.0
+202425,Academic year,Regional,E92000001,England,E12000002,North West,Intermediate Apprenticeship,Total,Total,Total,Total,9740,5970,19770,19.3,21.0
+202425,Academic year,Regional,E92000001,England,E12000002,North West,Advanced Apprenticeship,Total,Total,Total,Total,21340,12960,48760,42.2,45.5
+202425,Academic year,Regional,E92000001,England,E12000002,North West,Higher Apprenticeship,Total,Total,Total,Total,19510,9550,42670,38.6,33.5
+202425,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Total,Total,Total,Total,Total,38490,22560,83390,100.0,100.0
+202425,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Intermediate Apprenticeship,Total,Total,Total,Total,9630,6050,19110,25.0,26.8
+202425,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Advanced Apprenticeship,Total,Total,Total,Total,15890,9780,36210,41.3,43.4
+202425,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Higher Apprenticeship,Total,Total,Total,Total,12970,6730,28690,33.7,29.8
+202425,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Total,Total,Total,Total,30900,17860,66940,100.0,100.0
+202425,Academic year,Regional,E92000001,England,E12000004,East Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,5670,3770,11500,18.4,21.1
+202425,Academic year,Regional,E92000001,England,E12000004,East Midlands,Advanced Apprenticeship,Total,Total,Total,Total,13200,8360,30120,42.7,46.8
+202425,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Total,Total,Total,Total,12030,5730,25780,38.9,32.1
+202425,Academic year,Regional,E92000001,England,E12000005,West Midlands,Total,Total,Total,Total,Total,38720,22430,83430,100.0,100.0
+202425,Academic year,Regional,E92000001,England,E12000005,West Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,6770,4410,13410,17.5,19.7
+202425,Academic year,Regional,E92000001,England,E12000005,West Midlands,Advanced Apprenticeship,Total,Total,Total,Total,16790,10490,37540,43.4,46.8
+202425,Academic year,Regional,E92000001,England,E12000005,West Midlands,Higher Apprenticeship,Total,Total,Total,Total,15160,7530,33140,39.1,33.6
+202425,Academic year,Regional,E92000001,England,E12000006,East of England,Total,Total,Total,Total,Total,37010,20420,79360,100.0,100.0
+202425,Academic year,Regional,E92000001,England,E12000006,East of England,Intermediate Apprenticeship,Total,Total,Total,Total,6020,3760,11940,16.3,18.4
+202425,Academic year,Regional,E92000001,England,E12000006,East of England,Advanced Apprenticeship,Total,Total,Total,Total,15330,8970,33690,41.4,43.9
+202425,Academic year,Regional,E92000001,England,E12000006,East of England,Higher Apprenticeship,Total,Total,Total,Total,15660,7700,34250,42.3,37.7
+202425,Academic year,Regional,E92000001,England,E12000007,London,Total,Total,Total,Total,Total,40380,20820,83850,100.0,100.0
+202425,Academic year,Regional,E92000001,England,E12000007,London,Intermediate Apprenticeship,Total,Total,Total,Total,4800,3080,9950,11.9,14.8
+202425,Academic year,Regional,E92000001,England,E12000007,London,Advanced Apprenticeship,Total,Total,Total,Total,15170,8460,31560,37.6,40.6
+202425,Academic year,Regional,E92000001,England,E12000007,London,Higher Apprenticeship,Total,Total,Total,Total,20410,9280,42700,50.5,44.6
+202425,Academic year,Regional,E92000001,England,E12000008,South East,Total,Total,Total,Total,Total,55260,30910,120820,100.0,100.0
+202425,Academic year,Regional,E92000001,England,E12000008,South East,Intermediate Apprenticeship,Total,Total,Total,Total,9390,6170,20040,17.0,20.0
+202425,Academic year,Regional,E92000001,England,E12000008,South East,Advanced Apprenticeship,Total,Total,Total,Total,23360,13950,53220,42.3,45.1
+202425,Academic year,Regional,E92000001,England,E12000008,South East,Higher Apprenticeship,Total,Total,Total,Total,22510,10790,48400,40.7,34.9
+202425,Academic year,Regional,E92000001,England,E12000009,South West,Total,Total,Total,Total,Total,39790,21620,86440,100.0,100.0
+202425,Academic year,Regional,E92000001,England,E12000009,South West,Intermediate Apprenticeship,Total,Total,Total,Total,9410,5600,18690,23.6,25.9
+202425,Academic year,Regional,E92000001,England,E12000009,South West,Advanced Apprenticeship,Total,Total,Total,Total,16210,9250,37490,40.7,42.8
+202425,Academic year,Regional,E92000001,England,E12000009,South West,Higher Apprenticeship,Total,Total,Total,Total,14170,6770,30990,35.6,31.3
+202425,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Total,Total,Total,Total,Total,3810,2060,6030,100.0,100.0
+202425,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Intermediate Apprenticeship,Total,Total,Total,Total,410,270,690,10.8,13.3
+202425,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Advanced Apprenticeship,Total,Total,Total,Total,1410,980,2390,37.0,47.7
+202425,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Higher Apprenticeship,Total,Total,Total,Total,1990,800,2980,52.2,39.0
+202324,Academic year,Regional,E92000001,England,E12000001,North East,Total,Total,Total,Total,Total,18710,10100,40480,100.0,100.0
+202324,Academic year,Regional,E92000001,England,E12000001,North East,Intermediate Apprenticeship,Total,Total,Total,Total,4550,2740,8740,24.3,27.1
+202324,Academic year,Regional,E92000001,England,E12000001,North East,Advanced Apprenticeship,Total,Total,Total,Total,8600,4620,18950,46.0,45.8
+202324,Academic year,Regional,E92000001,England,E12000001,North East,Higher Apprenticeship,Total,Total,Total,Total,5560,2740,13050,29.7,27.1
+202324,Academic year,Regional,E92000001,England,E12000002,North West,Total,Total,Total,Total,Total,49320,25860,107050,100.0,100.0
+202324,Academic year,Regional,E92000001,England,E12000002,North West,Intermediate Apprenticeship,Total,Total,Total,Total,10110,6420,20750,20.5,24.8
+202324,Academic year,Regional,E92000001,England,E12000002,North West,Advanced Apprenticeship,Total,Total,Total,Total,21870,11600,48550,44.4,44.9
+202324,Academic year,Regional,E92000001,England,E12000002,North West,Higher Apprenticeship,Total,Total,Total,Total,17330,7830,38520,35.1,30.3
+202324,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Total,Total,Total,Total,Total,37730,20850,81660,100.0,100.0
+202324,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Intermediate Apprenticeship,Total,Total,Total,Total,10330,6900,20580,27.4,33.1
+202324,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Advanced Apprenticeship,Total,Total,Total,Total,15780,8490,35540,41.8,40.7
+202324,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Higher Apprenticeship,Total,Total,Total,Total,11620,5460,26080,30.8,26.2
+202324,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Total,Total,Total,Total,30040,16170,65330,100.0,100.0
+202324,Academic year,Regional,E92000001,England,E12000004,East Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,6130,4110,12670,20.4,25.4
+202324,Academic year,Regional,E92000001,England,E12000004,East Midlands,Advanced Apprenticeship,Total,Total,Total,Total,13470,7270,30120,44.8,45.0
+202324,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Total,Total,Total,Total,10450,4790,22970,34.8,29.6
+202324,Academic year,Regional,E92000001,England,E12000005,West Midlands,Total,Total,Total,Total,Total,37520,19910,81650,100.0,100.0
+202324,Academic year,Regional,E92000001,England,E12000005,West Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,7390,4500,14510,19.7,22.6
+202324,Academic year,Regional,E92000001,England,E12000005,West Midlands,Advanced Apprenticeship,Total,Total,Total,Total,16590,9190,37320,44.2,46.2
+202324,Academic year,Regional,E92000001,England,E12000005,West Midlands,Higher Apprenticeship,Total,Total,Total,Total,13540,6220,30380,36.1,31.2
+202324,Academic year,Regional,E92000001,England,E12000006,East of England,Total,Total,Total,Total,Total,34540,18230,75610,100.0,100.0
+202324,Academic year,Regional,E92000001,England,E12000006,East of England,Intermediate Apprenticeship,Total,Total,Total,Total,6470,3820,12740,18.7,21.0
+202324,Academic year,Regional,E92000001,England,E12000006,East of England,Advanced Apprenticeship,Total,Total,Total,Total,14600,7780,32630,42.3,42.7
+202324,Academic year,Regional,E92000001,England,E12000006,East of England,Higher Apprenticeship,Total,Total,Total,Total,13480,6630,30680,39.0,36.4
+202324,Academic year,Regional,E92000001,England,E12000007,London,Total,Total,Total,Total,Total,37700,17870,79350,100.0,100.0
+202324,Academic year,Regional,E92000001,England,E12000007,London,Intermediate Apprenticeship,Total,Total,Total,Total,5590,2950,10850,14.8,16.5
+202324,Academic year,Regional,E92000001,England,E12000007,London,Advanced Apprenticeship,Total,Total,Total,Total,14630,7020,30510,38.8,39.3
+202324,Academic year,Regional,E92000001,England,E12000007,London,Higher Apprenticeship,Total,Total,Total,Total,17470,7910,38230,46.3,44.2
+202324,Academic year,Regional,E92000001,England,E12000008,South East,Total,Total,Total,Total,Total,52510,26850,116040,100.0,100.0
+202324,Academic year,Regional,E92000001,England,E12000008,South East,Intermediate Apprenticeship,Total,Total,Total,Total,10190,6120,21340,19.4,22.8
+202324,Academic year,Regional,E92000001,England,E12000008,South East,Advanced Apprenticeship,Total,Total,Total,Total,23410,11600,52070,44.6,43.2
+202324,Academic year,Regional,E92000001,England,E12000008,South East,Higher Apprenticeship,Total,Total,Total,Total,18910,9140,43280,36.0,34.0
+202324,Academic year,Regional,E92000001,England,E12000009,South West,Total,Total,Total,Total,Total,37670,20460,83350,100.0,100.0
+202324,Academic year,Regional,E92000001,England,E12000009,South West,Intermediate Apprenticeship,Total,Total,Total,Total,9590,6130,19630,25.5,29.9
+202324,Academic year,Regional,E92000001,England,E12000009,South West,Advanced Apprenticeship,Total,Total,Total,Total,15880,8550,36590,42.2,41.8
+202324,Academic year,Regional,E92000001,England,E12000009,South West,Higher Apprenticeship,Total,Total,Total,Total,12200,5790,27790,32.4,28.3
+202324,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Total,Total,Total,Total,Total,3850,1930,6000,100.0,100.0
+202324,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Intermediate Apprenticeship,Total,Total,Total,Total,500,340,850,12.9,17.7
+202324,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Advanced Apprenticeship,Total,Total,Total,Total,1680,870,2440,43.7,45.2
+202324,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Higher Apprenticeship,Total,Total,Total,Total,1670,720,2740,43.4,37.1
+202223,Academic year,Regional,E92000001,England,E12000001,North East,Total,Total,Total,Total,Total,18450,9390,41320,100.0,100.0
+202223,Academic year,Regional,E92000001,England,E12000001,North East,Intermediate Apprenticeship,Total,Total,Total,Total,4440,2650,9620,24.0,28.2
+202223,Academic year,Regional,E92000001,England,E12000001,North East,Advanced Apprenticeship,Total,Total,Total,Total,8750,4510,19260,47.4,48.0
+202223,Academic year,Regional,E92000001,England,E12000001,North East,Higher Apprenticeship,Total,Total,Total,Total,5260,2240,12690,28.5,23.8
+202223,Academic year,Regional,E92000001,England,E12000002,North West,Total,Total,Total,Total,Total,48690,23760,108720,100.0,100.0
+202223,Academic year,Regional,E92000001,England,E12000002,North West,Intermediate Apprenticeship,Total,Total,Total,Total,11130,6130,23600,22.9,25.8
+202223,Academic year,Regional,E92000001,England,E12000002,North West,Advanced Apprenticeship,Total,Total,Total,Total,21830,11180,49610,44.8,47.0
+202223,Academic year,Regional,E92000001,England,E12000002,North West,Higher Apprenticeship,Total,Total,Total,Total,15730,6450,36220,32.3,27.1
+202223,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Total,Total,Total,Total,Total,38340,19350,83930,100.0,100.0
+202223,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Intermediate Apprenticeship,Total,Total,Total,Total,11420,6660,23540,29.8,34.4
+202223,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Advanced Apprenticeship,Total,Total,Total,Total,16120,8040,36060,42.0,41.6
+202223,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Higher Apprenticeship,Total,Total,Total,Total,10800,4640,24820,28.2,24.0
+202223,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Total,Total,Total,Total,30470,14220,66550,100.0,100.0
+202223,Academic year,Regional,E92000001,England,E12000004,East Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,6980,3920,14600,22.9,27.6
+202223,Academic year,Regional,E92000001,England,E12000004,East Midlands,Advanced Apprenticeship,Total,Total,Total,Total,13930,6530,30690,45.7,45.9
+202223,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Total,Total,Total,Total,9560,3770,21660,31.4,26.5
+202223,Academic year,Regional,E92000001,England,E12000005,West Midlands,Total,Total,Total,Total,Total,37970,17920,84470,100.0,100.0
+202223,Academic year,Regional,E92000001,England,E12000005,West Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,8020,4460,16760,21.1,24.9
+202223,Academic year,Regional,E92000001,England,E12000005,West Midlands,Advanced Apprenticeship,Total,Total,Total,Total,17020,8330,38920,44.8,46.5
+202223,Academic year,Regional,E92000001,England,E12000005,West Midlands,Higher Apprenticeship,Total,Total,Total,Total,12930,5130,29300,34.0,28.6
+202223,Academic year,Regional,E92000001,England,E12000006,East of England,Total,Total,Total,Total,Total,33590,16210,75930,100.0,100.0
+202223,Academic year,Regional,E92000001,England,E12000006,East of England,Intermediate Apprenticeship,Total,Total,Total,Total,6640,3700,14140,19.8,22.8
+202223,Academic year,Regional,E92000001,England,E12000006,East of England,Advanced Apprenticeship,Total,Total,Total,Total,14470,7160,33260,43.1,44.1
+202223,Academic year,Regional,E92000001,England,E12000006,East of England,Higher Apprenticeship,Total,Total,Total,Total,12490,5360,28880,37.2,33.1
+202223,Academic year,Regional,E92000001,England,E12000007,London,Total,Total,Total,Total,Total,36120,16140,80790,100.0,100.0
+202223,Academic year,Regional,E92000001,England,E12000007,London,Intermediate Apprenticeship,Total,Total,Total,Total,5960,3080,12450,16.5,19.1
+202223,Academic year,Regional,E92000001,England,E12000007,London,Advanced Apprenticeship,Total,Total,Total,Total,14360,6750,32070,39.7,41.8
+202223,Academic year,Regional,E92000001,England,E12000007,London,Higher Apprenticeship,Total,Total,Total,Total,15800,6320,36480,43.8,39.1
+202223,Academic year,Regional,E92000001,England,E12000008,South East,Total,Total,Total,Total,Total,51630,24100,117130,100.0,100.0
+202223,Academic year,Regional,E92000001,England,E12000008,South East,Intermediate Apprenticeship,Total,Total,Total,Total,10510,6100,23420,20.4,25.3
+202223,Academic year,Regional,E92000001,England,E12000008,South East,Advanced Apprenticeship,Total,Total,Total,Total,23350,10670,52580,45.2,44.3
+202223,Academic year,Regional,E92000001,England,E12000008,South East,Higher Apprenticeship,Total,Total,Total,Total,17770,7330,41830,34.4,30.4
+202223,Academic year,Regional,E92000001,England,E12000009,South West,Total,Total,Total,Total,Total,37970,19420,86880,100.0,100.0
+202223,Academic year,Regional,E92000001,England,E12000009,South West,Intermediate Apprenticeship,Total,Total,Total,Total,10500,6220,22570,27.7,32.0
+202223,Academic year,Regional,E92000001,England,E12000009,South West,Advanced Apprenticeship,Total,Total,Total,Total,16350,8530,38190,43.1,43.9
+202223,Academic year,Regional,E92000001,England,E12000009,South West,Higher Apprenticeship,Total,Total,Total,Total,11120,4670,26800,29.3,24.1
+202223,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Total,Total,Total,Total,Total,3900,1800,6430,100.0,100.0
+202223,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Intermediate Apprenticeship,Total,Total,Total,Total,670,340,1070,17.3,19.0
+202223,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Advanced Apprenticeship,Total,Total,Total,Total,1760,880,2760,45.2,48.6
+202223,Academic year,Regional,E92000001,England,z,Outside of England and unknown,Higher Apprenticeship,Total,Total,Total,Total,1470,580,2620,37.6,32.4
+202122,Academic year,Regional,E92000001,England,E12000001,North East,Total,Total,Total,Total,Total,19700,7710,40120,100.0,100.0
+202122,Academic year,Regional,E92000001,England,E12000001,North East,Intermediate Apprenticeship,Total,Total,Total,Total,5670,1990,10040,28.8,25.8
+202122,Academic year,Regional,E92000001,England,E12000001,North East,Advanced Apprenticeship,Total,Total,Total,Total,8980,4090,18840,45.6,53.1
+202122,Academic year,Regional,E92000001,England,E12000001,North East,Higher Apprenticeship,Total,Total,Total,Total,5050,1630,11500,25.6,21.1
+202122,Academic year,Regional,E92000001,England,E12000002,North West,Total,Total,Total,Total,Total,50370,20490,107380,100.0,100.0
+202122,Academic year,Regional,E92000001,England,E12000002,North West,Intermediate Apprenticeship,Total,Total,Total,Total,13380,5270,25390,26.6,25.7
+202122,Academic year,Regional,E92000001,England,E12000002,North West,Advanced Apprenticeship,Total,Total,Total,Total,22210,10110,48890,44.1,49.3
+202122,Academic year,Regional,E92000001,England,E12000002,North West,Higher Apprenticeship,Total,Total,Total,Total,14780,5110,33810,29.4,24.9
+202122,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Total,Total,Total,Total,Total,39670,15830,83460,100.0,100.0
+202122,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Intermediate Apprenticeship,Total,Total,Total,Total,13290,5660,26040,33.5,35.7
+202122,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Advanced Apprenticeship,Total,Total,Total,Total,16380,6860,35150,41.3,43.3
+202122,Academic year,Regional,E92000001,England,E12000003,Yorkshire and The Humber,Higher Apprenticeship,Total,Total,Total,Total,10010,3320,22780,25.2,20.9
+202122,Academic year,Regional,E92000001,England,E12000004,East Midlands,Total,Total,Total,Total,Total,31520,12540,64950,100.0,100.0
+202122,Academic year,Regional,E92000001,England,E12000004,East Midlands,Intermediate Apprenticeship,Total,Total,Total,Total,8460,3560,15790,26.8,28.4
+202122,Academic year,Regional,E92000001,England,E12000004,East Midlands,Advanced Apprenticeship,Total,Total,Total,Total,14250,6010,29910,45.2,48.0
+202122,Academic year,Regional,E92000001,England,E12000004,East Midlands,Higher Apprenticeship,Total,Total,Total,Total,8810,2970,19660,27.9,23.7
