@@ -10,6 +10,7 @@ from pathlib import Path
 
 import pytest
 
+from apprenticeship_explorer.parse import Missing, parse_indicator_value
 from apprenticeship_explorer.regions import regional_comparison
 from apprenticeship_explorer.time_period import AcademicYear
 
@@ -101,3 +102,47 @@ def test_comparison_covers_the_eight_complete_years():
     """Every year from 2017/18 to 2024/25 is compared, and the partial 2025/26 is left out."""
     years = [c.year for c in regional_comparison(regional_rows())]
     assert years == [AcademicYear(y) for y in range(2017, 2025)]
+
+
+def set_count(rows, region, level, value):
+    """Replace one 2024/25 regional count, such as a level's starts, with a marker."""
+    row = next(
+        r for r in rows
+        if r["time_period"] == "202425"
+        and r["region_name"] == region
+        and r["apprenticeship_level"] == level
+    )
+    row["start_count"] = value
+
+
+def test_suppressed_region_is_reported_as_suppressed_and_ranked_last():
+    """A suppressed region keeps its marker and its reason, and is listed after every share."""
+    rows = regional_rows()
+    set_count(rows, "London", "Higher Apprenticeship", "c")
+    regions = comparison_for(rows, 2024).regions
+    assert regions[-1].name == "London"
+    assert isinstance(regions[-1].share, Missing)
+    assert regions[-1].share == parse_indicator_value("c")
+    assert regions[0].name == "East of England"
+
+
+def test_number_of_suppressed_cells_is_stated():
+    """Two suppressed counts in the breakdown are reported as two suppressed cells."""
+    rows = regional_rows()
+    set_count(rows, "London", "Higher Apprenticeship", "c")
+    set_count(rows, "North East", "Total", "x")
+    assert comparison_for(rows, 2024).suppressed_cells == 2
+
+
+def test_suppression_outside_england_is_counted_too():
+    """The outside region is not ranked, but its suppressed cells still count."""
+    rows = regional_rows()
+    set_count(rows, "Outside of England and unknown", "Higher Apprenticeship", "low")
+    comparison = comparison_for(rows, 2024)
+    assert comparison.outside.share == parse_indicator_value("low")
+    assert comparison.suppressed_cells == 1
+
+
+def test_recorded_2024_25_breakdown_has_no_suppressed_cells():
+    """None of the counts read for 2024/25 is suppressed in the recorded data."""
+    assert comparison_for(regional_rows(), 2024).suppressed_cells == 0

@@ -46,13 +46,18 @@ class RegionalComparison:
 
     Attributes:
         year: The academic year.
-        regions: The nine regions of England, highest share first.
+        regions: The nine regions of England, highest share first, with any
+            suppressed region last.
         outside: "Outside of England and unknown", reported separately.
+        suppressed_cells: How many of the counts read for this comparison,
+            each region's total and its count for the option, were suppressed
+            or unavailable.
     """
 
     year: AcademicYear
     regions: tuple[RegionShare, ...]
     outside: RegionShare
+    suppressed_cells: int = 0
 
 
 def regional_comparison(
