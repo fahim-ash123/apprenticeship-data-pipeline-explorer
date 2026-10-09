@@ -17,6 +17,7 @@ from apprenticeship_explorer.metrics import FILTERS
 MARKERS = ("c", "low", "x", "z")
 COUNT_COLUMNS = ("start_count", "achievement_count", "participation_count")
 INDICATORS = (*COUNT_COLUMNS, "starts_percent", "achievements_percent")
+LEVY = "Supported by ASA levy funds"
 
 
 @dataclass(frozen=True)
@@ -87,3 +88,36 @@ def profile(rows: Iterable[Mapping[str, str]]) -> QualityProfile:
                 by_breakdown[breakdown(row)][value] += 1
                 low_in_counts += value == "low" and column in COUNT_COLUMNS
     return QualityProfile(loaded, by_indicator, dict(by_breakdown), low_in_counts, subtotals)
+
+
+def suppression_by_granularity(rows: Iterable[Mapping[str, str]]) -> dict[int, float]:
+    """Return the percentage of cells suppressed, for each level of breakdown.
+
+    Granularity is how many filters a row is broken down by, from 0 for the
+    grand total. The finer the breakdown, the smaller each group and the more
+    often a count is suppressed with ``c``.
+
+    Args:
+        rows: Data rows as read from the CSV, with every value as text.
+
+    Returns:
+        Each granularity mapped to the percentage of its indicator cells
+        holding ``c``, in order of granularity.
+    """
+    # Deliberately not implemented yet. The tests are written first.
+    raise NotImplementedError
+
+
+def participation_z_in_all_levy_rows(rows: Iterable[Mapping[str, str]]) -> bool:
+    """Check whether participation is ``z`` in every row for levy-funded starts.
+
+    Args:
+        rows: Data rows as read from the CSV, with every value as text.
+
+    Returns:
+        Whether every levy-funded row has ``z``, not applicable, for participation.
+
+    Raises:
+        ValueError: If there are no levy-funded rows to check.
+    """
+    raise NotImplementedError

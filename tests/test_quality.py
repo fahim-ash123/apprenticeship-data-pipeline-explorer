@@ -7,7 +7,15 @@ full file is produced by the notebook.
 
 from collections import Counter
 
-from apprenticeship_explorer.quality import breakdown, profile
+import pytest
+
+from apprenticeship_explorer.quality import (
+    LEVY,
+    breakdown,
+    participation_z_in_all_levy_rows,
+    profile,
+    suppression_by_granularity,
+)
 
 
 def row(level="Total", age="Total", youth="Total", funding="Total", provider="Total", **values):
@@ -93,3 +101,50 @@ def test_age_group_breakdown_does_not_count_the_youth_split_twice():
     """An age group row carries its youth or adult value, but it is one breakdown."""
     assert breakdown(row(age="25 plus", youth="19 plus")) == "age_group"
     assert breakdown(row(youth="Under 19")) == "age_youth_adult"
+
+def test_suppression_rises_with_granularity():
+    """No total cell is suppressed, one cell in ten at one filter, and every cell at two."""
+    rows = [
+        row(),
+        row(level="Higher Apprenticeship", start_count="c"),
+        row(level="Advanced Apprenticeship"),
+        row(
+            level="Higher Apprenticeship",
+            funding=LEVY,
+            start_count="c",
+            achievement_count="c",
+            participation_count="c",
+            starts_percent="c",
+            achievements_percent="c",
+        ),
+    ]
+    assert suppression_by_granularity(rows) == {0: 0.0, 1: 10.0, 2: 100.0}
+
+
+def test_only_c_counts_as_suppressed():
+    """``x``, ``z`` and ``low`` mean unavailable, not applicable and small, not suppressed."""
+    rows = [row(start_count="x", achievement_count="z", starts_percent="low")]
+    assert suppression_by_granularity(rows) == {0: 0.0}
+
+
+def test_age_group_rows_count_as_one_filter():
+    """An age group row is broken down once, even though it also carries a youth value."""
+    assert suppression_by_granularity([row(age="Under 19", youth="Under 19")]) == {1: 0.0}
+
+
+def test_participation_is_z_in_every_levy_row():
+    """When every levy-funded row has ``z`` for participation, the check confirms it."""
+    rows = [row(funding=LEVY, participation_count="z"), row(participation_count="200")]
+    assert participation_z_in_all_levy_rows(rows) is True
+
+
+def test_one_levy_row_with_a_participation_value_fails_the_check():
+    """A single levy-funded row with a real participation count means the rule does not hold."""
+    rows = [row(funding=LEVY, participation_count="z"), row(funding=LEVY, participation_count="9")]
+    assert participation_z_in_all_levy_rows(rows) is False
+
+
+def test_no_levy_rows_cannot_be_confirmed():
+    """With nothing to check, the function refuses to answer instead of saying yes."""
+    with pytest.raises(ValueError, match="levy"):
+        participation_z_in_all_levy_rows([row()])
