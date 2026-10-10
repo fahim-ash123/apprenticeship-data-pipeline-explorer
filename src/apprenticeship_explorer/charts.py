@@ -5,6 +5,8 @@ with red-green colour vision deficiency. Colour is never the only cue: each
 series also has its own line style and marker, and is labelled at the end of
 its line. Every chart carries a title, axis titles naming the measure, a
 caveat line with the source, version and rounding, and alternative text.
+The years affected by the pandemic, 2019/20 and 2020/21, are shaded and
+labelled on time series, never removed.
 """
 
 import math
@@ -87,6 +89,18 @@ def line_chart(
                 color=TEXT,
                 fontweight="bold",
             )
+        shaded = [position[year] for year in PANDEMIC_YEARS if year in position]
+    if shaded:
+        axes.axvspan(min(shaded) - 0.5, max(shaded) + 0.5, color="#DDE1E3", zorder=0)
+        axes.text(
+            min(shaded) - 0.45,
+            0.98,
+            "Pandemic-affected years",
+            transform=axes.get_xaxis_transform(),
+            va="top",
+            color=CAVEAT_TEXT,
+            fontsize=9,
+        )
     axes.set_xticks(range(len(years)), [str(year) for year in years])
     axes.set_title(title, loc="left", color=TEXT, fontweight="bold")
     axes.set_xlabel("Academic year", color=TEXT)
@@ -121,8 +135,23 @@ def bar_chart(
     Raises:
         ValueError: If the alternative text or caveat is empty.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    _check_text(alt_text, caveat)
+    figure = Figure(figsize=(9, 0.5 * len(values) + 1.5))
+    axes = figure.add_subplot()
+    labels = list(values)
+    rows = range(len(labels) - 1, -1, -1)
+    for row, label in zip(rows, labels, strict=True):
+        value = values[label]
+        if isinstance(value, Missing):
+            axes.text(0, row, NOT_SHOWN, va="center", color=CAVEAT_TEXT)
+            continue
+        axes.barh(row, value, color=BLUE)
+        axes.text(value, row, " " + value_format.format(value), va="center", color=TEXT)
+    axes.set_yticks(list(rows), labels)
+    axes.set_title(title, loc="left", color=TEXT, fontweight="bold")
+    axes.set_xlabel(x_label, color=TEXT)
+    figure.text(0.01, 0.01, caveat, fontsize=9, color=CAVEAT_TEXT)
+    return Chart(figure, alt_text, caveat)
 
 
 def contrast_ratio(colour: str, background: str = "#FFFFFF") -> float:
