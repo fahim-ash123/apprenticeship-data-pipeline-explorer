@@ -6,6 +6,7 @@ when asked. The network call sits behind a transport function, so tests can
 supply recorded responses and never reach the live API.
 """
 
+import gzip
 import json
 import time
 import urllib.error
@@ -20,6 +21,7 @@ DEFAULT_TIMEOUT = 30.0
 DEFAULT_ATTEMPTS = 3
 DEFAULT_BACKOFF = 0.5
 VERSIONS_PAGE_SIZE = 20  # The largest page the versions endpoint allows.
+GZIP_SIGNATURE = b"\x1f\x8b"  # The first two bytes of every gzip stream.
 
 
 class ApiError(Exception):
@@ -174,9 +176,12 @@ class ApiClient:
             version: The version to pin, such as ``2.0.2``. Omit for the latest.
 
         Returns:
-            The CSV text, without any byte order mark.
+            The CSV text, without any byte order mark. The live endpoint sends the
+            body gzip-compressed, so a compressed body is decompressed first.
         """
         body = self._get(f"/data-sets/{data_set_id}/csv", _version_param(version))
+        if body[:2] == GZIP_SIGNATURE:
+            body = gzip.decompress(body)
         return body.decode("utf-8-sig")
 
     def _get(self, path: str, params: dict[str, Any] | None = None) -> bytes:
