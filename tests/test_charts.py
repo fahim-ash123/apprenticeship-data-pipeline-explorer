@@ -12,8 +12,10 @@ from matplotlib.text import Annotation
 
 from apprenticeship_explorer.charts import (
     BLUE,
+    NOT_SHOWN,
     SERIES_STYLES,
     VERMILLION,
+    bar_chart,
     contrast_ratio,
     line_chart,
 )
@@ -108,3 +110,72 @@ def test_more_series_than_styles_is_refused():
 def test_every_series_colour_meets_the_3_to_1_contrast_minimum(colour):
     """WCAG 2.2 asks for 3:1 between a graphic and its background."""
     assert contrast_ratio(colour) >= 3
+
+
+def eight_years():
+    """Return one series covering 2017/18 to 2024/25, which includes the pandemic years."""
+    years = [AcademicYear(y) for y in range(2017, 2025)]
+    return {"Starts": [(year, 300000 + 1000 * n) for n, year in enumerate(years)]}
+
+
+def test_pandemic_years_are_shaded_and_labelled():
+    """2019/20 and 2020/21 are marked, so a dip is read in context, not removed."""
+    axes = draw(eight_years()).figure.axes[0]
+    assert "Pandemic-affected years" in [text.get_text() for text in axes.texts]
+    assert len(axes.patches) == 1
+    assert len(axes.get_lines()[0].get_xdata()) == 8
+
+
+def test_no_pandemic_shading_when_those_years_are_not_shown():
+    """A chart from 2021/22 onwards has nothing to shade."""
+    years = [AcademicYear(2021), AcademicYear(2022)]
+    axes = draw({"Starts": [(years[0], 1), (years[1], 2)]}).figure.axes[0]
+    assert len(axes.patches) == 0
+    assert "Pandemic-affected years" not in [text.get_text() for text in axes.texts]
+
+
+def draw_bars(values=None, **overrides):
+    """Draw a bar chart of regional shares with sensible defaults."""
+    settings = {"title": "Share of starts at higher level", "x_label": "Share of starts (%)"}
+    settings.update(caveat=CAVEAT, alt_text=ALT, value_format="{:.1f}%")
+    settings.update(overrides)
+    shares = {"London": 50.5, "East of England": 42.3, "South East": 40.7}
+    return bar_chart(values or shares, **settings)
+
+
+def test_bars_keep_the_order_given_from_top_to_bottom():
+    """A ranked list stays ranked: the first label is the top bar."""
+    axes = draw_bars().figure.axes[0]
+    names = [tick.get_text() for tick in axes.get_yticklabels()]
+    ticks = zip(axes.get_yticks(), names, strict=True)
+    top_down = [label for _, label in sorted(ticks, reverse=True)]
+    assert top_down == ["London", "East of England", "South East"]
+
+
+def test_every_bar_is_labelled_with_its_value():
+    """Values are printed beside the bars, so the chart can be read without the axis."""
+    texts = [text.get_text().strip() for text in draw_bars().figure.axes[0].texts]
+    assert texts == ["50.5%", "42.3%", "40.7%"]
+
+
+def test_bar_chart_has_title_axis_title_and_caveat():
+    """The bar chart carries the same text as the line chart."""
+    chart = draw_bars()
+    axes = chart.figure.axes[0]
+    assert axes.get_title(loc="left") == "Share of starts at higher level"
+    assert axes.get_xlabel() == "Share of starts (%)"
+    assert [text.get_text() for text in chart.figure.texts] == [CAVEAT]
+
+
+def test_suppressed_bar_is_shown_as_not_available():
+    """A missing value is stated in words, never drawn as an empty bar."""
+    values = {"London": parse_indicator_value("c"), "South East": 40.7}
+    axes = draw_bars(values).figure.axes[0]
+    assert len(axes.patches) == 1
+    assert NOT_SHOWN in [text.get_text() for text in axes.texts]
+
+
+def test_bar_chart_without_alternative_text_is_refused():
+    """The bar chart enforces the same accessibility text as the line chart."""
+    with pytest.raises(ValueError):
+        draw_bars(alt_text="")    

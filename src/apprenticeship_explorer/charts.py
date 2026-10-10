@@ -19,6 +19,8 @@ from apprenticeship_explorer.time_period import AcademicYear
 BLUE, VERMILLION, BLACK = "#0072B2", "#D55E00", "#000000"
 SERIES_STYLES = ((BLUE, "-", "o"), (VERMILLION, "--", "s"), (BLACK, ":", "D"))
 TEXT, CAVEAT_TEXT = "#1A1A1A", "#505A5F"
+PANDEMIC_YEARS = (AcademicYear(2019), AcademicYear(2020))
+NOT_SHOWN = "Not shown: suppressed or unavailable"
 
 
 @dataclass(frozen=True)
@@ -91,6 +93,36 @@ def line_chart(
     axes.set_ylabel(y_label, color=TEXT)
     figure.text(0.01, 0.01, caveat, fontsize=9, color=CAVEAT_TEXT)
     return Chart(figure, alt_text, caveat)
+
+def bar_chart(
+    values: Mapping[str, object],
+    *,
+    title: str,
+    x_label: str,
+    caveat: str,
+    alt_text: str,
+    value_format: str = "{:,.0f}",
+) -> Chart:
+    """Draw horizontal bars, top to bottom in the order given, each labelled with its value.
+
+    Args:
+        values: Each bar's label mapped to its value. A missing value is shown
+            as not available instead of as an empty bar.
+        title: The chart title.
+        x_label: The horizontal axis title, naming the measure.
+        caveat: The source, version and rounding.
+        alt_text: A description of the chart for screen readers.
+        value_format: How each value is printed beside its bar, such as
+            ``{:.1f}%`` for a share.
+
+    Returns:
+        The chart.
+
+    Raises:
+        ValueError: If the alternative text or caveat is empty.
+    """
+    # Deliberately not implemented yet. The tests are written first.
+    raise NotImplementedError
 
 
 def contrast_ratio(colour: str, background: str = "#FFFFFF") -> float:
