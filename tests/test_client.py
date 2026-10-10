@@ -3,7 +3,9 @@
 No test reaches the live API. Each one gives the client a fake transport that
 returns either a recorded response from ``tests/fixtures`` or a response built
 in the test, and records the requests the client makes.
+
 """
+
 import gzip
 import json
 import urllib.error
@@ -262,3 +264,5 @@ def test_gzip_compressed_csv_is_decompressed():
     body = gzip.compress(b"\xef\xbb\xbftime_period,start_count\n202425,353500\n")
     text = ApiClient(FakeTransport(ok(body))).csv("abc", version="2.0.2")
     assert text == "time_period,start_count\n202425,353500\n"
+
+    
