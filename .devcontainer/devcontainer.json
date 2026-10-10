@@ -1,7 +1,7 @@
 {
   "name": "Apprenticeship Data Pipeline Explorer",
   "image": "mcr.microsoft.com/devcontainers/python:3.13",
-  "postCreateCommand": "python -m pip install -e \".[dev]\" -c constraints.txt",
+  "postCreateCommand": "python -m pip install -e \".[dev,report]\" -c constraints.txt",
   "customizations": {
     "vscode": {
       "extensions": [
