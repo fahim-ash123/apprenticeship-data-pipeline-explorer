@@ -131,3 +131,67 @@ def test_sections_display_in_a_notebook():
     data = report_data()
     assert report.header(data)._repr_markdown_().startswith("# Apprenticeship")
     assert report.funding(data)._repr_html_().startswith("<h2>")
+
+def test_regions_section_names_the_highest_and_lowest_shares():
+    """London leads at 50.5% in 2024/25 and Yorkshire and The Humber is lowest at 33.7%."""
+    text = report.regions(report_data())
+    assert "London had the highest share of its starts at higher level, at 50.5%" in text
+    assert "Yorkshire and The Humber the lowest, at 33.7%" in text
+
+
+def test_regions_section_reports_outside_england_and_suppression():
+    """The outside region is reported apart, with the count of suppressed cells (R7)."""
+    text = report.regions(report_data())
+    assert "Outside of England and unknown is not a region of England" in text
+    assert "52.2%" in text
+    assert "Suppressed cells in this breakdown: 0." in text
+
+
+def test_about_the_data_includes_the_quality_profile():
+    """The profile states the rows loaded and the levy participation check (R8)."""
+    data = report_data()
+    text = report.about_the_data(data)
+    assert f"<td>Rows loaded</td><td>{len(data.rows):,}</td>" in text
+    assert "<td>Participation is z in every levy-funded row</td><td>yes</td>" in text
+    assert "This is not an achievement rate." in text
+
+
+def test_technical_notes_give_the_version_history():
+    """Comparing each version with the next shows the filter added in 1.0.1 (R9)."""
+    text = report.technical_notes(report_data())
+    assert "<td>1.0 to 1.0.1</td><td>added age_youth_adult, removed nothing</td>" in text
+    assert "<td>1.0.1 to 2.0.2</td><td>no change to filters or indicators</td>" in text
+
+
+def test_technical_notes_list_every_known_trap():
+    """Each trap found in the real data is listed for the next analyst."""
+    text = report.technical_notes(report_data())
+    assert all(f"<li>{trap}</li>" in text for trap in report.KNOWN_TRAPS)
+    assert report.DATA_SET_ID in text
+
+
+def notebook_code():
+    """Return the source of each code cell in the report notebook."""
+    cells = json.loads(NOTEBOOK.read_text())["cells"]
+    return ["".join(cell["source"]) for cell in cells if cell["cell_type"] == "code"]
+
+
+def test_notebook_imports_only_the_package():
+    """The notebook holds no analytical logic, so it imports nothing but the report."""
+    imports = [
+        line for cell in notebook_code() for line in cell.splitlines()
+        if line.startswith(("import ", "from "))
+    ]
+    assert imports == ["from apprenticeship_explorer import report"]
+
+
+def test_notebook_has_no_logic_of_its_own():
+    """No cell defines a function or class, or loops, so every calculation is tested code."""
+    words = ("def ", "class ", "for ", "while ", "lambda")
+    assert not any(word in cell for cell in notebook_code() for word in words)
+
+
+def test_notebook_shows_every_section_in_the_prototype_order():
+    """The sections run in the order of prototype version 2."""
+    calls = [cell.strip() for cell in notebook_code()[2:]]
+    assert calls == [f"report.{section}(data)" for section in report.SECTIONS]

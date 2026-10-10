@@ -21,12 +21,37 @@ from apprenticeship_explorer.time_period import normalise_time_period
 
 DATA_SET_ID = "1d419801-a90e-f970-9335-a13623faccbe"
 VERSION = "2.0.2"
+REPOSITORY = "https://github.com/fahim-ash123/apprenticeship-data-pipeline-explorer"
 LEVY = "Supported by ASA levy funds"
+SECTIONS = (
+    "header",
+    "key_findings",
+    "over_time",
+    "age_groups",
+    "funding",
+    "regions",
+    "about_the_data",
+    "technical_notes",
+)
+
 NOT_A_RATE = (
     "This is not an achievement rate. Starts and achievements count different "
     "apprenticeships, and an apprenticeship achieved this year may have started in an "
     "earlier one, so dividing achievements by starts does not give a rate "
     "(footnotes 10 and 11)."
+)
+
+KNOWN_TRAPS = (
+    "Identifiers are unique only within their own type: mU59K is both the age_group "
+    "filter and the achievement_count indicator.",
+    "The letter z is a suppression marker in value columns and the location code for "
+    "Outside of England and unknown.",
+    "One academic year is written three ways: 202122, 2021/2022 and 2021/22.",
+    "Versions are returned out of order, with two-part and three-part numbers.",
+    "Patch release 1.0.1 added a filter, so a patch can change the structure.",
+    "The file contains pre-computed subtotals, so adding up rows double counts.",
+    "low appears in count columns, although footnote 8 defines it only for percentages.",
+    "Age group rows carry their youth or adult value instead of Total.",
 )
 
 
@@ -244,6 +269,41 @@ def funding(data: ReportData) -> Html:
         + _figure(chart, summary, series, "{:.1f}%")
     )
 
+def regions(data: ReportData) -> Html:
+    """Return the regions ranked by the share of their starts at higher level.
+
+    Args:
+        data: The report data.
+
+    Returns:
+        The section as HTML.
+    """
+    # Deliberately not implemented yet. The tests are written first.
+    raise NotImplementedError
+
+
+def about_the_data(data: ReportData) -> Html:
+    """Return the reading notes and the data quality profile.
+
+    Args:
+        data: The report data.
+
+    Returns:
+        The section as HTML.
+    """
+    raise NotImplementedError
+
+
+def technical_notes(data: ReportData) -> Html:
+    """Return the identifiers, versions, version history and known traps.
+
+    Args:
+        data: The report data.
+
+    Returns:
+        The section as HTML.
+    """
+    raise NotImplementedError
 
 def _window(data):
     """Return the first and last complete years, and the latest year left out."""
