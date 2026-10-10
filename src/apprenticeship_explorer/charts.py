@@ -7,11 +7,13 @@ its line. Every chart carries a title, axis titles naming the measure, a
 caveat line with the source, version and rounding, and alternative text.
 """
 
+import math
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 
 from matplotlib.figure import Figure
 
+from apprenticeship_explorer.parse import Missing
 from apprenticeship_explorer.time_period import AcademicYear
 
 BLUE, VERMILLION, BLACK = "#0072B2", "#D55E00", "#000000"
@@ -59,8 +61,36 @@ def line_chart(
         ValueError: If there are more series than styles, or the alternative
             text or caveat is empty.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    _check_text(alt_text, caveat)
+    if len(series) > len(SERIES_STYLES):
+        raise ValueError(f"At most {len(SERIES_STYLES)} series can be told apart")
+    years = sorted({year for points in series.values() for year, _ in points})
+    position = {year: index for index, year in enumerate(years)}
+    figure = Figure(figsize=(9, 5))
+    axes = figure.add_subplot()
+    for (label, points), (colour, style, marker) in zip(
+        series.items(), SERIES_STYLES, strict=False
+    ):
+        xs = [position[year] for year, _ in points]
+        ys = [math.nan if isinstance(value, Missing) else value for _, value in points]
+        axes.plot(xs, ys, color=colour, linestyle=style, marker=marker, linewidth=2.5)
+        known = [(x, y) for x, y in zip(xs, ys, strict=True) if not math.isnan(y)]
+        if known:
+            axes.annotate(
+                label,
+                known[-1],
+                xytext=(8, 0),
+                textcoords="offset points",
+                va="center",
+                color=TEXT,
+                fontweight="bold",
+            )
+    axes.set_xticks(range(len(years)), [str(year) for year in years])
+    axes.set_title(title, loc="left", color=TEXT, fontweight="bold")
+    axes.set_xlabel("Academic year", color=TEXT)
+    axes.set_ylabel(y_label, color=TEXT)
+    figure.text(0.01, 0.01, caveat, fontsize=9, color=CAVEAT_TEXT)
+    return Chart(figure, alt_text, caveat)
 
 
 def contrast_ratio(colour: str, background: str = "#FFFFFF") -> float:
@@ -73,4 +103,35 @@ def contrast_ratio(colour: str, background: str = "#FFFFFF") -> float:
     Returns:
         The ratio, from 1 for identical colours to 21 for black on white.
     """
-    raise NotImplementedError
+    lighter, darker = sorted((_luminance(colour), _luminance(background)), reverse=True)
+    return (lighter + 0.05) / (darker + 0.05)
+
+
+def _luminance(colour: str) -> float:
+    """Return a hex colour's relative luminance, as WCAG 2.2 defines it.
+
+    Args:
+        colour: A colour such as ``#0072B2``.
+
+    Returns:
+        The relative luminance, from 0 for black to 1 for white.
+    """
+    channels = [int(colour[i : i + 2], 16) / 255 for i in (1, 3, 5)]
+    linear = [c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4 for c in channels]
+    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+
+def _check_text(alt_text: str, caveat: str) -> None:
+    """Refuse to draw a chart without its alternative text and caveat.
+
+    Args:
+        alt_text: The chart's alternative text.
+        caveat: The chart's caveat line.
+
+    Raises:
+        ValueError: If either is empty.
+    """
+    if not alt_text.strip():
+        raise ValueError("Every chart needs alternative text")
+    if not caveat.strip():
+        raise ValueError("Every chart needs a caveat line")
