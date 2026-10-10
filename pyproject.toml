@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Retrieves and analyses DfE apprenticeship statistics from the Explore Education Statistics API."
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = ["matplotlib>=3.10.3"]
 
 [project.optional-dependencies]
 dev = [
