@@ -3,8 +3,10 @@
 No test reaches the live API. Each one gives the client a fake transport that
 returns either a recorded response from ``tests/fixtures`` or a response built
 in the test, and records the requests the client makes.
+
 """
 
+import gzip
 import json
 import urllib.error
 from pathlib import Path
@@ -255,3 +257,12 @@ def test_urllib_transport_reports_a_lost_connection(failure):
     with mock.patch("urllib.request.urlopen", side_effect=failure):
         with pytest.raises(TransportError):
             urllib_transport("https://example.test/x", 7.0)
+
+
+def test_gzip_compressed_csv_is_decompressed():
+    """The live CSV endpoint sends its body gzip-compressed, so it is decompressed first."""
+    body = gzip.compress(b"\xef\xbb\xbftime_period,start_count\n202425,353500\n")
+    text = ApiClient(FakeTransport(ok(body))).csv("abc", version="2.0.2")
+    assert text == "time_period,start_count\n202425,353500\n"
+
+    
