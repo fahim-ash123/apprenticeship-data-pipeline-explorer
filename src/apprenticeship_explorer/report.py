@@ -13,11 +13,19 @@ import io
 from dataclasses import dataclass
 from datetime import date
 
-from apprenticeship_explorer.charts import Chart, line_chart
+from apprenticeship_explorer import __version__
+from apprenticeship_explorer.charts import Chart, bar_chart, line_chart
 from apprenticeship_explorer.client import ApiClient
 from apprenticeship_explorer.metrics import age_mix, funding_mix, level_mix, national_trend
 from apprenticeship_explorer.parse import Missing
+from apprenticeship_explorer.quality import (
+    participation_z_in_all_levy_rows,
+    profile,
+    suppression_by_granularity,
+)
+from apprenticeship_explorer.regions import regional_comparison
 from apprenticeship_explorer.time_period import normalise_time_period
+from apprenticeship_explorer.versions import compare_schemas, sort_versions
 
 DATA_SET_ID = "1d419801-a90e-f970-9335-a13623faccbe"
 VERSION = "2.0.2"
@@ -278,8 +286,42 @@ def regions(data: ReportData) -> Html:
     Returns:
         The section as HTML.
     """
-    # Deliberately not implemented yet. The tests are written first.
-    raise NotImplementedError
+    comparison = regional_comparison(data.rows)[-1]
+    shares = {r.name: r.share for r in comparison.regions}
+    top, bottom = comparison.regions[0], comparison.regions[-1]
+    summary = (
+        f"In {comparison.year}, {top.name} had the highest share of its starts at higher "
+        f"level, at {_percent(top.share)}, and {bottom.name} the lowest, at "
+        f"{_percent(bottom.share)}."
+    )
+    chart = bar_chart(
+        shares,
+        title=f"Share of each region's starts at higher level, {comparison.year}",
+        x_label="Share of the region's starts (%)",
+        caveat=(
+            f"{_source(data)} Regions are ranked by share, so a large region does not "
+            "rank higher just because it is large."
+        ),
+        alt_text=summary,
+        value_format="{:.1f}%",
+    )
+    chart.figure.axes[0].margins(x=0.12)
+    outside = (
+        f"{comparison.outside.name} is not a region of England, so it is reported here "
+        f"and not ranked: {_percent(comparison.outside.share)}. Suppressed cells in this "
+        f"breakdown: {comparison.suppressed_cells}."
+    )
+    rows = "".join(
+        f"<tr><td>{html.escape(name)}</td><td>{_percent(share)}</td></tr>"
+        for name, share in shares.items()
+    )
+    return Html(
+        "<h2>How do regions compare?</h2>"
+        + _image(chart)
+        + f"<p>{html.escape(summary)}</p><p>{html.escape(outside)}</p>"
+        + "<details><summary>Show table</summary><table><tr><th>Region</th>"
+        + f"<th>Share at higher level</th></tr>{rows}</table></details>"
+    )
 
 
 def about_the_data(data: ReportData) -> Html:
@@ -291,7 +333,38 @@ def about_the_data(data: ReportData) -> Html:
     Returns:
         The section as HTML.
     """
-    raise NotImplementedError
+    quality = profile(data.rows)
+    markers = quality.suppressed_cells_by_marker
+    granularity = suppression_by_granularity(data.rows)
+    levy_z = "yes" if participation_z_in_all_levy_rows(data.rows) else "no"
+    notes = [
+        "Counts are rounded to the nearest 10, so totals may not add up exactly.",
+        "Percentages are calculated on unrounded counts, so a share worked out from the "
+        "rounded counts can differ slightly from the published one (footnote 8).",
+        "The markers c, x, z and low replace figures that cannot be shown as numbers. "
+        "They are never treated as zero.",
+        f"{_window(data)[2]} covers August to April only, so it is left out.",
+        NOT_A_RATE,
+        "Participation counts learners, each once in the grand total, but a learner can "
+        "appear under more than one level (footnotes 6 and 7).",
+    ]
+    profile_rows = [
+        ("Rows loaded", f"{quality.rows_loaded:,}"),
+        ("Pre-computed subtotal rows", f"{quality.subtotal_rows:,}"),
+        *((f"Cells marked {m}", f"{markers.get(m, 0):,}") for m in ("c", "x", "z", "low")),
+        ("low in count columns", f"{quality.low_in_count_columns:,}"),
+        ("Participation is z in every levy-funded row", levy_z),
+        *(
+            (f"Cells suppressed with {level} filters", f"{share:.2f}%")
+            for level, share in granularity.items()
+        ),
+    ]
+    return Html(
+        "<h2>About the data</h2><ul>"
+        + "".join(f"<li>{html.escape(n)}</li>" for n in notes)
+        + "</ul><h3>Data quality profile</h3>"
+        + _table(("Measure", "Value"), profile_rows)
+    )
 
 
 def technical_notes(data: ReportData) -> Html:
@@ -303,7 +376,32 @@ def technical_notes(data: ReportData) -> Html:
     Returns:
         The section as HTML.
     """
-    raise NotImplementedError
+    ordered = sort_versions(data.versions)
+    history = []
+    for older, newer in zip(ordered, ordered[1:], strict=False):
+        changes = compare_schemas(data.schemas[str(older)], data.schemas[str(newer)])
+        added = sorted(changes.added_filters | changes.added_indicators)
+        removed = sorted(changes.removed_filters | changes.removed_indicators)
+        text = "no change to filters or indicators"
+        if changes.has_changes:
+            text = f"added {_names(added)}, removed {_names(removed)}"
+        history.append((f"{older} to {newer}", text))
+    details = [
+        ("Data set ID", DATA_SET_ID),
+        ("Data set version", data.version),
+        ("Pipeline version", __version__),
+        ("Source code", REPOSITORY),
+    ]
+    return Html(
+        "<h2>Technical notes</h2>"
+        + _table(("Item", "Value"), details)
+        + "<h3>Version history</h3>"
+        + _table(("Versions", "Change"), history)
+        + "<h3>Known traps in the data</h3><ul>"
+        + "".join(f"<li>{html.escape(trap)}</li>" for trap in KNOWN_TRAPS)
+        + "</ul>"
+    )
+
 
 def _window(data):
     """Return the first and last complete years, and the latest year left out."""
@@ -378,3 +476,23 @@ def _figure(chart, summary, series, value_format="{:,}"):
 def _cell(value, value_format):
     """Return one table cell's text, saying a missing value is not shown."""
     return "not shown" if isinstance(value, Missing) else value_format.format(value)
+
+
+def _names(names):
+    """Return column names joined with commas, or nothing if there are none."""
+    return ", ".join(names) or "nothing"
+
+
+def _percent(value):
+    """Return a share as text, or say it is not shown."""
+    return "not shown" if isinstance(value, Missing) else f"{value:.1f}%"
+
+
+def _table(heading, rows):
+    """Return a two-column HTML table."""
+    head = "".join(f"<th>{html.escape(h)}</th>" for h in heading)
+    body = "".join(
+        f"<tr><td>{html.escape(str(a))}</td><td>{html.escape(str(b))}</td></tr>"
+        for a, b in rows
+    )
+    return f"<table><tr>{head}</tr>{body}</table>"
