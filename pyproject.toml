@@ -17,6 +17,11 @@ dev = [
     "ruff>=0.6",
 ]
 
+report = [
+    "ipykernel>=6",
+    "nbconvert>=7",
+]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
