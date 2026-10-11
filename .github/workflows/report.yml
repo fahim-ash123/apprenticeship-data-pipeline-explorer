@@ -1,0 +1,55 @@
+name: Report
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the commit that passed CI
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Install the package and the report tools
+        run: python -m pip install -e ".[report]" -c constraints.txt
+
+      - name: Run the notebook and convert it to HTML
+        run: jupyter nbconvert --to html --execute --no-input notebooks/report.ipynb --output-dir build --output index
+
+      - name: Upload the report for GitHub Pages
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish the report to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
