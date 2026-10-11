@@ -25,7 +25,7 @@ Each issue maps to the pull request that closed it. Issues are listed in the ord
 | #42 | CSV download fails because the API sends it gzip-compressed | Bug | 2 | #43 |
 | #28 | Analysis notebook | Feature | 2 | #44 |
 | #29 | Report build and deployment to GitHub Pages | Chore | 2 | #45 |
-| #30 | User and technical documentation | Documentation | 2 | This pull request |
+| #30 | User and technical documentation | Documentation | 2 | #46 |
 
 ## Not delivered
 
