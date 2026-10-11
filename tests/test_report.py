@@ -160,7 +160,7 @@ def test_technical_notes_give_the_version_history():
     """Comparing each version with the next shows the filter added in 1.0.1 (R9)."""
     text = report.technical_notes(report_data())
     assert "<td>1.0 to 1.0.1</td><td>added age_youth_adult, removed nothing</td>" in text
-    assert "<td>1.0.1 to 2.0.2</td><td>no change to filters or indicators</td>" in text
+    assert "<td>1.0.1 to 2.0.2</td><td>no filters or indicators added or removed</td>" in text
 
 
 def test_technical_notes_list_every_known_trap():
@@ -195,3 +195,10 @@ def test_notebook_shows_every_section_in_the_prototype_order():
     """The sections run in the order of prototype version 2."""
     calls = [cell.strip() for cell in notebook_code()[2:]]
     assert calls == [f"report.{section}(data)" for section in report.SECTIONS]
+
+
+def test_quality_profile_says_filter_for_one_and_filters_otherwise():
+    """The granularity rows read "1 filter" and "0 filters", never "1 filters"."""
+    text = report.about_the_data(report_data())
+    assert "<td>Cells suppressed with 1 filter</td>" in text
+    assert "<td>Cells suppressed with 0 filters</td>" in text
