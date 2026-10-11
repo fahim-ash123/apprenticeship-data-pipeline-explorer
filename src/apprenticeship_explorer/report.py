@@ -355,7 +355,7 @@ def about_the_data(data: ReportData) -> Html:
         ("low in count columns", f"{quality.low_in_count_columns:,}"),
         ("Participation is z in every levy-funded row", levy_z),
         *(
-            (f"Cells suppressed with {level} filters", f"{share:.2f}%")
+            (f"Cells suppressed with {_filters(level)}", f"{share:.2f}%")
             for level, share in granularity.items()
         ),
     ]
@@ -382,7 +382,7 @@ def technical_notes(data: ReportData) -> Html:
         changes = compare_schemas(data.schemas[str(older)], data.schemas[str(newer)])
         added = sorted(changes.added_filters | changes.added_indicators)
         removed = sorted(changes.removed_filters | changes.removed_indicators)
-        text = "no change to filters or indicators"
+        text = "no filters or indicators added or removed"
         if changes.has_changes:
             text = f"added {_names(added)}, removed {_names(removed)}"
         history.append((f"{older} to {newer}", text))
@@ -496,3 +496,8 @@ def _table(heading, rows):
         for a, b in rows
     )
     return f"<table><tr>{head}</tr>{body}</table>"
+
+
+def _filters(count):
+    """Return a number of filters, as "1 filter" or, for any other number, "2 filters"."""
+    return f"{count} filter" if count == 1 else f"{count} filters"
