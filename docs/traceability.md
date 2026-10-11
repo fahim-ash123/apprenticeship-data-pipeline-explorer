@@ -26,6 +26,7 @@ Each issue maps to the pull request that closed it. Issues are listed in the ord
 | #28 | Analysis notebook | Feature | 2 | #44 |
 | #29 | Report build and deployment to GitHub Pages | Chore | 2 | #45 |
 | #30 | User and technical documentation | Documentation | 2 | #46 |
+| #47 | Report wording says "1 filters" and overstates the version history | Bug | 2 | #48 |
 
 ## Not delivered
 
@@ -34,4 +35,4 @@ Each issue maps to the pull request that closed it. Issues are listed in the ord
 | #31 | Naive achievement ratio demonstration | Backlog, moved out of Sprint 2 at planning to fit capacity |
 | #32 | Percentage denominator verification | Backlog, moved out of Sprint 2 at planning to fit capacity |
 
-The two bugs, #37 and #42, were found during Sprint 2 and fixed through the bug template, each with a failing regression test before the fix.
+The three bugs, #37, #42 and #47, were found during Sprint 2 and fixed through the bug template, each with a failing regression test before the fix. The Sprint 1 and Sprint 2 reviews, in `docs/sprints`, record how each sprint went.
