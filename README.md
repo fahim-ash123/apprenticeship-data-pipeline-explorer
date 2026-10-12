@@ -56,7 +56,7 @@ Together, these turn a file each user has to interpret into a report they can re
 
 ## 2. User documentation
 
-The report needs no installation: open the live report link at the top of this page in any browser. The header states the data set version, the date the data was retrieved and the years covered. The report is rebuilt whenever a change is merged, so the retrieval date shows how current it is. The key findings follow in plain language, and each later section asks one question, such as how regions compare, and answers it with a chart.
+The report needs no installation: open the live report link at the top of this page. The header states the data set version, the date the data was retrieved and the years covered. The report is rebuilt whenever a change is merged, so the retrieval date shows how current it is. The key findings follow in plain language, and each later section asks one question, such as how regions compare, and answers it with a chart.
 
 Under every chart is a caveat line with the source and rounding, a sentence headed "In brief" with the main figures, and a "Show table" list of every value, so the figures are available without reading the chart. Read "About the data" before quoting any figure. It explains the rounding, what each marker means, why the latest year is left out, and why achievements divided by starts is not an achievement rate. The [user guide](docs/user-guide.md) covers each section and limitation in full.
 
@@ -98,7 +98,7 @@ The [technical guide](docs/technical-guide.md) explains the automation and how t
 
 ## 4. Design
 
-I followed the design thinking process taught in the course: empathise, define, ideate, prototype and test (Brown, 2008). Design came first, in Sprint 1, so the report was built to a reviewed design.
+I followed the design thinking process taught in the course: empathise, define, ideate, prototype and test (Brown, 2008). Design came before any report code, so the report was built to a reviewed design.
 
 ### Empathise and define
 
@@ -106,7 +106,7 @@ I created an illustrative persona for each role, following a simulated research 
 
 ![Persona card for Murray Hale, policy analyst, with his goals, frustrations and design needs](docs/design/images/murray-hale-persona.png)
 
-*Figure 2: The persona for the policy analyst. The [personas document](docs/design/personas.md) holds all three personas and the empathy map, and the [Persona page in Figma](https://www.figma.com/design/tN8jW4cdfJyDCgD4W03aZT/Apprenticeship-Data-Pipeline-Explorer--design?node-id=0-1&p=f&t=nJ6k8qEgKtCRMMHS-0) holds the originals.*
+*Figure 2: The persona for the policy analyst role: Murray Hale, a policy adviser, representing the policy analyst role, with his goals, frustrations and design needs. The [personas document](docs/design/personas.md) holds all three personas and the empathy map, and the [Persona page in Figma](https://www.figma.com/design/tN8jW4cdfJyDCgD4W03aZT/Apprenticeship-Data-Pipeline-Explorer--design?node-id=0-1&p=f&t=nJ6k8qEgKtCRMMHS-0) holds the originals.*
 
 ### Ideate and prototype
 
@@ -129,7 +129,7 @@ I tested version 1 by walking through it as each persona, against the needs on t
 
 ![Prototype version 2 of the report](docs/design/images/report-prototype-v2.png)
 
-*Figure 4: Prototype version 2, after the persona review. The [Prototype page in Figma](https://www.figma.com/design/tN8jW4cdfJyDCgD4W03aZT/Apprenticeship-Data-Pipeline-Explorer--design?node-id=1-208) holds versions 1 and 2 side by side.*
+*Figure 4: Prototype version 2, after the persona review. The [Prototype page in Figma](https://www.figma.com/design/tN8jW4cdfJyDCgD4W03aZT/Apprenticeship-Data-Pipeline-Explorer--design?node-id=1-208) holds versions 1 and 2 side by side. Its wording "different learners" was corrected to "different apprenticeships" in the built report, after bug #37.*
 
 ## 5. Project management
 
@@ -157,7 +157,7 @@ During Sprint 1, I brought the design work forward and moved version parsing to 
 
 ## 6. Requirements as issues
 
-Every requirement is an issue written from a template, as a user story with acceptance criteria and a source, such as a finding in the data or a persona review item. Labels mark the type of work, such as `feature`, `data-quality`, `accessibility` or `bug`. An acceptance criterion is ticked only when a named test covers it, so the pull request can point to the evidence for each one. The [traceability table](docs/traceability.md) maps all 23 delivered issues to the pull requests that closed them.
+Every requirement is an issue written from a template, as a user story with acceptance criteria and a source, such as a finding in the data or a persona review item. Labels mark the type of work, such as `feature`, `data-quality`, `accessibility` or `bug`. A feature’s acceptance criterion is ticked only when a named test covers it, so the pull request can point to the evidence for each one. The [traceability table](docs/traceability.md) maps all 25 delivered issues to the pull requests that closed them.
 
 ![An issue showing its user story, acceptance criteria and source](docs/images/readme/issue.png)
 
@@ -218,6 +218,8 @@ The planning held: both sprints met their commitments, and descoping against vel
 | 3 | Detect when a new version of the data set is published, and flag it in the report | Staying current still depends on someone changing the pinned version | Objective 2 in this evaluation |
 | 4 | Compare filter options and row counts between versions, as well as filters and indicators | Version 2.0 deleted provider type options and 1.0.2 added rows, but the version history cannot show either | Bug #47 |
 | 5 | Deliver the naive achievement ratio demonstration and the percentage denominator verification | Both were descoped at Sprint 2 planning to fit capacity, and remain in the backlog | Issues #31 and #32 |
+| 6 | Add a breakdown of starts by provider type | The delivery manager persona asks which provider types are driving change, which the report does not yet answer | Persona: delivery manager |
+| 7 | Reconcile the rows read with the source totals in the data quality profile | The data engineer persona asks whether every row reconciles with the source, and prototype version 2 showed it, but the built profile does not | Persona: data engineer |
 
 ## References
 

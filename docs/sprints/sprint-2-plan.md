@@ -46,4 +46,4 @@ Each change from the review of prototype version 1 is delivered by a Sprint 2 is
 | R8 | Data quality profile | Data quality profile |
 | R9 | Version history and known traps in the technical notes | Analysis notebook, with #8 providing the version comparison |
 
-The Definition of Ready and Definition of Done are unchanged from Sprint 1.
+The Definition of Ready and Definition of Done, unchanged from Sprint 1, are the board's entry rules: an issue is Ready when it has a user story, acceptance criteria, an estimate and a priority, and Done when its pull request has merged with CI passing.

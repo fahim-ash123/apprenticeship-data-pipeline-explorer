@@ -27,6 +27,8 @@ Each issue maps to the pull request that closed it. Issues are listed in the ord
 | #29 | Report build and deployment to GitHub Pages | Chore | 2 | #45 |
 | #30 | User and technical documentation | Documentation | 2 | #46 |
 | #47 | Report wording says "1 filters" and overstates the version history | Bug | 2 | #48 |
+| #49 | Sprint 2 review and retrospective | Documentation | 2 | #50 |
+| #51 | Project README | Documentation | None | #52 |
 
 ## Not delivered
 

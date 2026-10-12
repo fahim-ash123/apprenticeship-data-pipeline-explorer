@@ -20,7 +20,7 @@ python -m pip install -e ".[dev,report]" -c constraints.txt
 ## Running the tests and the linter
 
 ```
-ruff check 
+ruff check
 ```
 ```
 pytest
@@ -38,7 +38,7 @@ This runs the notebook against the live API and writes `build/report.html`. The 
 
 ## Recording fixtures
 
-The fixtures are real API responses, trimmed where they would otherwise be large. `tests/fixtures/README.md` records the source and date of each one. To record a new fixture, download it with `curl` and add a line to that README. Do not use `curl --compressed` for the CSV without testing the client against a compressed response, because the live CSV endpoint sends its body gzip-compressed (issue #42).
+The fixtures are real API responses, trimmed where they would otherwise be large. `tests/fixtures/README.md` records the source and date of each one. To record a new fixture, save the response exactly as the client receives it, and add a line to that README. The CSV fixture was first recorded with `curl --compressed`, which saved it already decompressed and hid the fact that the live endpoint sends it gzip-compressed (issue #42).
 
 ## Automation
 
@@ -55,4 +55,4 @@ Each change follows one issue, one branch and one pull request. Features are bui
 2. Add its name to `SECTIONS` in the order it should appear.
 3. Add a code cell to `notebooks/report.ipynb` that calls it, such as `report.new_section(data)`.
 
-The notebook tests fail if the cells do not match `SECTIONS`, or if a cell contains anything other than a call to the package.
+The notebook tests fail if a cell imports anything but the package, defines a function or class, contains a loop, or if the section calls do not match `SECTIONS`.
