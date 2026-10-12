@@ -104,9 +104,9 @@ I followed the design thinking process taught in the course: empathise, define, 
 
 I created an illustrative persona for each role, following a simulated research scenario, and an empathy map for the policy analyst, the report's main reader. Each persona records the user's goals, frustrations and what the design must do for them. Together they defined the report's structure: eight sections in the order a reader asks the questions, from the key findings to the technical notes.
 
-![Persona card for Murray Hale, policy analyst, with his goals, frustrations and design needs](docs/design/images/murray-hale-persona.png)
+![Persona card for Murray Hale, a policy adviser, representing the policy analyst role, with his goals, frustrations and design needs](docs/design/images/murray-hale-persona.png)
 
-*Figure 2: The persona for the policy analyst role: Murray Hale, a policy adviser, representing the policy analyst role, with his goals, frustrations and design needs. The [personas document](docs/design/personas.md) holds all three personas and the empathy map, and the [Persona page in Figma](https://www.figma.com/design/tN8jW4cdfJyDCgD4W03aZT/Apprenticeship-Data-Pipeline-Explorer--design?node-id=0-1&p=f&t=nJ6k8qEgKtCRMMHS-0) holds the originals.*
+*Figure 2: The persona for the policy analyst role: Murray Hale, a policy adviser. The [personas document](docs/design/personas.md) holds all three personas and the empathy map, and the [Persona page in Figma](https://www.figma.com/design/tN8jW4cdfJyDCgD4W03aZT/Apprenticeship-Data-Pipeline-Explorer--design?node-id=0-1&p=f&t=nJ6k8qEgKtCRMMHS-0) holds the originals.*
 
 ### Ideate and prototype
 
@@ -157,7 +157,7 @@ During Sprint 1, I brought the design work forward and moved version parsing to 
 
 ## 6. Requirements as issues
 
-Every requirement is an issue written from a template, as a user story with acceptance criteria and a source, such as a finding in the data or a persona review item. Labels mark the type of work, such as `feature`, `data-quality`, `accessibility` or `bug`. A feature’s acceptance criterion is ticked only when a named test covers it, so the pull request can point to the evidence for each one. The [traceability table](docs/traceability.md) maps all 25 delivered issues to the pull requests that closed them.
+Every requirement is an issue written from a template, as a user story with acceptance criteria and a source, such as a finding in the data or a persona review item. Labels mark the type of work, such as `feature`, `data-quality`, `accessibility` or `bug`. A feature's acceptance criterion is ticked only when a named test covers it, so the pull request can point to the evidence for each one. The [traceability table](docs/traceability.md) maps every delivered issue to the pull request that closed it.
 
 ![An issue showing its user story, acceptance criteria and source](docs/images/readme/issue.png)
 
