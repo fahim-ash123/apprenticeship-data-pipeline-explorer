@@ -2,6 +2,8 @@
 
 This document covers the design of the analysis report, from low-fidelity wireframes to two versions of a high-fidelity prototype. Version 2 applies the changes from a persona-based review of version 1.
 
+This document records the design as it stood before the build. The built report is published at https://fahim-ash123.github.io/apprenticeship-data-pipeline-explorer/.
+
 The editable designs are in Figma: https://www.figma.com/design/tN8jW4cdfJyDCgD4W03aZT/Apprenticeship-Data-Pipeline-Explorer--design?node-id=10-761&t=9bSUVDfXfVVJO6AR-0
 
 The figures in the prototype are placeholders, shown as `[n]` and `[x]%`, because the pipeline that produces them is not built yet. The shapes of the charts are illustrative and are not findings.

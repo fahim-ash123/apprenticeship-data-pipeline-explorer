@@ -49,4 +49,4 @@ flowchart LR
     build --> pages[GitHub Pages]
 ```
 
-A failed CI run, or a run for a pull request, never starts the build, so the published report always comes from code that has passed every test.
+A failed CI run, or a run for a pull request, never builds or publishes the report, so the published report always comes from code that has passed every test.

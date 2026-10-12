@@ -29,7 +29,7 @@ The API client's tests replay responses I recorded from the live API on 6 Octobe
 
 Writing the tests first caught real problems before they reached `main`. The clearest case was in #9. Before error handling was added, a 404 whose body happened to be valid JSON was returned to the caller as if it were data, and the failing run in pull request #19 shows it.
 
-The traps found in the real API responses translated directly into test cases. Examples include the identifier `mU59K` meaning two different things, the location code `z`, the three forms of the same academic year, and the subtotal rows that inflate a naive sum to four times the true total. Each trap is now covered by a test that would fail if the code stopped handling it.
+The traps found in the real API responses translated directly into test cases. Examples include the identifier `mU59K` meaning two different things, the location code `z`, the three forms of the same academic year, and the subtotal rows that inflate a naive sum to several times the true total. Each trap is now covered by a test that would fail if the code stopped handling it.
 
 The persona review of prototype version 1 produced nine concrete changes in version 2. The most significant was comparing regions by share instead of raw counts.
 
