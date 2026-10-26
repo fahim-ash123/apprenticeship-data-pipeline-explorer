@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/fahim-ash123/apprenticeship-data-pipeline-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/fahim-ash123/apprenticeship-data-pipeline-explorer/actions/workflows/ci.yml)
 [![Report](https://github.com/fahim-ash123/apprenticeship-data-pipeline-explorer/actions/workflows/report.yml/badge.svg)](https://github.com/fahim-ash123/apprenticeship-data-pipeline-explorer/actions/workflows/report.yml)
+[![Coverage](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Ffahim-ash123.github.io%2Fapprenticeship-data-pipeline-explorer%2Fcoverage.json&query=%24.totals.percent_covered_display&suffix=%25&label=coverage)](https://fahim-ash123.github.io/apprenticeship-data-pipeline-explorer/coverage.json)
 
 | | |
 |---|---|
