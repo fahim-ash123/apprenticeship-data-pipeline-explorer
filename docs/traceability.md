@@ -30,6 +30,7 @@ Each issue maps to the pull request that closed it. Issues are listed in the ord
 | #49 | Sprint 2 review and retrospective | Documentation | 2 | #50 |
 | #51 | Project README | Documentation | None | #52 |
 | #53 | Final documentation consistency review | Documentation | None | #54, #55 |
+| #56 | Remove the duplicated share calculation | Refactor | None | #57 |
 
 ## Not delivered
 
