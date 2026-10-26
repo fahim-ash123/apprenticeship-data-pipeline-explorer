@@ -52,3 +52,17 @@ def test_deploys_with_github_pages():
 def test_readme_gives_the_report_address():
     """Readers can find the published report from the README."""
     assert REPORT_ADDRESS in (ROOT / "README.md").read_text()
+
+
+def test_publishes_the_coverage_figure_beside_the_report():
+    """The tests run again in the build, writing their coverage as JSON for the badge."""
+    text = workflow()
+    assert 'python -m pip install -e ".[dev,report]" -c constraints.txt' in text
+    assert "pytest --cov-report=json:build/coverage.json" in text
+
+
+def test_readme_shows_a_coverage_badge_read_from_the_published_figure():
+    """The badge reads the percentage from the coverage file published with the report."""
+    readme = (ROOT / "README.md").read_text()
+    assert "img.shields.io/badge/dynamic/json" in readme
+    assert "coverage.json" in readme
