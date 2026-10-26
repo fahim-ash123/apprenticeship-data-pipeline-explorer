@@ -13,7 +13,7 @@ from collections import defaultdict
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 
-from apprenticeship_explorer.metrics import FILTERS
+from apprenticeship_explorer.metrics import FILTERS, share_of
 from apprenticeship_explorer.parse import Missing, parse_indicator_value
 from apprenticeship_explorer.selector import select_cell
 from apprenticeship_explorer.time_period import AcademicYear, normalise_time_period
@@ -117,8 +117,4 @@ def _region_share(year_rows, code, name, column, option):
     cell = select_cell(year_rows, REGION_DIMENSIONS, {**base, column: option})
     count = parse_indicator_value(cell["start_count"])
     missing = isinstance(count, Missing) + isinstance(total, Missing)
-    if isinstance(count, Missing):
-        return RegionShare(code, name, count), missing
-    if isinstance(total, Missing):
-        return RegionShare(code, name, total), missing
-    return RegionShare(code, name, 100 * count / total), missing
+    return RegionShare(code, name, share_of(count, total)), missing

@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pytest
 
-from apprenticeship_explorer.metrics import MEASURES, national_trend
+from apprenticeship_explorer.metrics import MEASURES, national_trend, share_of
 from apprenticeship_explorer.parse import Missing, parse_indicator_value
 from apprenticeship_explorer.time_period import AcademicYear
 
@@ -99,3 +99,24 @@ def test_one_missing_value_leaves_the_other_measures_intact():
     row_for(rows, "202021")["participation_count"] = "x"
     values = {f.year: f.values for f in national_trend(rows)}[AcademicYear(2020)]
     assert (values["start_count"], values["achievement_count"]) == (321440, 156530)
+
+
+def test_share_of_gives_a_percentage():
+    """25 of 200 starts is 12.5%."""
+    assert share_of(25, 200) == 12.5
+
+
+def test_share_of_keeps_a_missing_count_with_its_reason():
+    """A suppressed count gives a missing share, never zero."""
+    assert share_of(parse_indicator_value("c"), 200) == parse_indicator_value("c")
+
+
+def test_share_of_keeps_a_missing_total_with_its_reason():
+    """Without a total there is no denominator, so the share is missing too."""
+    assert share_of(10, parse_indicator_value("x")) == parse_indicator_value("x")
+
+
+def test_share_of_reports_the_count_when_both_are_missing():
+    """When both are missing, the count's reason is the one kept."""
+    count, total = parse_indicator_value("c"), parse_indicator_value("x")
+    assert share_of(count, total) == count

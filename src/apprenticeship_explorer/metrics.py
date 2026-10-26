@@ -109,7 +109,7 @@ def share_mix(
         shares = {}
         for option in options:
             cell = _option_cell(year_rows, column, option, nested_in)
-            shares[option] = _share(parse_indicator_value(cell["start_count"]), total)
+            shares[option] = share_of(parse_indicator_value(cell["start_count"]), total)
         mix.append(YearShares(year, shares))
     return mix
 
@@ -184,7 +184,7 @@ def _option_cell(year_rows, column, option, nested_in):
     return select_cell(year_rows, DIMENSIONS, selection)
 
 
-def _share(count, total):
+def share_of(count, total):
     """Return a count as a percentage of a total, keeping a missing value missing.
 
     Args:
