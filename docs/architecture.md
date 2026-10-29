@@ -11,7 +11,7 @@ The product is a tested Python package, `apprenticeship_explorer`, and a noteboo
 | `time_period.py` | Normalises the three ways the API writes an academic year into one comparable value |
 | `window.py` | Limits the analysis to complete years, leaving out the latest, provisional one |
 | `selector.py` | Reads each figure from exactly one row, so subtotals are never added together |
-| `metrics.py` | The national trend, and the level, age and funding mix |
+| `metrics.py` | The national trend, the level, age and funding mix, and `share_of`, the share calculation that the regional comparison also uses |
 | `regions.py` | Ranks regions by within-region share, reporting "Outside of England and unknown" separately |
 | `quality.py` | Profiles the markers by indicator, by breakdown and by granularity |
 | `versions.py` | Parses and orders versions, and compares the filters and indicators of two versions |
@@ -45,8 +45,9 @@ flowchart LR
 flowchart LR
     push[Push or pull request] --> ci[CI: ruff and pytest]
     ci -->|passed on main| report[Report workflow]
-    report --> build[nbconvert executes the notebook]
-    build --> pages[GitHub Pages]
+    report --> coverage[pytest writes coverage.json]
+    coverage --> build[nbconvert executes the notebook]
+    build --> pages[GitHub Pages: report and coverage badge data]
 ```
 
 A failed CI run, or a run for a pull request, never builds or publishes the report, so the published report always comes from code that has passed every test.
