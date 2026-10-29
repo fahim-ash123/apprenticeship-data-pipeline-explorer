@@ -43,11 +43,11 @@ The fixtures are real API responses, trimmed where they would otherwise be large
 ## Automation
 
 - **CI**, in `.github/workflows/ci.yml`, runs on every push and pull request. It installs the package with the `dev` group, then runs `ruff check .` and `pytest`. The `main` branch is protected, so a pull request can only be merged when CI has passed.
-- **Report**, in `.github/workflows/report.yml`, runs when CI completes on `main`, and only if CI succeeded on a push, which is what a merge is. It checks out the commit that passed, builds the notebook with nbconvert, and publishes the page to GitHub Pages.
+- **Report**, in `.github/workflows/report.yml`, runs when CI completes on `main`, and only if CI succeeded on a push, which is what a merge is. It checks out the commit that passed, installs the `dev` and `report` groups, runs the tests to write their coverage to `coverage.json` for the README's coverage badge, builds the notebook with nbconvert, and publishes both to GitHub Pages.
 
 ## Working practice
 
-Each change follows one issue, one branch and one pull request. Features are built test first, with the failing and passing CI runs linked from the pull request. Bugs use the bug template, which records the reproduction, the evidence, the root cause and the regression test. Pull requests are merged with a merge commit, so the branch history stays visible.
+Each change follows one issue, one branch and one pull request. Features are built test first, with the failing and passing CI runs linked from the pull request. Bugs use the bug template, which records the reproduction, the evidence, the root cause and the regression test. Refactors keep every existing test unchanged, with the tests passing before and after, as in #56. Pull requests are merged with a merge commit, so the branch history stays visible. After Sprint 2, work continued as Kanban flow under the "Post-release maintenance" milestone.
 
 ## Adding a section to the report
 

@@ -28,10 +28,11 @@ Each issue maps to the pull request that closed it. Issues are listed in the ord
 | #30 | User and technical documentation | Documentation | 2 | #46 |
 | #47 | Report wording says "1 filters" and overstates the version history | Bug | 2 | #48 |
 | #49 | Sprint 2 review and retrospective | Documentation | 2 | #50 |
-| #51 | Project README | Documentation | None | #52 |
-| #53 | Final documentation consistency review | Documentation | None | #54, #55 |
-| #56 | Remove the duplicated share calculation | Refactor | None | #57 |
-| #58 | Coverage badge | Chore | None | #59 |
+| #51 | Project README | Documentation | Maintenance | #52 |
+| #53 | Final documentation consistency review | Documentation | Maintenance | #54, #55 |
+| #56 | Remove the duplicated share calculation | Refactor | Maintenance | #57 |
+| #58 | Coverage badge | Chore | Maintenance | #59 |
+| #60 | Illustrate the build in the README | Documentation | Maintenance | #61 |
 
 ## Not delivered
 
@@ -40,4 +41,4 @@ Each issue maps to the pull request that closed it. Issues are listed in the ord
 | #31 | Naive achievement ratio demonstration | Backlog, moved out of Sprint 2 at planning to fit capacity |
 | #32 | Percentage denominator verification | Backlog, moved out of Sprint 2 at planning to fit capacity |
 
-The three bugs, #37, #42 and #47, were found during Sprint 2 and fixed through the bug template, each with a failing regression test before the fix. The Sprint 1 and Sprint 2 reviews, in `docs/sprints`, record how each sprint went.
+The three bugs, #37, #42 and #47, were found during Sprint 2 and fixed through the bug template, each with a failing regression test before the fix. The Sprint 1 and Sprint 2 reviews, in `docs/sprints`, record how each sprint went. Issues marked "Maintenance" were taken after Sprint 2 as continuous Kanban flow, under the "Post-release maintenance" milestone, instead of in a further sprint.
