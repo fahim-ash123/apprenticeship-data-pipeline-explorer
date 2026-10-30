@@ -38,7 +38,7 @@ It is a tested Python package whose Jupyter notebook report is published on GitH
 
 ## 2. User documentation
 
-The report needs no installation: open the live report link at the top of this page. Its header states the data set version, the retrieval date and the years covered and the report is rebuilt whenever a change is merged. Each section asks one question, such as how regions compare, and answers it with a chart, followed by a caveat line, a sentence headed "In brief" and a "Show table" list of every value. Read "About the data" before quoting any figure. It explains the rounding, the markers, why the latest year is left out, and why achievements divided by starts is not an achievement rate. The [user guide](docs/user-guide.md) covers each section in full.
+The report needs no installation: open the live report link at the top of this page. Its header states the data set version, the retrieval date and the years covered, and the report is rebuilt whenever a change is merged. Each section asks one question, such as how regions compare, and answers it with a chart, followed by a caveat line, a sentence headed "In brief" and a "Show table" list of every value. Read "About the data" before quoting any figure. It explains the rounding, the markers, why the latest year is left out, and why achievements divided by starts is not an achievement rate. The [user guide](docs/user-guide.md) covers each section in full.
 
 ## 3. Technical documentation
 
@@ -66,7 +66,7 @@ No test calls the live API, because the tests replay real responses recorded in 
 jupyter nbconvert --to html --execute --no-input notebooks/report.ipynb --output-dir build
 ```
 
-The code is in `src/apprenticeship_explorer`, as twelve single-purpose modules. `client.py` retrieves the data, `parse.py`, `time_period.py`, `window.py` and `selector.py` make each value safe to use, `metrics.py`, `regions.py`, `quality.py` and `versions.py` do the analysis, and `charts.py` and `report.py` build the report. The [technical guide](docs/technical-guide.md) and [architecture document](docs/architecture.md) give the full detail.
+The code is in `src/apprenticeship_explorer`, as single-purpose modules. `client.py` retrieves the data, `parse.py`, `time_period.py`, `window.py` and `selector.py` make each value safe to use, `metrics.py`, `regions.py`, `quality.py` and `versions.py` do the analysis, and `charts.py` and `report.py` build the report. The [technical guide](docs/technical-guide.md) and [architecture document](docs/architecture.md) give the full detail.
 
 ## 4. Design
 
@@ -94,7 +94,7 @@ I drew low-fidelity wireframes in Figma for desktop and mobile, with a note besi
 
 ### Test
 
-I tested version 1 by walking through it as each persona. This review is illustrative, because it uses the personas rather than real colleagues. It produced nine changes, each carried into a Sprint 2 issue and recorded in the [design document](docs/design/wireframes-and-prototype.md). The most significant ranked regions by the share of their own starts instead of by raw counts, so that large regions no longer looked best. Others placed the rate warning beside the paired charts and added a chart of level shares and a data quality profile.
+I tested version 1 by walking through it as each persona. This review is illustrative, because it uses the personas rather than real colleagues. It produced nine changes, each carried into a Sprint 2 issue and recorded in the [design document](docs/design/wireframes-and-prototype.md). The most significant ranked regions by the share of their own starts instead of by raw counts, so that large regions no longer looked best. Others placed the rate warning beside the paired charts, and added a chart of level shares and a data quality profile.
 
 ![Prototype version 2 of the report](docs/design/images/report-prototype-v2.png)
 
@@ -171,7 +171,7 @@ The real data changed the plan. Recording national rows for the age mix showed t
 
 ## 8. Test-driven development and CI/CD
 
-I built every feature test first, following the red-green-refactor cycle (Beck, 2003). Each failing test was pushed as its own commit, so CI recorded the failure, followed by the code that made it pass, and each pull request links both runs. Most features took two cycles. The time period normaliser, for example, began with 20 failing tests for the three year formats, malformed values and the 1999/00 century boundary, and a second cycle added sorting. I refactored within the green step, with the tests as a safety net.
+I built every feature test first, following the red-green-refactor cycle (Beck, 2003). I pushed each failing test as its own commit, so CI recorded the failure, then pushed the code that made it pass, and each pull request links both runs. Most features took two cycles. The time period normaliser, for example, began with 20 failing tests for the three year formats, malformed values and the 1999/00 century boundary, and a second cycle added sorting.
 
 The research on this practice is mixed. A meta-analysis found a small improvement in external quality and no clear gain in productivity (Rafique and Mišić, 2013), while Fucci et al. (2017) found that short, steady cycles mattered more than writing the test first. My cycles were deliberately small, which fits the second explanation.
 
@@ -209,7 +209,7 @@ Continuous integration runs on every push and pull request (Fowler, 2006). It ch
 
 Each feature followed one issue, one branch and one pull request. I created every branch from its issue, so its name begins with the issue number, and merged with a merge commit, so the history shows each feature as a unit. The pull request template records the changes, the testing and the documentation, and `Closes #` links each pull request to its issue.
 
-Bug tickets use a separate template, because a bug needs different information: the steps to reproduce it, the expected and actual behaviour, the evidence, the root cause, and the fix with its regression test. All three were fixed test first. They were found by reading the footnotes in full (#37), by the first live run of the report (#42) and by reading the published page (#47). For #42, this regression test failed with the live error before the fix below it.
+Bug tickets use a separate template, because a bug needs different information: the steps to reproduce it, the expected and actual behaviour, the evidence, the root cause, and the fix with its regression test. All three bugs were fixed test first. They were found by reading the footnotes in full (#37), by the first live run of the report (#42) and by reading the published page (#47). For #42, this regression test failed with the live error before the fix below it.
 
 ```python
 def test_gzip_compressed_csv_is_decompressed():

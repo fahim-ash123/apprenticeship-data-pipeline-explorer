@@ -32,7 +32,7 @@ Each issue maps to the pull request that closed it. Issues are listed in the ord
 | #53 | Final documentation consistency review | Documentation | Maintenance | #54, #55 |
 | #56 | Remove the duplicated share calculation | Refactor | Maintenance | #57 |
 | #58 | Coverage badge | Chore | Maintenance | #59 |
-| #60 | Illustrate the build in the README | Documentation | Maintenance | #61 |
+| #60 | Illustrate the build in the README | Documentation | Maintenance | #61, #62 |
 
 ## Not delivered
 
